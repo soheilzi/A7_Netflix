@@ -43,21 +43,26 @@ Notif_movie_comment::Notif_movie_comment(std::string _user_name, int _user_id)
 
 
 string Notif_reply_comment::get_notif() {
+	read = true;
 	return "Publisher " + publisher_name + " with id " + to_string(publisher_id) + "reply to your comment.";
 }
 
 string Notif_new_film::get_notif() {
+	read = true;
 	return "Publisher " + publisher_name + " with id " + to_string(publisher_id) + "register new film.";
 }
 
 string Notif_movie_sale::get_notif() {
+	read = true;
 	return "User " + user_name + " with id " + to_string(user_id) + " buy your film " + film_name + " with id " to_string(film_id);
 }
 
 string Notif_movie_rate::get_notif() {
+	read = true;
 	return "User " + user_name + " with id " + to_string(user_id) + " rate your film " + film_name + " with id " to_string(film_id);
 }
 
 string Notif_movie_comment::get_notif() {
+	read = true;
 	return "User " + user_name + " with id " + to_string(user_id) + " comment on your film " + film_name + " with id " to_string(film_id);
 }
