@@ -28,7 +28,7 @@ public:
 	virtual std::string get_notif() = 0;
 protected:
 	std::string user_name;
-	std::string user_id;
+	int user_id;
 	std::string film_name;
 	int film_id;
 };
@@ -47,19 +47,19 @@ public:
 
 class Notif_movie_sale : public Notif_from_user {
 public:
-	Notif_movie_sale(std::string _user_name, int _user_id);
+	Notif_movie_sale(std::string _user_name, int _user_id, std::string _film_name, int _film_id);
 	virtual std::string get_notif();
 };
 
 class Notif_movie_rate : public Notif_from_user {
 public:
-	Notif_movie_rate(std::string _user_name, int _user_id);
+	Notif_movie_rate(std::string _user_name, int _user_id, std::string _film_name, int _film_id);
 	virtual std::string get_notif();
 };
 
 class Notif_movie_comment : public Notif_from_user {
 public:
-	Notif_movie_comment(std::string _user_name, int _user_id);
+	Notif_movie_comment(std::string _user_name, int _user_id, std::string _film_name, int _film_id);
 	virtual std::string get_notif();
 };
 

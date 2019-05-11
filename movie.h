@@ -12,15 +12,17 @@ private:
 	std::string name;
 	std::string summary;
 	std::string director;
+
 	int length;
 	int price;
 	int year;
 
+	float rate;
+
+	int sales_publisher;
+	
 	Comment_repos comments;
 
-	float score;
-
-	int sale_publisher;
 };
 
 #endif
