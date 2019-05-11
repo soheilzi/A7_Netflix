@@ -8,14 +8,14 @@ void Notification_repos::add_notif(Notification* notif) {
 
 void Notification_repos::show_all_notifs(int limit) {
 	for(int i = notifs.size(); i >= notifs.size() - limit && i >= 0; i--) {
-		cout << notifs[i].get_notif() << endl;
+		cout << notifs[i]->get_notif() << endl;
 	}
 }
 
 void Notification_repos::show_unread_notifs() {
-	for(int i = notifs.size(); i >= notifs.size() - limit && i >= 0; i--) {
-		if(!notifs[i].is_read()) {
-			cout << notifs[i].get_notif() << endl;
+	for(int i = notifs.size(); i >= 0; i--) {
+		if(!notifs[i]->is_read()) {
+			cout << notifs[i]->get_notif() << endl;
 		}
 	}
 }
