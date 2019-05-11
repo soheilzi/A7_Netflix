@@ -2,4 +2,11 @@
 
 using namespace std;
 
-equence_generator
+Sequence_generator::Sequence_generator() {
+	number = 1;
+}
+
+int Sequence_generator::get_number() {
+	number++;
+	return number--;
+}
