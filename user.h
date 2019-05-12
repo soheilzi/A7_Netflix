@@ -8,6 +8,7 @@
 #include "config.h"
 #include "movie.h"
 #include "notification.h"
+#include "notification_repos.h"
 
 class User {
 public:

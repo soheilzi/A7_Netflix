@@ -1,9 +1,9 @@
 #ifndef __sequence_g
 #define __sequence_g
 
-class Sequence_generator {
+class SequenceGenerator {
 public:
-	Sequence_generator();
+	SequenceGenerator();
 	int get_number();
 private:
 	int number;

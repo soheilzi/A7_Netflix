@@ -2,11 +2,11 @@
 
 using namespace std;
 
-Sequence_generator::Sequence_generator() {
+SequenceGenerator::SequenceGenerator() {
 	number = 1;
 }
 
-int Sequence_generator::get_number() {
+int SequenceGenerator::get_number() {
 	number++;
 	return number--;
 }

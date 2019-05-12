@@ -2,8 +2,9 @@
 
 using namespace std;
 
-Movie::Movie(int _id, std::string _name, int _year, int _length, int _price, std::string _summary, std::string _director) 
+Movie::Movie(int _id, User* _publisher, std::string _name, int _year, int _length, int _price, std::string _summary, std::string _director) 
 	: comments() {
+	publisher = _publisher; 
 	id = _id;
 	name = _name;
 	year = _year;

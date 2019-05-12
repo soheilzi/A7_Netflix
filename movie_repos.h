@@ -9,9 +9,9 @@
 
 class Movie_repos {
 public:
-	void add_movies
+	void add_movies()
 private:
-	sequence_generator id_generator;
+	SequenceGenerator id_generator;
 	std::map<int, Movie*> movies;
 };
 
