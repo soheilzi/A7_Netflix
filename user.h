@@ -26,7 +26,7 @@ protected:
 	
 	std::map<int, Movie*> movies_bought;
 
-	Notification_repos notifications;
+	NotificationRepos notifications;
 };
 
 #endif

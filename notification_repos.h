@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 
-class Notification_repos {
+class NotificationRepos {
 public:
 	void add_notif(Notification* notif);
 	void show_all_notifs(int limit);
