@@ -2,9 +2,11 @@
 
 using namespace std;
 
-void UserRepos::add_user(std::string _username, std::string _password, std::string _email, int _age) {
+void UserRepos::add_user(std::string username, std::string password, std::string email, int age) {
+	if(users.find(username) == users.end())
+		throw BadRequest();
 	int id = id_generator.get_number();
-	users[_username] = new User(id, _username, _password, _email, _age);
+	users[username] = new User(id, username, password, email, age);
 }
 
 bool UserRepos::correct_user_and_pass(string username, string password) {

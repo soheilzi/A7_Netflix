@@ -8,13 +8,14 @@ Movie::Movie(int _id, User* _publisher, std::string _name, int _year, int _lengt
 	id = _id;
 	name = _name;
 	year = _year;
-	lenght = _lenght;
+	length = _length;
 	price = _price;
 	summary = _summary;
 	director = _director;
 	rate = 0;
 	rater_count = 0;
 	sales_publisher = 0;
+	is_avalable = true;
 }
 
 Movie::Movie() {}

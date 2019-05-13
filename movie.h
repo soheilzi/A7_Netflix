@@ -15,6 +15,8 @@ public:
 private:
 	int id;
 
+	bool is_avalable;
+
 	std::string name;
 	std::string summary;
 	std::string director;

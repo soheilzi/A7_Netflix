@@ -28,3 +28,7 @@ string User::show() {
 void User::show_followers() {
 	throw PermissionDenied();
 }
+
+void User::add_movie(Movie* movie) {
+	throw PermissionDenied();
+}

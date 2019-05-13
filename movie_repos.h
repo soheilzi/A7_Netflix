@@ -7,9 +7,9 @@
 #include <string>
 #include <map>
 
-class Movie_repos {
+class MovieRepos {
 public:
-	void add_movies()
+	Movie* add_movie(User* publisher, std::string name, int length, int year, int price, std::string summary, std::string director);
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Movie*> movies;

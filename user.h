@@ -19,6 +19,7 @@ public:
 	std::string get_password();
 	
 	virtual void show_followers();
+	virtual void add_movie(Movie*);
 
 protected:
 	std::string username;
