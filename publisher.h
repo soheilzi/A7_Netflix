@@ -10,6 +10,7 @@ public:
 	Publisher(int _id, std::string _username, std::string _password, std::string _email, int _age);
 	virtual void show_followers();
 	virtual void add_movie(Movie*);
+	virtual bool is_publisher();
 private:
 	std::vector<User*> followers;
 	std::map<int, Movie*> movies;

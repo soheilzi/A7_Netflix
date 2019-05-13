@@ -16,3 +16,7 @@ void Publisher::show_followers() {
 void add_movie(Movie* movie) {
 	movies[movie->get_id()] = movie;
 }
+
+bool is_publisher() {
+	return true;
+}

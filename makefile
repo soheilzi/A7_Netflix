@@ -39,6 +39,5 @@ comment.o : comment.cpp comment.h
 	$(CC) -c comment.cpp -o comment.o
 
 
-
 clean : 
 	rm -r *.o

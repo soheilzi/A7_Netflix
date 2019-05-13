@@ -32,3 +32,7 @@ void User::show_followers() {
 void User::add_movie(Movie* movie) {
 	throw PermissionDenied();
 }
+
+bool User::is_publisher() {
+	return false;
+}
