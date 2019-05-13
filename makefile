@@ -24,10 +24,10 @@ user.o : user.h user.cpp
 	$(CC) -c user.cpp -o user.o
 
 user_repos.o : user_repos.h user_repos.cpp
-	$(CC) -c user_repos.coo -o user_repos.o
+	$(CC) -c user_repos.cpp -o user_repos.o
 
 publisher.o : publisher.h publisher.cpp
 	$(CC) -c publisher.cpp -o publisher.o
-	
+
 clean : 
 	rm -r *.o

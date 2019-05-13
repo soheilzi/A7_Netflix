@@ -16,3 +16,5 @@ Movie::Movie(int _id, User* _publisher, std::string _name, int _year, int _lengt
 	rater_count = 0;
 	sales_publisher = 0;
 }
+
+Movie::Movie() {}
