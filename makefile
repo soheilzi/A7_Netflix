@@ -29,7 +29,7 @@ user_repos.o : user_repos.h user_repos.cpp
 publisher.o : publisher.h publisher.cpp
 	$(CC) -c publisher.cpp -o publisher.o
 
-movie.o : movie.cpp movie.h
+movie.o : movie.cpp movie.h check_error.h
 	$(CC) -c movie.cpp -o movie.o
 
 movie_repos.o : movie_repos.cpp movie_repos.h
