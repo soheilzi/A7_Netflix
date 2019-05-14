@@ -8,5 +8,5 @@ SequenceGenerator::SequenceGenerator() {
 
 int SequenceGenerator::get_number() {
 	number++;
-	return number--;
+	return number - 1;
 }
