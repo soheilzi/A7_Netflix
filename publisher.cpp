@@ -20,3 +20,7 @@ void add_movie(Movie* movie) {
 bool is_publisher() {
 	return true;
 }
+
+bool Publisher::published_movie(int id) {
+	return movies.find(id) != movies.end();
+}

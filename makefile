@@ -5,8 +5,8 @@ all : Netflix test.out
 test.out : test.cpp
 	$(CC) test.cpp -o test.out
 
-Netflix : main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o
-	$(CC) main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o -o Netflix
+Netflix : main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o
+	$(CC) main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o -o Netflix
 
 main.o : main.cpp config.h
 	$(CC) -c main.cpp -o main.o
@@ -38,6 +38,7 @@ movie_repos.o : movie_repos.cpp movie_repos.h
 comment.o : comment.cpp comment.h
 	$(CC) -c comment.cpp -o comment.o
 
-
+check_error.o : check_error.cpp check_error.h
+	$(CC) -c check_error.cpp -o check_error.o
 clean : 
 	rm -r *.o

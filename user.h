@@ -21,6 +21,7 @@ public:
 	virtual void show_followers();
 	virtual void add_movie(Movie*);
 	virtual bool is_publisher();
+	virtual bool published_movie(int id);
 
 protected:
 	std::string username;

@@ -36,3 +36,7 @@ void User::add_movie(Movie* movie) {
 bool User::is_publisher() {
 	return false;
 }
+
+bool User::published_movie(int id) {
+	return false;
+}

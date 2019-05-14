@@ -66,3 +66,4 @@ string Notif_movie_comment::get_notif() {
 	read = true;
 	return "User " + user_name + " with id " + to_string(user_id) + " comment on your film " + film_name + " with id " + to_string(film_id);
 }
+

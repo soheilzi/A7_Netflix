@@ -7,4 +7,10 @@
 #define FOLLOWERS_HEADER "#. User Id | User Username | Use Email"
 #define DEFAULT_NET_MONEY 0
 
+#define NAME_CHANGE "name"
+#define LENGTH_CHANGE "length"
+#define YEAR_CHANGE "year"
+#define SUMMARY_CHANGE "summary"
+#define DIRECTOR_CHANGE "director"
+
 #endif

@@ -10,6 +10,7 @@
 class MovieRepos {
 public:
 	Movie* add_movie(User* publisher, std::string name, int length, int year, int price, std::string summary, std::string director);
+	void edit_movie(int id, std::map<std::string, std::string> parameters);
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Movie*> movies;

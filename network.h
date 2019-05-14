@@ -20,6 +20,7 @@ public:
 	void signup_user(std::string email, std::string username, std::string password, int age, bool publisher = false);
 	void login(std::string username, std::string password);
 	void add_movie(std::string name, int year, int length, int price, std::string summary, std::string dirctor);
+	void edit_movie(int id, std::map<std::string, std::string> parameters);
 private:
 	int money;
 	User* user;

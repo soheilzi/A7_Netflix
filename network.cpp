@@ -25,3 +25,9 @@ void Network::add_movie(std::string name, int year, int length, int price, std::
 	Movie* temp = movies.add_movie(user, name, length, year, price, summary, director);
 	user->add_movie(temp);
 }
+
+void Network::edit_movie(int id, std::map<std::string, std::string> parameters) {
+	if(!user->published_movie())
+		throw PermissionDenied();
+	movies.edit_movie(id, parameters);
+}

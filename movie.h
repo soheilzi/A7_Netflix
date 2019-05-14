@@ -2,6 +2,8 @@
 #define __movie
 
 #include <string>
+#include <exception>
+#include "exceptions.h"
 #include "comment.h"
 #include "config.h"
 
@@ -12,6 +14,9 @@ public:
 	Movie(int _id, User* _publisher, std::string _name, int _year, int _length, int _price,
 	 std::string _summary, std::string _director);
 	Movie();
+
+	void edit_parts(std::string key, std::string val);
+	void edit(std::map<std::string, std::string> parameters);
 private:
 	int id;
 
