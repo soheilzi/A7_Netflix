@@ -11,6 +11,7 @@ class CommandHandler {
 public:
 	CommandHandler(Network* _net);
 	void process_request(std::string command);
+	void check_request(std::vector<std::string> tokens);
 private:
 	Network* net;
 };

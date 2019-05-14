@@ -8,7 +8,7 @@ test.out : test.cpp
 Netflix : main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o network.o command_handler.o
 	$(CC) main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o network.o command_handler.o -o Netflix
 
-main.o : main.cpp config.h command_handler.h network.h
+main.o : main.cpp config.h command_handler.h network.h exceptions.h 
 	$(CC) -c main.cpp -o main.o
 
 notification.o : notification.cpp notification.h

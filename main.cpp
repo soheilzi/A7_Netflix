@@ -4,6 +4,8 @@
 
 #include "network.h"
 #include "command_handler.h"
+#include "exceptions.h"
+#include "config.h"
 
 using namespace std;
 
@@ -12,6 +14,14 @@ int main(int argc, char** argv) {
 	CommandHandler cm(&net);
 	string line;
 	while(getline(cin, line)) {
-		cm.process_request(line);
+		try{
+			cm.process_request(line);
+		} catch(BadRequest ex) {
+			cout << BADREQUEST << endl;
+		} catch(PermissionDenied ex) {
+			cout << PERMISSIONDENIED << endl; 
+		} catch(NotFound ex) {
+			cout << NOTFOUND << endl;
+		}
 	}
 }

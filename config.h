@@ -13,4 +13,8 @@
 #define SUMMARY_CHANGE "summary"
 #define DIRECTOR_CHANGE "director"
 
+#define BADREQUEST "Bad Request"
+#define NOTFOUND "Not Found"
+#define PERMISSIONDENIED "Permission Denied"
+
 #endif
