@@ -5,10 +5,10 @@ all : Netflix test.out
 test.out : test.cpp
 	$(CC) test.cpp -o test.out
 
-Netflix : main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o
-	$(CC) main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o -o Netflix
+Netflix : main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o network.o command_handler.o
+	$(CC) main.o notification.o notification_repos.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o network.o command_handler.o -o Netflix
 
-main.o : main.cpp config.h
+main.o : main.cpp config.h command_handler.h network.h
 	$(CC) -c main.cpp -o main.o
 
 notification.o : notification.cpp notification.h
@@ -40,5 +40,16 @@ comment.o : comment.cpp comment.h
 
 check_error.o : check_error.cpp check_error.h
 	$(CC) -c check_error.cpp -o check_error.o
+
+command_handler.o : command_handler.cpp command_handler.h
+	$(CC) -c command_handler.cpp -o command_handler.o
+
+network.o : network.cpp network.h
+	$(CC) -c network.cpp -o network.o
+
+
+
+
+
 clean : 
 	rm -r *.o

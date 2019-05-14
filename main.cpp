@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "network.h"
-
+#include "command_handler.h"
 
 using namespace std;
 
@@ -12,6 +12,6 @@ int main(int argc, char** argv) {
 	CommandHandler cm(&net);
 	string line;
 	while(getline(cin, line)) {
-		cm.prosses_request(line);
+		cm.process_request(line);
 	}
 }
