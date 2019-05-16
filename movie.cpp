@@ -50,3 +50,7 @@ void Movie::edit(std::map<std::string, std::string> parameters) {
 		edit_parts(elem.first, elem.second);
 	}
 }
+
+int Movie::get_id() {
+	return id;
+}

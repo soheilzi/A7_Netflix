@@ -10,25 +10,6 @@ bool is_number(std::string s) {
 	return true;
 }
 
-#define DIVIDER "?"
-
-#define ACTION_POST "POST"
-#define ACTION_GET "GET"
-#define ACTION_DELETE "DELETE"
-#define ACTION_PUT "PUT"
-
-#define COMMAND_SIGNUP "signup"
-#define COMMAND_LOGIN "login"
-#define COMMAND_FILM "films"
-#define COMMAND_FOLLOWERS "followers"
-#define COMMAND_MONEY "money"
-#define COMMAND_REPLIES "replies"
-#define COMMAND_COMMENTS "comments"
-#define COMMAND_BUY "buy"
-#define COMMAND_RATE "rate"
-#define COMMAND_PURCHASED "purchased"
-#define COMMAND_NOTIFICATIONS "notifications"
-
 void check_divider(std::string s) {
 	if(s != DIVIDER)
 		throw BadRequest();

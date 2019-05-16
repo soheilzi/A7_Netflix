@@ -7,8 +7,15 @@ Network::Network() {
 	login = false;
 }
 
-void Network::signup_user(std::string email, std::string username, std::string password, int age, bool publisher) {
-	user = users.add_user(username, password, email, age);
+void Network::signup_user(std::string email, std::string username, std::string password, int age, string publisher) {
+	cout<<"user added\n";
+	bool publisher_flag;
+	if(publisher == _FALSE){
+		publisher_flag = false;
+	} else {
+		publisher_flag = true;
+	}
+	user = users.add_user(username, password, email, age, publisher_flag);
 }
 
 void Network::login_user(string username, string password) {

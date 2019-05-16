@@ -3,7 +3,7 @@
 using namespace std;
 
 Publisher::Publisher(int _id, std::string _username, std::string _password, std::string _email, int _age)
-	: User(){}
+	: User(_id, _username, _password, _email, _age) {}
 
 void Publisher::show_followers() {
 	cout << "List of Followers" << endl;
@@ -13,11 +13,11 @@ void Publisher::show_followers() {
 	}
 }
 
-void add_movie(Movie* movie) {
+void Publisher::add_movie(Movie* movie) {
 	movies[movie->get_id()] = movie;
 }
 
-bool is_publisher() {
+bool Publisher::is_publisher() {
 	return true;
 }
 

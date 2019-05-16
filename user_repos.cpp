@@ -2,11 +2,15 @@
 
 using namespace std;
 
-User* UserRepos::add_user(std::string username, std::string password, std::string email, int age) {
+User* UserRepos::add_user(std::string username, std::string password, std::string email, int age, bool publisher) {
 	if(users.find(username) != users.end())
 		throw BadRequest();
 	int id = id_generator.get_number();
-	users[username] = new User(id, username, password, email, age);
+	if(publisher)
+		users[username] = new Publisher(id, username, password, email, age);
+	else
+		users[username] = new User(id, username, password, email, age);
+	
 	return users[username];
 }
 
