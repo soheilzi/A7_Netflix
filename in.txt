@@ -1,3 +1,6 @@
 POST signup ? email soheil@ut username soheil password holo age 10
 POST signup ? email ava@os username ava password baloot age 20 publisher true
 POST signup ? email soheil@ut username soheil password holo ag 10
+POST login ? username soheil password holo
+POST login ? username ava password badoom
+POST login ? username hana password jojo

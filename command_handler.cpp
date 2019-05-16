@@ -166,6 +166,11 @@ void CommandHandler::signup(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::login(std::map<std::string, std::string> param) {
+	vector<string> list = {USERNAME, PASSWORD};
+	check_is_in_list(list, param);
+	check_is_in_param(param, list);
+
+	net->login_user(param[USERNAME], param[PASSWORD]);
 
 }
 

@@ -10,12 +10,15 @@ User* UserRepos::add_user(std::string username, std::string password, std::strin
 		users[username] = new Publisher(id, username, password, email, age);
 	else
 		users[username] = new User(id, username, password, email, age);
-	
+
 	return users[username];
 }
 
 bool UserRepos::correct_user_and_pass(string username, string password) {
-	return password == users[username]->get_password();
+	if(users.find(username) != users.end())
+		return password == users[username]->get_password();
+	return false;
+
 }
 
 User* UserRepos::get_user(string username) {
