@@ -19,6 +19,7 @@ public:
 	void edit_parts(std::string key, std::string val);
 	void edit(std::map<std::string, std::string> parameters);
 	int checkout_money();
+	void add_reply_comment(int comment_id, std::string content);
 private:
 	int id;
 

@@ -21,6 +21,7 @@ public:
 	void add_movie(std::string name, int year, int length, int price, std::string summary, std::string dirctor);
 	void edit_movie(int id, std::map<std::string, std::string> parameters);
 	void get_money_publisher();
+	void post_reply(int film_id, int comment_id, std::string content);
 private:
 	int money;
 	User* user;

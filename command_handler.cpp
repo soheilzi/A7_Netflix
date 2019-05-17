@@ -186,10 +186,14 @@ void CommandHandler::post_film(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::user_get_money(std::map<std::string, std::string> param) {
-
+	
 }
 
 void CommandHandler::post_reply(std::map<std::string, std::string> param) {
+	vector<string> list = {FILM_ID, COMMENT_ID, CONTENT};
+	check_param_with_list(list, param);
+
+	net->post_reply(stoi(param[FILM_ID]), stoi(param[COMMENT_ID]), param[CONTENT]);
 
 }
 

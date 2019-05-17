@@ -26,11 +26,16 @@ User* Comment::get_user() {
 
 void Comment::set_reply(string _reply) {
 	reply = _reply;
+	cout<<"reply : "<<reply << " added" <<endl;
 }
 
 
 
+CommentRepos::CommentRepos() : id_generator() {}
+
 void CommentRepos::reply(int id, std::string content) {
+	if(comments.find(id) == comments.end())
+		throw BadRequest();
 	comments[id].set_reply(content);
 }
 

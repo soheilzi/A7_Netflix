@@ -2,6 +2,8 @@
 
 using namespace std;
 
+UserRepos::UserRepos() : id_generator() {}
+
 User* UserRepos::add_user(std::string username, std::string password, std::string email, int age, bool publisher) {
 	if(users.find(username) != users.end())
 		throw BadRequest();

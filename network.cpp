@@ -35,6 +35,8 @@ void Network::add_movie(std::string name, int year, int length, int price, std::
 }
 
 void Network::edit_movie(int id, std::map<std::string, std::string> parameters) {
+	if(!user->is_publisher())
+		throw PermissionDenied();
 	if(!user->published_movie(id))
 		throw PermissionDenied();
 	movies.edit_movie(id, parameters);
@@ -47,4 +49,14 @@ void Network::get_money_publisher() {
 	cout<<"net money : "<<money<<endl<<"debt : "<<debt<<endl;
 	money -= debt;
 	user->get_money(debt);
+}
+
+void Network::post_reply(int film_id, int comment_id, std::string content) {
+	if(!user->is_publisher())
+		throw PermissionDenied();
+	cout<<"1"<<endl;
+	if(!user->published_movie(film_id))
+		throw PermissionDenied();
+	cout<<"2"<<endl;
+	movies.add_reply_comment(film_id, comment_id, content);
 }

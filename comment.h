@@ -4,7 +4,10 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <iostream>
 #include "sequence_generator.h"
+#include "exceptions.h"
+#include "config.h"
 
 class User;
 
@@ -26,6 +29,7 @@ private:
 
 class CommentRepos {
 public:
+	CommentRepos();
 	void reply(int id, std::string content);
 	void add_comment(std::string content, User* user);
 	void delete_comment(int id);

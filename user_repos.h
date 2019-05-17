@@ -10,6 +10,7 @@
 
 class UserRepos {
 public:
+	UserRepos();
 	User* get_user(std::string username);
 	User* add_user(std::string _username, std::string _password, std::string _email, int _age, bool publisher);
 	bool correct_user_and_pass(std::string _username, std::string _password);

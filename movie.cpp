@@ -27,6 +27,10 @@ int Movie::checkout_money() {
 	return temp;
 }
 
+void Movie::add_reply_comment(int comment_id, std::string content) {
+	comments.reply(comment_id, content);
+}
+
 void Movie::edit_parts(string key, string val) {
 	if(key == NAME_CHANGE) {
 		name = val;
