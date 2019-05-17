@@ -21,6 +21,12 @@ Movie::Movie(int _id, User* _publisher, std::string _name, int _year, int _lengt
 	is_avalable = true;
 }
 
+int Movie::checkout_money() {
+	int temp = sales_publisher;
+	sales_publisher = 0;
+	return temp;
+}
+
 void Movie::edit_parts(string key, string val) {
 	if(key == NAME_CHANGE) {
 		name = val;

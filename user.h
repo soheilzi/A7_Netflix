@@ -17,11 +17,14 @@ public:
 	std::string show();
 	std::string get_username();
 	std::string get_password();
+
+	void get_money(int _money);
 	
 	virtual void show_followers();
 	virtual void add_movie(Movie*);
 	virtual bool is_publisher();
 	virtual bool published_movie(int id);
+	virtual int calculate_debt();
 
 protected:
 	std::string username;

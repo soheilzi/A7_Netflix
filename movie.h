@@ -18,6 +18,7 @@ public:
 	int get_id();
 	void edit_parts(std::string key, std::string val);
 	void edit(std::map<std::string, std::string> parameters);
+	int checkout_money();
 private:
 	int id;
 

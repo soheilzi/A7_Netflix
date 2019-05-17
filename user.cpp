@@ -40,3 +40,9 @@ bool User::is_publisher() {
 bool User::published_movie(int id) {
 	return false;
 }
+
+int User::calculate_debt(){}
+
+void User::get_money(int _money) {
+	money += _money;
+}

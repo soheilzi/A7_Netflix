@@ -64,7 +64,7 @@ void CommandHandler::check_request(std::vector<std::string> tokens) {
 void CommandHandler::handle_post(vector<string> tokens) {
 	string command = tokens[1];
 	if(tokens.size() == 2 && command == COMMAND_MONEY){
-		//publisher_get_money();
+		net->get_money_publisher();
 		return;
 	}
 	check_divider(tokens[2]);

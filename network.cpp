@@ -39,3 +39,12 @@ void Network::edit_movie(int id, std::map<std::string, std::string> parameters) 
 		throw PermissionDenied();
 	movies.edit_movie(id, parameters);
 }
+
+void Network::get_money_publisher() {
+	if(!user->is_publisher())
+		throw PermissionDenied();
+	int debt = user->calculate_debt();
+	cout<<"net money : "<<money<<endl<<"debt : "<<debt<<endl;
+	money -= debt;
+	user->get_money(debt);
+}
