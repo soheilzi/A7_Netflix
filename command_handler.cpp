@@ -100,6 +100,7 @@ void CommandHandler::handle_post(vector<string> tokens) {
 
 }
 #define USERNAME "username"
+#define NAME "name"
 #define EMAIL "email"
 #define PASSWORD "password"
 #define FILM_ID "film_id"
@@ -147,18 +148,21 @@ void check_is_in_param(map<string, string> param, vector<string> list) {
 	}
 }
 
+void check_param_with_list(vector<string> list, map<string, string> param) {
+	check_is_in_list(list, param);
+	check_is_in_param(param, list);
+}
+
 void CommandHandler::signup(std::map<std::string, std::string> param) {
 	if ( param.find(PUBLISHER) != param.end()){
 	vector<string> list = {EMAIL, USERNAME, PASSWORD, AGE, PUBLISHER};
-	check_is_in_list(list, param);
-	check_is_in_param(param, list);
+	check_param_with_list(list, param);
 
 	net->signup_user(param[EMAIL], param[USERNAME], param[PASSWORD], stoi(param[AGE]), param[PUBLISHER]);
 
 	}else{
 	vector<string> list = {EMAIL, USERNAME, PASSWORD, AGE};
-	check_is_in_list(list, param);
-	check_is_in_param(param, list);
+	check_param_with_list(list, param);
 
 	net->signup_user(param[EMAIL], param[USERNAME], param[PASSWORD], stoi(param[AGE]));
 
@@ -167,14 +171,17 @@ void CommandHandler::signup(std::map<std::string, std::string> param) {
 
 void CommandHandler::login(std::map<std::string, std::string> param) {
 	vector<string> list = {USERNAME, PASSWORD};
-	check_is_in_list(list, param);
-	check_is_in_param(param, list);
+	check_param_with_list(list, param);
 
 	net->login_user(param[USERNAME], param[PASSWORD]);
 
 }
 
-void CommandHandler::post_film(std::map<std::string, std::string> param) {
+void CommandHandler::post_film(std::map<std::string, std::string> param) {	
+	vector<string> list = {NAME, YEAR, LENGTH, PRICE, SUMMARY, DIRECTOR};
+	check_param_with_list(list, param);
+
+	net->add_movie(param[NAME], stoi(param[YEAR]), stoi(param[LENGTH]), stoi(param[PRICE]), param[SUMMARY], param[DIRECTOR]);
 
 }
 

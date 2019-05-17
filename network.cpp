@@ -21,7 +21,7 @@ void Network::signup_user(std::string email, std::string username, std::string p
 void Network::login_user(string username, string password) {
 	if(users.correct_user_and_pass(username, password)) {
 		user = users.get_user(username); 
-		cout<<"login was a succece\n";
+		cout<<"login was a success\n";
 	} else {
 		throw BadRequest();
 	}

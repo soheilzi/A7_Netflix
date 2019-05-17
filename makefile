@@ -47,8 +47,6 @@ command_handler.o : command_handler.cpp command_handler.h
 network.o : network.cpp network.h
 	$(CC) -c network.cpp -o network.o
 
-publisher.o : publisher.cpp publisher.h
-	$(CC) -c publisher.cpp -o publisher.o
 
 
 
