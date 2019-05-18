@@ -69,11 +69,12 @@ void Movie::edit(std::map<std::string, std::string> parameters) {
 #define STRONG_SALE .95
 
 void Movie::make_sale() {
-	if(rate < WEAK_RATE){ 
+	float _rate = rate / (float)rater_count;
+	if(_rate < WEAK_RATE){
 		sales_publisher += price * WEAK_SALE;
-	} else if(rate >= WEAK_RATE && rate < STRONG_RATE) {
+	} else if(_rate >= WEAK_RATE && _rate < STRONG_RATE) {
 		sales_publisher += price * MEDIOM_SALE;
-	} else if(rate >= STRONG_RATE) {
+	} else if(_rate >= STRONG_RATE) {
 		sales_publisher += price * STRONG_SALE;
 	}	
 }
@@ -92,4 +93,10 @@ std::string Movie::get_name() {
 
 User* Movie::get_publisher() {
 	return publisher;
+}
+
+void Movie::set_score(int score) {
+	rater_count++;
+	rate += score;
+	cout<<"scored\n";
 }

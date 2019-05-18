@@ -15,6 +15,7 @@ public:
 	void edit_movie(int id, std::map<std::string, std::string> parameters);
 	void add_reply_comment(int film_id, int comment_id, std::string content);	
 	void buy_movie(int film_id);
+	void rate(int film_id, int score);
 
 	int get_price(int film_id);
 	std::string get_name(int film_id);

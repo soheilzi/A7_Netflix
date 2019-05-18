@@ -36,3 +36,7 @@ User* MovieRepos::get_publisher(int film_id) {
 void MovieRepos::buy_movie(int film_id) {
 	movies[film_id]->make_sale();
 }
+
+void MovieRepos::rate(int film_id, int score) {
+	movies[film_id]->set_score(score);
+}

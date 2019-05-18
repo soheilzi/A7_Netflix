@@ -218,6 +218,10 @@ void CommandHandler::post_buy(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::post_rate(std::map<std::string, std::string> param) {
+	vector<string> list = {FILM_ID, SCORE};
+	check_param_with_list(list, param);
+
+	net->rate(stoi(param[FILM_ID]), stoi(param[SCORE]));
 
 }
 

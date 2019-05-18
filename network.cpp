@@ -79,3 +79,9 @@ void Network::buy_movie(int film_id) {
 	movies.buy_movie(film_id);
 	movies.get_publisher(film_id)->send_notif(new Notif_movie_sale(user->get_username(), user->get_id(), movies.get_name(film_id), film_id));
 }
+
+void Network::rate(int film_id, int score) {
+	if(score > 10 || score < 0)
+		throw BadRequest();
+	movies.rate(film_id, score);
+}

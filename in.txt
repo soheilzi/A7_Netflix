@@ -17,3 +17,4 @@ POST login ? username ava password baloot
 POST money ?     amount   90
 POST buy ? film_id 1
 POST money ?     amount   00
+POST rate ? film_id 1 score 10
