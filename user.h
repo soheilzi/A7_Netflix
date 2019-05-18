@@ -17,8 +17,11 @@ public:
 	std::string show();
 	std::string get_username();
 	std::string get_password();
+	int get_id();
 
 	void get_money(int _money);
+	void add_following(User* user);
+	void send_notif(Notification*);
 	
 	virtual void show_followers();
 	virtual void add_movie(Movie*);

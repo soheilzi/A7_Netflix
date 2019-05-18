@@ -54,9 +54,15 @@ void Network::get_money_publisher() {
 void Network::post_reply(int film_id, int comment_id, std::string content) {
 	if(!user->is_publisher())
 		throw PermissionDenied();
-	cout<<"1"<<endl;
 	if(!user->published_movie(film_id))
 		throw PermissionDenied();
-	cout<<"2"<<endl;
 	movies.add_reply_comment(film_id, comment_id, content);
+}
+
+void Network::post_followers(int id) {
+	User* temp = users.get_user_by_id(id);
+	if(!temp->is_publisher())
+		throw BadRequest();
+	user->add_following(temp);
+	temp->send_notif(new Notif_new_follower(user->get_username(), user->get_id()));
 }

@@ -12,6 +12,7 @@
 #include "user.h"
 #include "user_repos.h"
 #include "movie_repos.h"
+#include "notification.h"
 
 class Network {
 public:
@@ -22,6 +23,7 @@ public:
 	void edit_movie(int id, std::map<std::string, std::string> parameters);
 	void get_money_publisher();
 	void post_reply(int film_id, int comment_id, std::string content);
+	void post_followers(int id);
 private:
 	int money;
 	User* user;

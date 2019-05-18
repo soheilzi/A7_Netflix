@@ -7,3 +7,6 @@ POST login ? username ava password baloot
 POST films ? year 2120 name the|games    length 4 price 220 summary just|two|girls director ava
 POST money
 POST replies ? film_id 2 comment_id 1 content you|are|wrong
+POST login ? username soheil password holo
+POST followers ? user_id 2
+POST followers ? user_id 1

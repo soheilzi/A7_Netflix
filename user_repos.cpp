@@ -26,3 +26,11 @@ bool UserRepos::correct_user_and_pass(string username, string password) {
 User* UserRepos::get_user(string username) {
 	return users[username];
 }
+
+User* UserRepos::get_user_by_id(int id) {
+	for(const auto& elem : users) {
+		if(elem.second->get_id() == id)
+			return elem.second;
+	}
+	throw BadRequest();
+}

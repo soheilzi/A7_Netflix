@@ -21,6 +21,10 @@ string User::get_password() {
 	return password;
 }
 
+int User::get_id() {
+	return id;
+}
+
 string User::show() {
 	return to_string(id) + " | " + username + " | " + email;
 }
@@ -45,4 +49,13 @@ int User::calculate_debt(){}
 
 void User::get_money(int _money) {
 	money += _money;
+}
+
+void User::add_following(User* user) {
+	following.push_back(user);
+	cout<<"user added\n";
+}
+
+void User::send_notif(Notification* notif) {
+	notifications.add_notif(notif);
 }

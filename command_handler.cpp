@@ -85,7 +85,7 @@ void CommandHandler::handle_post(vector<string> tokens) {
 		post_reply(param_map);
 		
 	} else if(command == COMMAND_FOLLOWERS) {
-		post_follow(param_map);
+		post_followers(param_map);
 		
 	} else if(command == COMMAND_BUY) {
 		post_buy(param_map);
@@ -186,7 +186,7 @@ void CommandHandler::post_film(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::user_get_money(std::map<std::string, std::string> param) {
-	
+
 }
 
 void CommandHandler::post_reply(std::map<std::string, std::string> param) {
@@ -197,7 +197,11 @@ void CommandHandler::post_reply(std::map<std::string, std::string> param) {
 
 }
 
-void CommandHandler::post_follow(std::map<std::string, std::string> param) {
+void CommandHandler::post_followers(std::map<std::string, std::string> param) {
+	vector<string> list = {USER_ID};
+	check_param_with_list(list, param);
+
+	net->post_followers(stoi(param[USER_ID]));
 
 }
 

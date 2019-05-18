@@ -24,7 +24,7 @@ public:
 	void post_film(std::map<std::string, std::string> param);
 	void user_get_money(std::map<std::string, std::string> param);
 	void post_reply(std::map<std::string, std::string> param);
-	void post_follow(std::map<std::string, std::string> param);
+	void post_followers(std::map<std::string, std::string> param);
 	void post_buy(std::map<std::string, std::string> param);
 	void post_rate(std::map<std::string, std::string> param);
 	void post_comment(std::map<std::string, std::string> param);
