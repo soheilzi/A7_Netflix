@@ -26,6 +26,7 @@ public:
 	int checkout_money();
 	void add_reply_comment(int comment_id, std::string content);
 	void make_sale();
+	void add_comment(std::string content, User* commenter);
 private:
 	int id;
 

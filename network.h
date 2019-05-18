@@ -27,6 +27,7 @@ public:
 	void get_money_user(int amount);
 	void post_reply(int film_id, int comment_id, std::string content);
 	void post_followers(int id);
+	void post_comment(int film_id, std::string content);
 private:
 	int money;
 	User* user;

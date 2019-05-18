@@ -226,6 +226,10 @@ void CommandHandler::post_rate(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::post_comment(std::map<std::string, std::string> param) {
+	vector<string> list = {FILM_ID, CONTENT};
+	check_param_with_list(list, param);
+
+	net->post_comment(stoi(param[FILM_ID]), param[CONTENT]);
 
 }
 

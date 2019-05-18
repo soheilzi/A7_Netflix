@@ -42,6 +42,7 @@ void CommentRepos::reply(int id, std::string content) {
 void CommentRepos::add_comment(std::string content, User* user) {
 	int id = id_generator.get_number();
 	comments[id] = Comment(id, content, user);
+	cout<<"comment with id : "<<id << "and content : "<< content<<endl;
 }
 
 void CommentRepos::delete_comment(int id) {

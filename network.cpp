@@ -85,3 +85,7 @@ void Network::rate(int film_id, int score) {
 		throw BadRequest();
 	movies.rate(film_id, score);
 }
+
+void Network::post_comment(int film_id, std::string content) {
+	movies.post_comment(film_id, content, user);
+}

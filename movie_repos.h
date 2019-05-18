@@ -16,10 +16,13 @@ public:
 	void add_reply_comment(int film_id, int comment_id, std::string content);	
 	void buy_movie(int film_id);
 	void rate(int film_id, int score);
+	void post_comment(int film_id, std::string content, User* commenter);
 
 	int get_price(int film_id);
 	std::string get_name(int film_id);
 	User* get_publisher(int film_id);
+
+	void check_film_id(int film_id);
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Movie*> movies;

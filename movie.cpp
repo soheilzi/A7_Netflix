@@ -100,3 +100,7 @@ void Movie::set_score(int score) {
 	rate += score;
 	cout<<"scored\n";
 }
+
+void Movie::add_comment(std::string content, User* commenter) {
+	comments.add_comment(content, commenter);
+}
