@@ -32,8 +32,10 @@ void Movie::add_reply_comment(int comment_id, std::string content) {
 }
 
 void Movie::edit_parts(string key, string val) {
+	cout<<"edit commited\n";
 	if(key == NAME_CHANGE) {
 		name = val;
+		cout<<"new name : "<<name<<endl;
 
 	} else if(key == LENGTH_CHANGE) {
 		if(!is_number(val))
@@ -44,12 +46,14 @@ void Movie::edit_parts(string key, string val) {
 		if(!is_number(val))
 			throw BadRequest();
 		year = stoi(val);
+		cout<<"new year : "<<year<<endl;
 
 	} else if(key == SUMMARY_CHANGE) {
 		summary = val;
 
 	} else if(key == DIRECTOR_CHANGE) {
 		director = val;
+		cout<<"new director : "<<director<<endl;
 
 	}
 
@@ -60,13 +64,6 @@ void Movie::edit(std::map<std::string, std::string> parameters) {
 		edit_parts(elem.first, elem.second);
 	}
 }
-
-#define WEAK_RATE 5
-#define STRONG_RATE 8
-
-#define WEAK_SALE .8
-#define MEDIOM_SALE .9
-#define STRONG_SALE .95
 
 void Movie::make_sale() {
 	float _rate = rate / (float)rater_count;

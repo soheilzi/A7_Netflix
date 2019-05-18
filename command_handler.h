@@ -28,6 +28,8 @@ public:
 	void post_buy(std::map<std::string, std::string> param);
 	void post_rate(std::map<std::string, std::string> param);
 	void post_comment(std::map<std::string, std::string> param);
+
+	void put_films(std::map<std::string, std::string> param);
 private:
 	Network* net;
 };

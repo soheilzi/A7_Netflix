@@ -99,6 +99,27 @@ void CommandHandler::handle_post(vector<string> tokens) {
 	}
 
 }
+
+
+void CommandHandler::handle_get(vector<string> tokens) {
+	
+}
+
+void CommandHandler::handle_delete(vector<string> tokens) {
+	
+}
+
+void CommandHandler::handle_put(vector<string> tokens) {
+	string command = tokens[1];
+	check_divider(tokens[2]);
+	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+	if(command == COMMAND_FILM) {
+		put_films(param_map);
+	}
+	
+}
+
+
 #define USERNAME "username"
 #define NAME "name"
 #define EMAIL "email"
@@ -151,6 +172,16 @@ void check_is_in_param(map<string, string> param, vector<string> list) {
 void check_param_with_list(vector<string> list, map<string, string> param) {
 	check_is_in_list(list, param);
 	check_is_in_param(param, list);
+}
+
+void CommandHandler::put_films(std::map<std::string, std::string> param) {
+	vector<string> list_min = {FILM_ID};
+	vector<string> list_max = {FILM_ID, NAME, YEAR, LENGTH, SUMMARY, DIRECTOR};
+	check_is_in_list(list_max, param);
+	check_is_in_param(param, list_min);
+
+	net->edit_movie(stoi(param[FILM_ID]), param);
+
 }
 
 void CommandHandler::signup(std::map<std::string, std::string> param) {
@@ -231,19 +262,6 @@ void CommandHandler::post_comment(std::map<std::string, std::string> param) {
 
 	net->post_comment(stoi(param[FILM_ID]), param[CONTENT]);
 
-}
-
-
-void CommandHandler::handle_get(vector<string> tokens) {
-	
-}
-
-void CommandHandler::handle_delete(vector<string> tokens) {
-	
-}
-
-void CommandHandler::handle_put(vector<string> tokens) {
-	
 }
 
 void CommandHandler::process_request(string command) {

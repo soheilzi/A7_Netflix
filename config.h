@@ -38,4 +38,14 @@
 
 #define _FALSE "false"
 #define _TRUE "true"
+
+
+#define WEAK_RATE 5
+#define STRONG_RATE 8
+
+#define WEAK_SALE .8
+#define MEDIOM_SALE .9
+#define STRONG_SALE .95
+
+
 #endif
