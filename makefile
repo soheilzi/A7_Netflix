@@ -1,6 +1,6 @@
 CC := g++ --std=c++11
 
-all : Netflix test.out 
+all : Netflix test.out clean
 
 test.out : test.cpp
 	$(CC) test.cpp -o test.out

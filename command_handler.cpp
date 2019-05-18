@@ -186,6 +186,10 @@ void CommandHandler::post_film(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::user_get_money(std::map<std::string, std::string> param) {
+	vector<string> list = {AMOUNT};
+	check_param_with_list(list, param);
+
+	net->get_money_user(stoi(param[AMOUNT]));
 
 }
 

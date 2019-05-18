@@ -49,6 +49,7 @@ int User::calculate_debt(){}
 
 void User::get_money(int _money) {
 	money += _money;
+	cout<<"money : "<<money<<endl;
 }
 
 void User::add_following(User* user) {

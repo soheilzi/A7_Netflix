@@ -10,3 +10,8 @@ POST replies ? film_id 2 comment_id 1 content you|are|wrong
 POST login ? username soheil password holo
 POST followers ? user_id 2
 POST followers ? user_id 1
+POST money ? amount 100
+POST money ? amount 20
+POST money ?
+POST login ? username ava password baloot
+POST money ?     amount   90

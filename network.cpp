@@ -51,6 +51,10 @@ void Network::get_money_publisher() {
 	user->get_money(debt);
 }
 
+void Network::get_money_user(int amount) {
+	user->get_money(amount);
+}
+
 void Network::post_reply(int film_id, int comment_id, std::string content) {
 	if(!user->is_publisher())
 		throw PermissionDenied();
