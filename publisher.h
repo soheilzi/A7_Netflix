@@ -13,6 +13,7 @@ public:
 	virtual bool is_publisher();
 	virtual bool published_movie(int id);
 	virtual int calculate_debt();
+	virtual void delete_film(int film_id);
 private:
 	std::vector<User*> followers;
 	std::map<int, Movie*> movies;

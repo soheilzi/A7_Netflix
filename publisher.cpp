@@ -32,3 +32,7 @@ int Publisher::calculate_debt() {
 	} 
 	return debt;
 }
+
+void Publisher::delete_film(int film_id) {
+	movies.erase(film_id);
+}

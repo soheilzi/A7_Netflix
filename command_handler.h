@@ -30,6 +30,9 @@ public:
 	void post_comment(std::map<std::string, std::string> param);
 
 	void put_films(std::map<std::string, std::string> param);
+
+	void delete_film(std::map<std::string, std::string> param);
+	void delete_comment(std::map<std::string, std::string> param);
 private:
 	Network* net;
 };

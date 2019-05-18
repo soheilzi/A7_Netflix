@@ -32,7 +32,7 @@ public:
 	CommentRepos();
 	void reply(int id, std::string content);
 	void add_comment(std::string content, User* user);
-	void delete_comment(int id);
+	void delete_comment(int comment_id);
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Comment> comments;

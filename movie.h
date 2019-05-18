@@ -27,6 +27,7 @@ public:
 	void add_reply_comment(int comment_id, std::string content);
 	void make_sale();
 	void add_comment(std::string content, User* commenter);
+	void delete_comment(int comment_id);
 private:
 	int id;
 

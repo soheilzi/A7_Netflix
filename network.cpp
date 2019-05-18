@@ -89,3 +89,19 @@ void Network::rate(int film_id, int score) {
 void Network::post_comment(int film_id, std::string content) {
 	movies.post_comment(film_id, content, user);
 }
+
+void Network::delete_film(int film_id) {
+	if(!user->is_publisher())
+		throw PermissionDenied();
+	if(!user->published_movie(film_id))
+		throw PermissionDenied();
+	user->delete_film(film_id);
+}
+
+void Network::delete_comment(int film_id, int comment_id) {
+	if(!user->is_publisher())
+		throw PermissionDenied();
+	if(!user->published_movie(film_id))
+		throw PermissionDenied();
+	movies.delete_comment(film_id, comment_id);
+}

@@ -55,3 +55,8 @@ void MovieRepos::post_comment(int film_id, std::string content, User* commenter)
 	check_film_id(film_id);
 	movies[film_id]->add_comment(content, commenter);
 }
+
+void MovieRepos::delete_comment(int film_id, int comment_id) {
+	check_film_id(film_id);
+	movies[film_id]->delete_comment(comment_id);
+}

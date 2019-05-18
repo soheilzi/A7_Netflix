@@ -26,6 +26,7 @@ public:
 	void add_following(User* user);
 	void send_notif(Notification*);
 	
+	virtual void delete_film(int film_id);
 	virtual void show_followers();
 	virtual void add_movie(Movie*);
 	virtual bool is_publisher();

@@ -106,7 +106,14 @@ void CommandHandler::handle_get(vector<string> tokens) {
 }
 
 void CommandHandler::handle_delete(vector<string> tokens) {
-	
+	string command = tokens[1];
+	check_divider(tokens[2]);
+	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+	if(command == COMMAND_COMMENTS) {
+		delete_comment(param_map);
+	} else if(command == COMMAND_FILM) {
+		delete_film(param_map);
+	}
 }
 
 void CommandHandler::handle_put(vector<string> tokens) {
@@ -173,6 +180,23 @@ void check_param_with_list(vector<string> list, map<string, string> param) {
 	check_is_in_list(list, param);
 	check_is_in_param(param, list);
 }
+
+void CommandHandler::delete_film(std::map<std::string, std::string> param) {
+	vector<string> list = {FILM_ID};
+	check_param_with_list(list, param);
+
+	net->delete_film(stoi(param[FILM_ID]));
+
+}
+
+void CommandHandler::delete_comment(std::map<std::string, std::string> param) {
+	vector<string> list = {COMMENT_ID, FILM_ID};
+	check_param_with_list(list, param);
+
+	net->delete_comment(stoi(param[FILM_ID]), stoi(param[COMMENT_ID]));
+
+}
+
 
 void CommandHandler::put_films(std::map<std::string, std::string> param) {
 	vector<string> list_min = {FILM_ID};

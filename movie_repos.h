@@ -17,6 +17,7 @@ public:
 	void buy_movie(int film_id);
 	void rate(int film_id, int score);
 	void post_comment(int film_id, std::string content, User* commenter);
+	void delete_comment(int film_id, int comment_id);
 
 	int get_price(int film_id);
 	std::string get_name(int film_id);

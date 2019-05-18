@@ -32,7 +32,6 @@ void Movie::add_reply_comment(int comment_id, std::string content) {
 }
 
 void Movie::edit_parts(string key, string val) {
-	cout<<"edit commited\n";
 	if(key == NAME_CHANGE) {
 		name = val;
 		cout<<"new name : "<<name<<endl;
@@ -100,4 +99,8 @@ void Movie::set_score(int score) {
 
 void Movie::add_comment(std::string content, User* commenter) {
 	comments.add_comment(content, commenter);
+}
+
+void Movie::delete_comment(int comment_id) {
+	comments.delete_comment(comment_id);
 }

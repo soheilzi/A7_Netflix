@@ -68,3 +68,5 @@ void User::add_following(User* user) {
 void User::send_notif(Notification* notif) {
 	notifications.add_notif(notif);
 }
+
+void User::delete_film(int film_id) {}

@@ -28,6 +28,8 @@ public:
 	void post_reply(int film_id, int comment_id, std::string content);
 	void post_followers(int id);
 	void post_comment(int film_id, std::string content);
+	void delete_film(int film_id);
+	void delete_comment(int film_id, int comment_id);
 private:
 	int money;
 	User* user;

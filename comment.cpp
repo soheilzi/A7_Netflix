@@ -45,6 +45,9 @@ void CommentRepos::add_comment(std::string content, User* user) {
 	cout<<"comment with id : "<<id << "and content : "<< content<<endl;
 }
 
-void CommentRepos::delete_comment(int id) {
-	comments.erase(id);
+void CommentRepos::delete_comment(int comment_id) {
+	if(comments.find(comment_id) == comments.end())
+		throw BadRequest();
+	comments.erase(comment_id);
+	cout<<"comment with id : "<<comment_id <<" erased\n";
 }
