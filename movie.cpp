@@ -61,6 +61,35 @@ void Movie::edit(std::map<std::string, std::string> parameters) {
 	}
 }
 
+#define WEAK_RATE 5
+#define STRONG_RATE 8
+
+#define WEAK_SALE .8
+#define MEDIOM_SALE .9
+#define STRONG_SALE .95
+
+void Movie::make_sale() {
+	if(rate < WEAK_RATE){ 
+		sales_publisher += price * WEAK_SALE;
+	} else if(rate >= WEAK_RATE && rate < STRONG_RATE) {
+		sales_publisher += price * MEDIOM_SALE;
+	} else if(rate >= STRONG_RATE) {
+		sales_publisher += price * STRONG_SALE;
+	}	
+}
+
 int Movie::get_id() {
 	return id;
+}
+
+int Movie::get_price() {
+	return price;
+}
+
+std::string Movie::get_name() {
+	return name;
+}
+
+User* Movie::get_publisher() {
+	return publisher;
 }

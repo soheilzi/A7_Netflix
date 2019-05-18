@@ -33,7 +33,7 @@ Notif_new_film::Notif_new_film(std::string _publisher_name, int _publisher_id)
 
 
 Notif_movie_sale::Notif_movie_sale(std::string _user_name, int _user_id, string _film_name, int _film_id)
-	: Notif_from_user(_user_name, _user_id, _film_name, film_id) {}
+	: Notif_from_user(_user_name, _user_id, _film_name, film_id) {cout<<"soled\n";}
 
 Notif_movie_rate::Notif_movie_rate(std::string _user_name, int _user_id, string _film_name, int _film_id)
 	: Notif_from_user(_user_name, _user_id, _film_name, film_id) {}

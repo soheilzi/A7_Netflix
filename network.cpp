@@ -70,3 +70,12 @@ void Network::post_followers(int id) {
 	user->add_following(temp);
 	temp->send_notif(new Notif_new_follower(user->get_username(), user->get_id()));
 }
+
+void Network::buy_movie(int film_id) {
+	int price = movies.get_price(film_id);
+	if(user->get_credit() < price)
+		throw BadRequest();
+	user->buy(price);
+	movies.buy_movie(film_id);
+	movies.get_publisher(film_id)->send_notif(new Notif_movie_sale(user->get_username(), user->get_id(), movies.get_name(film_id), film_id));
+}

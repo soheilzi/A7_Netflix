@@ -210,6 +210,10 @@ void CommandHandler::post_followers(std::map<std::string, std::string> param) {
 }
 
 void CommandHandler::post_buy(std::map<std::string, std::string> param) {
+	vector<string> list = {FILM_ID};
+	check_param_with_list(list, param);
+
+	net->buy_movie(stoi(param[FILM_ID]));
 
 }
 

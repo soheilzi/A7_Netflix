@@ -2,7 +2,7 @@ POST signup ? email soheil@ut username soheil password holo age 10
 POST films ? name the|game year 2020   length 2 price 200 summary just|two|guyes director soheil
 POST money	
 POST signup ? email ava@os username ava password baloot age 20 publisher true
-POST films ? year 2020 name the|game    length 2 price 200 summary just|two|guyes director soheil
+POST films ? year 2020 name the|game    length 2 price 20 summary just|two|guyes director soheil
 POST login ? username ava password baloot
 POST films ? year 2120 name the|games    length 4 price 220 summary just|two|girls director ava
 POST money
@@ -15,3 +15,5 @@ POST money ? amount 20
 POST money ?
 POST login ? username ava password baloot
 POST money ?     amount   90
+POST buy ? film_id 1
+POST money ?     amount   00

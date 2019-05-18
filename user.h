@@ -20,6 +20,9 @@ public:
 	int get_id();
 
 	void get_money(int _money);
+	void buy(int price);
+
+	int get_credit();
 	void add_following(User* user);
 	void send_notif(Notification*);
 	

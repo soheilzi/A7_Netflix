@@ -25,6 +25,14 @@ int User::get_id() {
 	return id;
 }
 
+int User::get_credit() {
+	return money;
+}
+
+void User::buy(int price) {
+	money -= price;
+}
+
 string User::show() {
 	return to_string(id) + " | " + username + " | " + email;
 }

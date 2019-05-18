@@ -20,3 +20,19 @@ void MovieRepos::add_reply_comment(int film_id, int comment_id, std::string cont
 		throw BadRequest();
 	movies[film_id]->add_reply_comment(comment_id, content);
 }
+
+int MovieRepos::get_price(int film_id) {
+	return movies[film_id]->get_price();
+}
+
+std::string MovieRepos::get_name(int film_id) {
+	return movies[film_id]->get_name();
+}
+
+User* MovieRepos::get_publisher(int film_id) {
+	return movies[film_id]->get_publisher();
+}
+
+void MovieRepos::buy_movie(int film_id) {
+	movies[film_id]->make_sale();
+}
