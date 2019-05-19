@@ -68,6 +68,7 @@ void User::send_notif(Notification* notif) {
 void User::delete_film(int film_id) {throw PermissionDenied();}
 
 std::vector<std::vector<std::string>> User::get_followers_data_table() {throw BadRequest();}
+std::vector<std::vector<std::string>> User::get_published_movie_data_table() {throw BadRequest();}
 
 std::vector<std::string> User::get_data() {
 	vector<string> data;

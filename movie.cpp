@@ -104,3 +104,19 @@ void Movie::add_comment(std::string content, User* commenter) {
 void Movie::delete_comment(int comment_id) {
 	comments.delete_comment(comment_id);
 }
+
+std::vector<std::string> Movie::get_data() {
+	vector<string> data;
+	data.push_back(to_string(id));
+	data.push_back(name);
+	data.push_back(to_string(length));
+	data.push_back(to_string(price));
+	ostringstream _rate;
+	_rate.precision(2);
+	_rate << fixed << rate;
+	data.push_back(_rate.str());
+	data.push_back(to_string(year));
+	data.push_back(director);
+
+	return data;
+}

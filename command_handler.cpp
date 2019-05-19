@@ -58,6 +58,7 @@ void CommandHandler::check_request(std::vector<std::string> tokens) {
 #define COMMAND_BUY "buy"
 #define COMMAND_RATE "rate"
 #define COMMAND_PURCHASED "purchased"
+#define COMMAND_PUBLISHED "published"
 #define COMMAND_NOTIFICATIONS "notifications"
 
 
@@ -102,14 +103,20 @@ void CommandHandler::handle_post(vector<string> tokens) {
 
 
 void CommandHandler::handle_get(vector<string> tokens) {
+	cout<<4<<endl;
 	string command = tokens[1];
 	if(command == COMMAND_FOLLOWERS) {
 		if(tokens.size() > 2)
 			throw BadRequest();
 		ui->show_followers();
 		return;
+	} else if(command == COMMAND_PUBLISHED) {
+		cout<<3<<endl;
+		check_divider(tokens[2]);
+		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+		cout<<2<<endl;
+		get_published(param_map);
 	}
-	check_divider(tokens[2]);
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 }
 
@@ -152,6 +159,9 @@ void CommandHandler::handle_put(vector<string> tokens) {
 #define COMMENT_ID "comment_id"
 #define USER_ID "user_id"
 #define AMOUNT "amount"
+#define MIN_RATE "min_rate"
+#define MIN_YEAR "min_year"
+#define MAX_YEAR "max_year"
 
 
 void check_is_in_list(vector<string> list, map<string, string> param) {
@@ -187,6 +197,14 @@ void check_is_in_param(map<string, string> param, vector<string> list) {
 void check_param_with_list(vector<string> list, map<string, string> param) {
 	check_is_in_list(list, param);
 	check_is_in_param(param, list);
+}
+
+void CommandHandler::get_published(std::map<std::string, std::string> param) {
+	vector<string> list_max = {NAME, MIN_RATE, MIN_YEAR, PRICE, MAX_YEAR, DIRECTOR};
+	check_is_in_list(list_max, param);
+	cout<<1<<endl;
+	ui->show_published(param);
+
 }
 
 void CommandHandler::delete_film(std::map<std::string, std::string> param) {
@@ -303,6 +321,7 @@ void CommandHandler::process_request(string command) {
 	if(method == ACTION_POST) {
 		handle_post(tokens);
 	} else if(method == ACTION_GET) {
+		cout<<5<<endl;
 		handle_get(tokens);
 	} else if(method == ACTION_DELETE) {
 		handle_delete(tokens);

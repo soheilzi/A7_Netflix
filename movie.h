@@ -3,6 +3,7 @@
 
 #include <string>
 #include <exception>
+#include <sstream>
 #include "exceptions.h"
 #include "comment.h"
 #include "config.h"
@@ -19,6 +20,7 @@ public:
 	int get_price();
 	std::string get_name();
 	User* get_publisher();
+	std::vector<std::string> get_data();
 
 	void set_score(int score);
 	void edit_parts(std::string key, std::string val);

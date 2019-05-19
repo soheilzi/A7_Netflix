@@ -14,6 +14,8 @@ public:
 	void show_followers();
 	int find_row_min_id(std::vector<std::vector<std::string>>);
 	void show_follower_record(std::vector<std::string> follower_record, int row_num);
+	void show_published_movie_record(std::vector<std::string> movie_record, int row_num);
+	void show_published(std::map<std::string, std::string> param);
 private:
 	Network* net;
 };

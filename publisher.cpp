@@ -14,6 +14,15 @@ vector<vector<string>> Publisher::get_followers_data_table() {
 	return follower_data_table;
 }
 
+std::vector<std::vector<std::string>> Publisher::get_published_movie_data_table() {
+	vector<vector<string>> movies_data_table;
+	for(const auto& elem : movies) {
+		movies_data_table.push_back(elem.second->get_data());
+	}
+
+	return movies_data_table;
+}
+
 void Publisher::add_movie(Movie* movie) {
 	movies[movie->get_id()] = movie;
 }

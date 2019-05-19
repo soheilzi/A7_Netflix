@@ -9,6 +9,7 @@ class Publisher : public User {
 public:
 	Publisher(int _id, std::string _username, std::string _password, std::string _email, int _age);
 	virtual std::vector<std::vector<std::string>> get_followers_data_table();
+	virtual std::vector<std::vector<std::string>> get_published_movie_data_table();
 	virtual void add_movie(Movie*);
 	virtual bool is_publisher();
 	virtual bool published_movie(int id);

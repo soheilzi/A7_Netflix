@@ -5,6 +5,7 @@
 #define DEFAULT_START_MONEY 0
 #define DOT "."
 #define FOLLOWERS_HEADER "#. User Id | User Username | Use Email"
+#define PUBLISHED_HEADER "#. Film Id | Film Name | Film Length | Film Price | Rate | Production Year | Film Director"
 #define DEFAULT_NET_MONEY 0
 
 #define NAME_CHANGE "name"
@@ -34,6 +35,7 @@
 #define COMMAND_BUY "buy"
 #define COMMAND_RATE "rate"
 #define COMMAND_PURCHASED "purchased"
+#define COMMAND_PUBLISHED "published"
 #define COMMAND_NOTIFICATIONS "notifications"
 
 #define _FALSE "false"

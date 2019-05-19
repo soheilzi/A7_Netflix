@@ -108,5 +108,13 @@ void Network::delete_comment(int film_id, int comment_id) {
 }
 
 std::vector<std::vector<std::string>> Network::get_followers() {
+	if(!user->is_publisher())
+		throw PermissionDenied();
 	return user->get_followers_data_table();
+}
+
+std::vector<std::vector<std::string>> Network::get_published() {
+	if(!user->is_publisher())
+		throw PermissionDenied();
+	return user->get_published_movie_data_table();
 }

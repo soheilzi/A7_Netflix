@@ -40,4 +40,4 @@ POST followers ? user_id 5
 POST followers ? user_id 6
 POST login ? username pub2 password pub2
 GET followers
-
+GET published ?
