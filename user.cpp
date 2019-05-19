@@ -37,10 +37,6 @@ string User::show() {
 	return to_string(id) + " | " + username + " | " + email;
 }
 
-void User::show_followers() {
-	throw PermissionDenied();
-}
-
 void User::add_movie(Movie* movie) {
 	throw PermissionDenied();
 }
@@ -69,4 +65,16 @@ void User::send_notif(Notification* notif) {
 	notifications.add_notif(notif);
 }
 
-void User::delete_film(int film_id) {}
+void User::delete_film(int film_id) {throw PermissionDenied();}
+
+std::vector<std::vector<std::string>> User::get_followers_data_table() {throw BadRequest();}
+
+std::vector<std::string> User::get_data() {
+	vector<string> data;
+
+	data.push_back(to_string(id));
+	data.push_back(username);
+	data.push_back(email);
+	
+	return data;
+}

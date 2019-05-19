@@ -105,3 +105,7 @@ void Network::delete_comment(int film_id, int comment_id) {
 		throw PermissionDenied();
 	movies.delete_comment(film_id, comment_id);
 }
+
+std::vector<std::vector<std::string>> Network::get_followers() {
+	return user->get_followers_data_table();
+}

@@ -5,12 +5,13 @@ using namespace std;
 Publisher::Publisher(int _id, std::string _username, std::string _password, std::string _email, int _age)
 	: User(_id, _username, _password, _email, _age) {}
 
-void Publisher::show_followers() {
-	cout << "List of Followers" << endl;
-	cout << FOLLOWERS_HEADER << endl;
+vector<vector<string>> Publisher::get_followers_data_table() {
+	vector<vector<string>> follower_data_table;
 	for(int i = 0; i < followers.size(); i++) {
-		cout << i + 1 << DOT << followers[i]->show() << endl;
+		follower_data_table.push_back(followers[i]->get_data());
 	}
+
+	return follower_data_table;
 }
 
 void Publisher::add_movie(Movie* movie) {

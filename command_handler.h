@@ -6,12 +6,13 @@
 #include <vector>
 
 #include "network.h"
+#include "ui.h"
 #include "config.h"
 #include "exceptions.h"
 
 class CommandHandler {
 public:
-	CommandHandler(Network* _net);
+	CommandHandler(Network* _net, UI* _ui);
 	void process_request(std::string command);
 	void check_request(std::vector<std::string> tokens);
 	void handle_post(std::vector<std::string> tokens);
@@ -35,6 +36,7 @@ public:
 	void delete_comment(std::map<std::string, std::string> param);
 private:
 	Network* net;
+	UI* ui;
 };
 
 std::vector<std::string> break_into_tokens(std::string command);

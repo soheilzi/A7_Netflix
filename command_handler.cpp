@@ -32,7 +32,7 @@ std::vector<std::string> make_param_vect(std::vector<std::string> tokens, int st
 }
 
 
-CommandHandler::CommandHandler(Network* _net) : net(_net) {}
+CommandHandler::CommandHandler(Network* _net, UI* _ui) : net(_net), ui(_ui) {}
 
 
 void CommandHandler::check_request(std::vector<std::string> tokens) {
@@ -102,7 +102,14 @@ void CommandHandler::handle_post(vector<string> tokens) {
 
 
 void CommandHandler::handle_get(vector<string> tokens) {
-	
+	string command = tokens[1];
+	if(command == COMMAND_FOLLOWERS) {
+		if(tokens.size() > 2)
+			throw BadRequest();
+		ui->show_followers();
+	}
+	check_divider(tokens[2]);
+	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 }
 
 void CommandHandler::handle_delete(vector<string> tokens) {

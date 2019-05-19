@@ -30,6 +30,7 @@ public:
 	void post_comment(int film_id, std::string content);
 	void delete_film(int film_id);
 	void delete_comment(int film_id, int comment_id);
+	std::vector<std::vector<std::string>> get_followers();
 private:
 	int money;
 	User* user;

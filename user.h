@@ -22,12 +22,13 @@ public:
 	void get_money(int _money);
 	void buy(int price);
 
+	std::vector<std::string> get_data();
 	int get_credit();
 	void add_following(User* user);
 	void send_notif(Notification*);
 	
 	virtual void delete_film(int film_id);
-	virtual void show_followers();
+	virtual std::vector<std::vector<std::string>> get_followers_data_table();
 	virtual void add_movie(Movie*);
 	virtual bool is_publisher();
 	virtual bool published_movie(int id);
