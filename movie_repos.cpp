@@ -1,5 +1,6 @@
 #include "movie_repos.h"
 #include <iostream>
+#include "user.h"
 using namespace std;
 
 MovieRepos::MovieRepos() : id_generator() {}
@@ -8,6 +9,7 @@ Movie* MovieRepos::add_movie(User* publisher, std::string name, int length, int 
  int price, std::string summary, std::string director) {
 	int id = id_generator.get_number();
 	movies[id] = new Movie(id, publisher, name, year, length, price, summary, director);
+	cout << "Movie added with ID : " << id << " with publisher : " << publisher->get_username() <<endl;
 	return movies[id];
 }
 

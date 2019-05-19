@@ -37,3 +37,7 @@ int Publisher::calculate_debt() {
 void Publisher::delete_film(int film_id) {
 	movies.erase(film_id);
 }
+
+void Publisher::add_follower(User* user) {
+	followers.push_back(user);
+}

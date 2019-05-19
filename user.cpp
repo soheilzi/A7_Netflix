@@ -78,3 +78,7 @@ std::vector<std::string> User::get_data() {
 	
 	return data;
 }
+
+void User::add_follower(User* user) {
+	throw BadRequest();
+}

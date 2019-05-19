@@ -33,6 +33,7 @@ public:
 	virtual bool is_publisher();
 	virtual bool published_movie(int id);
 	virtual int calculate_debt();
+	virtual void add_follower(User* user);
 
 protected:
 	std::string username;

@@ -107,6 +107,7 @@ void CommandHandler::handle_get(vector<string> tokens) {
 		if(tokens.size() > 2)
 			throw BadRequest();
 		ui->show_followers();
+		return;
 	}
 	check_divider(tokens[2]);
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));

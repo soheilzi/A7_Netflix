@@ -9,6 +9,35 @@ POST signup ? email pub3@ut username pub3 password pub3 age 18 publisher true
 
 POST films ? name the|game1 year 2020   length 2 price 2000 summary just|two|guyes|pub1 director pub1
 POST films ? name the|game1 year 2020   length 2 price 10000 summary just|two|guyes|pub1 director pub1
+
+
+POST login ? username pub2 password pub2
 POST films ? name the|game2 year 2020   length 2 price 20000 summary just|two|guyes|pub2 director pub2
 POST films ? name the|game2 year 2020   length 2 price 30000 summary just|two|guyes|pub2 director pub2
+
+POST login ? username pub1 password pub1
 POST films ? name the|game3 year 2020   length 2 price 5000 summary just|two|guyes|pub3 director pub3
+
+POST login ? username user1 password user1
+POST followers ? user_id 2
+POST followers ? user_id 3
+POST followers ? user_id 4
+POST followers ? user_id 5
+POST followers ? user_id 6
+
+POST login ? username pub1 password pub1
+POST followers ? user_id 2
+POST followers ? user_id 3
+POST followers ? user_id 4
+POST followers ? user_id 5
+POST followers ? user_id 6
+
+POST login ? username user2 password user2
+POST followers ? user_id 2
+POST followers ? user_id 3
+POST followers ? user_id 4
+POST followers ? user_id 5
+POST followers ? user_id 6
+POST login ? username pub2 password pub2
+GET followers
+

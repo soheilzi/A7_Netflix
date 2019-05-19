@@ -67,6 +67,7 @@ void Network::post_followers(int id) {
 	User* temp = users.get_user_by_id(id);
 	if(!temp->is_publisher())
 		throw BadRequest();
+	temp->add_follower(user);
 	user->add_following(temp);
 	temp->send_notif(new Notif_new_follower(user->get_username(), user->get_id()));
 }

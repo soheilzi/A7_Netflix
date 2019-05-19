@@ -1,6 +1,6 @@
 CC := g++ --std=c++11
 
-all : Netflix test.out clean
+all : Netflix test.out
 
 test.out : test.cpp
 	$(CC) test.cpp -o test.out
@@ -32,7 +32,7 @@ publisher.o : publisher.h publisher.cpp
 movie.o : movie.cpp movie.h check_error.h
 	$(CC) -c movie.cpp -o movie.o
 
-movie_repos.o : movie_repos.cpp movie_repos.h
+movie_repos.o : movie_repos.cpp movie_repos.h user.h
 	$(CC) -c movie_repos.cpp -o movie_repos.o
 
 comment.o : comment.cpp comment.h
