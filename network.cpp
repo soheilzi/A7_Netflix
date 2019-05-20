@@ -118,3 +118,7 @@ std::vector<std::vector<std::string>> Network::get_published() {
 		throw PermissionDenied();
 	return user->get_published_movie_data_table();
 }
+
+std::vector<std::vector<std::string>> Network::get_movies_data() {
+	return movies.get_published_movie_data_table();
+}

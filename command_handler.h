@@ -35,7 +35,8 @@ public:
 	void delete_film(std::map<std::string, std::string> param);
 	void delete_comment(std::map<std::string, std::string> param);
 
-	void get_published(std::map<std::string, std::string> param);
+	void show_published(std::map<std::string, std::string> param);
+	void show_movies(std::map<std::string, std::string> param);
 private:
 	Network* net;
 	UI* ui;

@@ -41,6 +41,29 @@ void CommandHandler::check_request(std::vector<std::string> tokens) {
 }
 
 
+#define USERNAME "username"
+#define NAME "name"
+#define EMAIL "email"
+#define PASSWORD "password"
+#define FILM_ID "film_id"
+#define SCORE "score"
+#define CONTENT "content"
+#define AGE "age"
+#define PUBLISHER "publisher"
+#define YEAR "year"
+#define LENGTH "length"
+#define PRICE "price"
+#define SUMMARY "summary"
+#define DIRECTOR "director"
+#define COMMENT_ID "comment_id"
+#define USER_ID "user_id"
+#define AMOUNT "amount"
+#define MIN_RATE "min_rate"
+#define MIN_YEAR "min_year"
+#define MAX_YEAR "max_year"
+
+
+
 #define DIVIDER "?"
 
 #define ACTION_POST "POST"
@@ -112,7 +135,13 @@ void CommandHandler::handle_get(vector<string> tokens) {
 	} else if(command == COMMAND_PUBLISHED) {
 		check_divider(tokens[2]);
 		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
-		get_published(param_map);
+		show_published(param_map);
+	} else if(command == COMMAND_FILM) {
+		check_divider(tokens[2]);
+		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+		if(param_map.find(FILM_ID) == param_map.end()) {
+			show_movies(param_map);
+		}
 	}
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 }
@@ -137,29 +166,6 @@ void CommandHandler::handle_put(vector<string> tokens) {
 	}
 	
 }
-
-
-#define USERNAME "username"
-#define NAME "name"
-#define EMAIL "email"
-#define PASSWORD "password"
-#define FILM_ID "film_id"
-#define SCORE "score"
-#define CONTENT "content"
-#define AGE "age"
-#define PUBLISHER "publisher"
-#define YEAR "year"
-#define LENGTH "length"
-#define PRICE "price"
-#define SUMMARY "summary"
-#define DIRECTOR "director"
-#define COMMENT_ID "comment_id"
-#define USER_ID "user_id"
-#define AMOUNT "amount"
-#define MIN_RATE "min_rate"
-#define MIN_YEAR "min_year"
-#define MAX_YEAR "max_year"
-
 
 void check_is_in_list(vector<string> list, map<string, string> param) {
 	bool flag = false;
@@ -196,7 +202,15 @@ void check_param_with_list(vector<string> list, map<string, string> param) {
 	check_is_in_param(param, list);
 }
 
-void CommandHandler::get_published(std::map<std::string, std::string> param) {
+void CommandHandler::show_movies(std::map<std::string, std::string> param) {
+	vector<string> list_max = {NAME, MIN_RATE, MIN_YEAR, PRICE, MAX_YEAR, DIRECTOR};
+	check_is_in_list(list_max, param);
+
+	ui->show_movies(param);
+
+}
+
+void CommandHandler::show_published(std::map<std::string, std::string> param) {
 	vector<string> list_max = {NAME, MIN_RATE, MIN_YEAR, PRICE, MAX_YEAR, DIRECTOR};
 	check_is_in_list(list_max, param);
 

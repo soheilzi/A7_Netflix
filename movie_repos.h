@@ -24,6 +24,8 @@ public:
 	User* get_publisher(int film_id);
 
 	void check_film_id(int film_id);
+
+	std::vector<std::vector<std::string>> get_published_movie_data_table();
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Movie*> movies;

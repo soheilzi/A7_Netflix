@@ -23,6 +23,15 @@ void MovieRepos::add_reply_comment(int film_id, int comment_id, std::string cont
 	movies[film_id]->add_reply_comment(comment_id, content);
 }
 
+std::vector<std::vector<std::string>> MovieRepos::get_published_movie_data_table() {
+	vector<vector<string>> movies_data_table;
+	for(const auto& elem : movies) {
+		movies_data_table.push_back(elem.second->get_data());
+	}
+
+	return movies_data_table;
+}
+
 int MovieRepos::get_price(int film_id) {
 	check_film_id(film_id);
 	return movies[film_id]->get_price();

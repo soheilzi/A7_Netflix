@@ -18,6 +18,9 @@ POST films ? name the|game__ year 2020   length 2 price 30000 summary just|two|g
 POST login ? username pub1 password pub1
 POST films ? name the|game3 year 2020   length 2 price 5000 summary just|two|guyes|pub3 director pub3
 
+POST buy ? film_id 1
+POST rate ? film_id 1 score 4
+
 POST login ? username user1 password user1
 POST followers ? user_id 2
 POST followers ? user_id 3
@@ -44,3 +47,5 @@ PUT films ? film_id 1 name film3 year 2018
 
 GET followers
 GET published ? name the|game
+
+GET films ? director pub2

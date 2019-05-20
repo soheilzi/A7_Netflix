@@ -32,6 +32,7 @@ public:
 	void delete_comment(int film_id, int comment_id);
 	std::vector<std::vector<std::string>> get_followers();
 	std::vector<std::vector<std::string>> get_published();
+	std::vector<std::vector<std::string>> get_movies_data();
 	
 private:
 	int money;
