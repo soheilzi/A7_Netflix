@@ -20,8 +20,6 @@ public:
 
 	void show_table_movie(std::vector<std::vector<std::string>> table, std::map<std::string, std::string> param);
 
-	bool filter_by_condition(std::map<std::string, std::string> param, std::vector<std::string> movie_record);
-	bool filter_movie(std::string key, std::string value, std::vector<std::string> movie_record); 
 private:
 	Network* net;
 };

@@ -41,50 +41,6 @@ void CommandHandler::check_request(std::vector<std::string> tokens) {
 }
 
 
-#define USERNAME "username"
-#define NAME "name"
-#define EMAIL "email"
-#define PASSWORD "password"
-#define FILM_ID "film_id"
-#define SCORE "score"
-#define CONTENT "content"
-#define AGE "age"
-#define PUBLISHER "publisher"
-#define YEAR "year"
-#define LENGTH "length"
-#define PRICE "price"
-#define SUMMARY "summary"
-#define DIRECTOR "director"
-#define COMMENT_ID "comment_id"
-#define USER_ID "user_id"
-#define AMOUNT "amount"
-#define MIN_RATE "min_rate"
-#define MIN_YEAR "min_year"
-#define MAX_YEAR "max_year"
-
-
-
-#define DIVIDER "?"
-
-#define ACTION_POST "POST"
-#define ACTION_GET "GET"
-#define ACTION_DELETE "DELETE"
-#define ACTION_PUT "PUT"
-
-#define COMMAND_SIGNUP "signup"
-#define COMMAND_LOGIN "login"
-#define COMMAND_FILM "films"
-#define COMMAND_FOLLOWERS "followers"
-#define COMMAND_MONEY "money"
-#define COMMAND_REPLIES "replies"
-#define COMMAND_COMMENTS "comments"
-#define COMMAND_BUY "buy"
-#define COMMAND_RATE "rate"
-#define COMMAND_PURCHASED "purchased"
-#define COMMAND_PUBLISHED "published"
-#define COMMAND_NOTIFICATIONS "notifications"
-
-
 void CommandHandler::handle_post(vector<string> tokens) {
 	string command = tokens[1];
 	if(tokens.size() == 2 && command == COMMAND_MONEY){

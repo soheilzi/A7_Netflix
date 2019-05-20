@@ -31,8 +31,12 @@ public:
 	void delete_film(int film_id);
 	void delete_comment(int film_id, int comment_id);
 	std::vector<std::vector<std::string>> get_followers();
-	std::vector<std::vector<std::string>> get_published();
-	std::vector<std::vector<std::string>> get_movies_data();
+	std::vector<std::vector<std::string>> get_published(std::map<std::string, std::string> param);
+	std::vector<std::vector<std::string>> get_movies_data(std::map<std::string, std::string> param);
+
+	bool has_condition(std::string key, std::string value, std::vector<std::string> movie_record);
+	bool filter_movie(std::vector<std::string> movie_record, std::map<std::string, std::string> param);
+	std::vector<std::vector<std::string>> filter_movies(std::vector<std::vector<std::string>> movie_table, std::map<std::string, std::string> param);
 	
 private:
 	int money;

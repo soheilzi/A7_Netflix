@@ -44,7 +44,7 @@ check_error.o : check_error.cpp check_error.h
 command_handler.o : command_handler.cpp command_handler.h
 	$(CC) -c command_handler.cpp -o command_handler.o
 
-network.o : network.cpp network.h
+network.o : network.cpp network.h config.h
 	$(CC) -c network.cpp -o network.o
 
 ui.o : ui.cpp ui.h

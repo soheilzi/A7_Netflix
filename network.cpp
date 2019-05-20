@@ -1,4 +1,5 @@
 #include "network.h"
+#include "config.h"
 
 using namespace std;
 
@@ -113,12 +114,53 @@ std::vector<std::vector<std::string>> Network::get_followers() {
 	return user->get_followers_data_table();
 }
 
-std::vector<std::vector<std::string>> Network::get_published() {
+std::vector<std::vector<std::string>> Network::get_published(std::map<std::string, std::string> param) {
 	if(!user->is_publisher())
 		throw PermissionDenied();
-	return user->get_published_movie_data_table();
+
+	return filter_movies(user->get_published_movie_data_table(), param);
 }
 
-std::vector<std::vector<std::string>> Network::get_movies_data() {
-	return movies.get_published_movie_data_table();
+std::vector<std::vector<std::string>> Network::get_movies_data(std::map<std::string, std::string> param) {
+	return filter_movies(movies.get_published_movie_data_table(), param);
+}
+
+bool Network::has_condition(std::string key, std::string value, std::vector<std::string> movie_record) {
+	if(key == NAME) {
+		if(!(movie_record[1] == value))
+			return false;
+	} else if(key == PRICE) {
+		if(stoi(movie_record[2]) != stoi(value))
+			return false;
+	} else if(key == MIN_YEAR) {
+		if(stoi(movie_record[3]) < stoi(value))
+			return false;
+	} else if(key == MIN_RATE) {
+		if(stoi(movie_record[4]) < stoi(value))
+			return false;
+	} else if(key == MAX_YEAR) {
+		if(stoi(movie_record[5]) > stoi(value))
+			return false;
+	} else if(key == DIRECTOR) {
+		if(!(movie_record[6] == value))
+			return false;
+	}
+	return true;
+}
+
+bool Network::filter_movie(std::vector<std::string> movie_record, std::map<std::string, std::string> param) {
+	for(const auto& elem : param) {
+		if(!has_condition(elem.first, elem.second, movie_record))
+			return false;
+	}
+	return true;
+}
+
+std::vector<std::vector<std::string>> Network::filter_movies(std::vector<std::vector<std::string>> movie_table, std::map<std::string, std::string> param) {
+	vector<vector<string>> filtered;
+	for(int i = 0; i < movie_table.size(); i++) {
+		if(filter_movie(movie_table[i], param))
+			filtered.push_back(movie_table[i]);
+	}
+	return filtered;
 }
