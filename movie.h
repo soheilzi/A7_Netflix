@@ -4,6 +4,8 @@
 #include <string>
 #include <exception>
 #include <sstream>
+#include <map>
+#include <vector>
 #include "exceptions.h"
 #include "comment.h"
 #include "config.h"
@@ -30,6 +32,8 @@ public:
 	void make_sale();
 	void add_comment(std::string content, User* commenter);
 	void delete_comment(int comment_id);
+	std::map<std::string, std::string> get_movie_base_data();
+	std::vector<std::vector<std::string>> get_comment_data();
 private:
 	int id;
 

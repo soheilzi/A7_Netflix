@@ -29,6 +29,16 @@ void Comment::set_reply(string _reply) {
 	cout<<"reply : "<<reply << " added" <<endl;
 }
 
+std::vector<std::string> Comment::get_full_data() const {
+	vector<string> data;
+
+	data.push_back(to_string(id));
+	data.push_back(content);
+	data.push_back(reply);
+
+	return data;
+}
+
 
 
 CommentRepos::CommentRepos() : id_generator() {}
@@ -50,4 +60,12 @@ void CommentRepos::delete_comment(int comment_id) {
 		throw BadRequest();
 	comments.erase(comment_id);
 	cout<<"comment with id : "<<comment_id <<" erased\n";
+}
+
+std::vector<std::vector<std::string>> CommentRepos::get_comments_data() {
+	std::vector<std::vector<std::string>> comments_data;
+	for(const auto& elem : comments) {
+		comments_data.push_back(elem.second.get_full_data());
+	}
+	return comments_data;
 }

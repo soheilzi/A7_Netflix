@@ -37,7 +37,8 @@ public:
 	bool has_condition(std::string key, std::string value, std::vector<std::string> movie_record);
 	bool filter_movie(std::vector<std::string> movie_record, std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> filter_movies(std::vector<std::vector<std::string>> movie_table, std::map<std::string, std::string> param);
-	
+	std::map<std::string, std::string> get_movie_base_data(int film_id);
+	std::vector<std::vector<std::string>> get_comment_data(int film_id);
 private:
 	int money;
 	User* user;

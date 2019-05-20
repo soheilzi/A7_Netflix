@@ -120,3 +120,34 @@ std::vector<std::string> Movie::get_data() {
 
 	return data;
 }
+
+#define B_ID "id"
+#define B_NAME "name"
+#define B_DIRECTOR "director"
+#define B_LENGTH "length"
+#define B_YEAR "year"
+#define B_SUMMARY "summary"
+#define B_PRICE "price"
+#define B_RATE "rate"
+
+map<string, string> Movie::get_movie_base_data() {
+	map<string, string> base_data;
+
+	base_data[B_ID] = to_string(id);
+	base_data[B_NAME] = name;
+	base_data[B_DIRECTOR] = director;
+	base_data[B_LENGTH] = to_string(length);
+	base_data[B_YEAR] = to_string(year);
+	base_data[B_SUMMARY] = summary;
+	base_data[B_PRICE] = to_string(price);
+	ostringstream _rate;
+	_rate.precision(2);
+	_rate << fixed << rate;
+	base_data[B_RATE] = _rate.str();
+	
+	return base_data;
+}
+
+std::vector<std::vector<std::string>> Movie::get_comment_data() {
+	return comments.get_comments_data();
+}

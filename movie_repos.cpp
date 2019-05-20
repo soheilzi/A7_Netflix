@@ -32,6 +32,14 @@ std::vector<std::vector<std::string>> MovieRepos::get_published_movie_data_table
 	return movies_data_table;
 }
 
+std::map<std::string, std::string> MovieRepos::get_movie_base_data(int film_id) {
+	return movies[film_id]->get_movie_base_data();
+}
+
+std::vector<std::vector<std::string>> MovieRepos::get_comment_data(int film_id) {
+	return movies[film_id]->get_comment_data();
+}
+
 int MovieRepos::get_price(int film_id) {
 	check_film_id(film_id);
 	return movies[film_id]->get_price();

@@ -17,6 +17,9 @@ public:
 	void show_published_movie_record(std::vector<std::string> movie_record, int row_num);
 	void show_published(std::map<std::string, std::string> param);
 	void show_movies(std::map<std::string, std::string> param);
+	void show_movie_data(std::map<std::string, std::string> param);
+	void show_movie_comments(std::vector<std::vector<std::string>> comment_table);
+	void show_movie_base(std::map<std::string, std::string> base_data);
 
 	void show_table_movie(std::vector<std::vector<std::string>> table, std::map<std::string, std::string> param);
 

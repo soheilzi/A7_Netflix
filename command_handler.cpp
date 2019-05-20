@@ -97,6 +97,8 @@ void CommandHandler::handle_get(vector<string> tokens) {
 		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 		if(param_map.find(FILM_ID) == param_map.end()) {
 			show_movies(param_map);
+		} else {
+			show_movie_data(param_map);
 		}
 	}
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
@@ -156,6 +158,14 @@ void check_is_in_param(map<string, string> param, vector<string> list) {
 void check_param_with_list(vector<string> list, map<string, string> param) {
 	check_is_in_list(list, param);
 	check_is_in_param(param, list);
+}
+
+void CommandHandler::show_movie_data(std::map<std::string, std::string> param) {
+	vector<string> list = {FILM_ID};
+	check_param_with_list(list, param);
+
+	ui->show_movie_data(param);
+
 }
 
 void CommandHandler::show_movies(std::map<std::string, std::string> param) {

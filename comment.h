@@ -20,6 +20,7 @@ public:
 	std::string get_content();
 	std::string get_reply();
 	User* get_user();
+	std::vector<std::string> get_full_data() const;
 private:
 	std::string content;
 	std::string reply;
@@ -33,6 +34,7 @@ public:
 	void reply(int id, std::string content);
 	void add_comment(std::string content, User* user);
 	void delete_comment(int comment_id);
+	std::vector<std::vector<std::string>> get_comments_data();
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Comment> comments;

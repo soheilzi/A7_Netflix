@@ -37,6 +37,7 @@ public:
 
 	void show_published(std::map<std::string, std::string> param);
 	void show_movies(std::map<std::string, std::string> param);
+	void show_movie_data(std::map<std::string, std::string> param);
 private:
 	Network* net;
 	UI* ui;

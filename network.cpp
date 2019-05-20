@@ -164,3 +164,11 @@ std::vector<std::vector<std::string>> Network::filter_movies(std::vector<std::ve
 	}
 	return filtered;
 }
+
+std::map<std::string, std::string> Network::get_movie_base_data(int film_id) {
+	return movies.get_movie_base_data(film_id);
+}
+
+std::vector<std::vector<std::string>> Network::get_comment_data(int film_id) {
+	return movies.get_comment_data(film_id);
+}

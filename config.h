@@ -80,4 +80,16 @@
 #define STRONG_SALE .95
 
 
+#define B_ID "id"
+#define B_NAME "name"
+#define B_DIRECTOR "director"
+#define B_LENGTH "length"
+#define B_YEAR "year"
+#define B_SUMMARY "summary"
+#define B_PRICE "price"
+#define B_RATE "rate"
+
+#define COMMENT_IDD 0
+#define COMMENT_MESSAGE 1
+#define COMMENT_REPLY 2
 #endif
