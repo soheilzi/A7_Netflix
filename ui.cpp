@@ -39,14 +39,71 @@ void UI::show_published_movie_record(std::vector<std::string> movie_record, int 
 	cout<< movie_record[0] << SPLITER << movie_record[1] << SPLITER << movie_record[2] << SPLITER << movie_record[3] << SPLITER << movie_record[4] << SPLITER << movie_record[5] << SPLITER << movie_record[6] <<endl;
 }
 
+#define USERNAME "username"
+#define NAME "name"
+#define EMAIL "email"
+#define PASSWORD "password"
+#define FILM_ID "film_id"
+#define SCORE "score"
+#define CONTENT "content"
+#define AGE "age"
+#define PUBLISHER "publisher"
+#define YEAR "year"
+#define LENGTH "length"
+#define PRICE "price"
+#define SUMMARY "summary"
+#define DIRECTOR "director"
+#define COMMENT_ID "comment_id"
+#define USER_ID "user_id"
+#define AMOUNT "amount"
+#define MIN_RATE "min_rate"
+#define MIN_YEAR "min_year"
+#define MAX_YEAR "max_year"
+
+
+bool UI::filter_movie(std::string key, std::string value, std::vector<std::string> movie_record) {
+	if(key == NAME) {
+		if(!(movie_record[1] == value))
+			return false;
+	} else if(key == MIN_RATE) {
+		if(stoi(movie_record[2]) < stoi(value))
+			return false;
+	} else if(key == MIN_YEAR) {
+		if(stoi(movie_record[3]) < stoi(value))
+			return false;
+	} else if(key == PRICE) {
+		if(stoi(movie_record[4]) != stoi(value))
+			return false;
+	} else if(key == MAX_YEAR) {
+		if(stoi(movie_record[5]) > stoi(value))
+			return false;
+	} else if(key == DIRECTOR) {
+		if(!(movie_record[6] == value))
+			return false;
+	}
+	return true;
+}
+
+bool UI::filter_by_condition(std::map<std::string, std::string> param, std::vector<std::string> movie_record) {
+	for(const auto& elem : param) {
+		if(!filter_movie(elem.first, elem.second, movie_record))
+			return false;
+	}
+	return true;
+}
+
 void UI::show_published(std::map<std::string, std::string> param) {
 	vector<vector<string>> table = net->get_published();
 	cout << PUBLISHED_HEADER << endl;
 	int row_min_id;
+	int row = 1;
 	int table_size = table.size();
 	for(int i = 0; i < table_size; i++) {
 		row_min_id = find_row_min_id(table);
-		show_published_movie_record(table[row_min_id], i + 1);
+		if(filter_by_condition(param, table[row_min_id])){
+			show_published_movie_record(table[row_min_id], row);
+			row++;
+		}
 		table.erase(table.begin() + row_min_id);
 	}
 }

@@ -103,7 +103,6 @@ void CommandHandler::handle_post(vector<string> tokens) {
 
 
 void CommandHandler::handle_get(vector<string> tokens) {
-	cout<<4<<endl;
 	string command = tokens[1];
 	if(command == COMMAND_FOLLOWERS) {
 		if(tokens.size() > 2)
@@ -111,10 +110,8 @@ void CommandHandler::handle_get(vector<string> tokens) {
 		ui->show_followers();
 		return;
 	} else if(command == COMMAND_PUBLISHED) {
-		cout<<3<<endl;
 		check_divider(tokens[2]);
 		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
-		cout<<2<<endl;
 		get_published(param_map);
 	}
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
@@ -202,7 +199,7 @@ void check_param_with_list(vector<string> list, map<string, string> param) {
 void CommandHandler::get_published(std::map<std::string, std::string> param) {
 	vector<string> list_max = {NAME, MIN_RATE, MIN_YEAR, PRICE, MAX_YEAR, DIRECTOR};
 	check_is_in_list(list_max, param);
-	cout<<1<<endl;
+
 	ui->show_published(param);
 
 }
@@ -321,7 +318,6 @@ void CommandHandler::process_request(string command) {
 	if(method == ACTION_POST) {
 		handle_post(tokens);
 	} else if(method == ACTION_GET) {
-		cout<<5<<endl;
 		handle_get(tokens);
 	} else if(method == ACTION_DELETE) {
 		handle_delete(tokens);
