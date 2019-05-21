@@ -56,6 +56,12 @@ void UI::show_published(std::map<std::string, std::string> param) {
 	show_table_movie(table, param);
 }
 
+void UI::show_purchased(std::map<std::string, std::string> param) {
+	vector<vector<string>> table = net->get_purchased(param);
+	show_table_movie(table, param);
+
+}
+
 void UI::show_movies(std::map<std::string, std::string> param) {
 	vector<vector<string>> table = net->get_movies_data(param);
 	show_table_movie(table, param);
@@ -75,7 +81,7 @@ void UI::show_movie_base(map<string, string> base_data) {
 }
 
 void UI::show_movie_comments(std::vector<std::vector<std::string>> comment_table) {
-	cout<<"Comments"<<endl;
+	cout<<COMMENT_TITLE<<endl;
 	for(int i = 0; i < comment_table.size(); i++) {
 		cout<<comment_table[i][COMMENT_IDD]<<". "<<comment_table[i][COMMENT_MESSAGE]<<endl;
 		if(!(comment_table[i][COMMENT_REPLY] == ""))
@@ -85,9 +91,22 @@ void UI::show_movie_comments(std::vector<std::vector<std::string>> comment_table
 		cout<<endl<<endl;
 }
 
+void UI::show_movie_recommendations(std::vector<std::vector<std::string>>& recommendation) {
+	cout<<RECOMMENDATION_TITLE<<endl<<RECOMMENDATION_HEADER<<endl;
+	for(int i = 0; i < recommendation.size(); i++) {
+		cout<<i + 1 <<". "
+			<<recommendation[i][R_ID]<<SPLITER
+			<<recommendation[i][R_NAME]<<SPLITER
+			<<recommendation[i][R_LENGTH]<<SPLITER
+			<<recommendation[i][R_DIRECTOR]<<endl;
+	}
+}
+
 void UI::show_movie_data(std::map<std::string, std::string> param) {
 	map<string, string> base_data = net->get_movie_base_data(stoi(param[FILM_ID]));
 	vector<vector<string>> comment_data = net->get_comment_data(stoi(param[FILM_ID]));
+	vector<vector<string>> recommendation = net->get_recommendation();
 	show_movie_base(base_data);
 	show_movie_comments(comment_data);
+	show_movie_recommendations(recommendation);
 }

@@ -33,6 +33,10 @@ void User::buy(int price) {
 	money -= price;
 }
 
+void User::set_movie(Movie* movie) {
+	movies_bought[movie->get_id()] = movie;
+}
+
 string User::show() {
 	return to_string(id) + " | " + username + " | " + email;
 }
@@ -69,6 +73,16 @@ void User::delete_film(int film_id) {throw PermissionDenied();}
 
 std::vector<std::vector<std::string>> User::get_followers_data_table() {throw BadRequest();}
 std::vector<std::vector<std::string>> User::get_published_movie_data_table() {throw BadRequest();}
+
+std::vector<std::vector<std::string>> User::get_purchased_movie_data_table() {
+	vector<vector<string>> movies_data_table;
+	cout<<"Number Movies Bought : "<<movies_bought.size()<<endl;
+	for(const auto& elem : movies_bought) {
+		movies_data_table.push_back(elem.second->get_data());
+	}
+
+	return movies_data_table;
+}
 
 std::vector<std::string> User::get_data() {
 	vector<string> data;

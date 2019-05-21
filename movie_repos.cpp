@@ -32,6 +32,41 @@ std::vector<std::vector<std::string>> MovieRepos::get_published_movie_data_table
 	return movies_data_table;
 }
 
+bool MovieRepos::is_forbiden(int id, std::vector<int> forbiden_id) {
+	for(int i = 0; i < forbiden_id.size(); i++) {
+		if(forbiden_id[i] == id)
+			return true;
+	}
+	return false;
+}
+
+int MovieRepos::find_best(std::vector<int>& forbiden_id) {
+	int best_rate = -1;
+	int best_id;
+	for(const auto& elem : movies) {
+		if(elem.second->get_rate() > best_rate && elem.second->is_avalable() && !is_forbiden(elem.first, forbiden_id)) {
+			best_rate = elem.second->get_rate();
+			best_id = elem.first;
+		}
+	}
+	forbiden_id.push_back(best_id);
+	return best_id;
+}
+
+std::vector<std::vector<std::string>> MovieRepos::get_recommendation() {
+	vector<vector<string>> recommendation;
+	vector<int> forbiden_id;
+	for(int i = 0; i < 4 && i < movies.size(); i++) {
+		recommendation.push_back(movies[find_best(forbiden_id)]->get_brief_data());
+	}
+	return recommendation;
+}
+
+Movie* MovieRepos::get_movie(int film_id) {
+	check_film_id(film_id);
+	return movies[film_id];
+}
+
 std::map<std::string, std::string> MovieRepos::get_movie_base_data(int film_id) {
 	return movies[film_id]->get_movie_base_data();
 }
@@ -66,7 +101,7 @@ void MovieRepos::rate(int film_id, int score) {
 }
 
 void MovieRepos::check_film_id(int film_id) {
-	if(movies.find(film_id) == movies.end())
+	if(movies.find(film_id) == movies.end() || movies[film_id]->is_avalable() == false)
 		throw BadRequest();
 }
 

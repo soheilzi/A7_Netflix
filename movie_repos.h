@@ -12,12 +12,15 @@ class MovieRepos {
 public:
 	MovieRepos();
 	Movie* add_movie(User* publisher, std::string name, int length, int year, int price, std::string summary, std::string director);
+	Movie* get_movie(int film_id);
 	void edit_movie(int id, std::map<std::string, std::string> parameters);
 	void add_reply_comment(int film_id, int comment_id, std::string content);	
 	void buy_movie(int film_id);
 	void rate(int film_id, int score);
 	void post_comment(int film_id, std::string content, User* commenter);
 	void delete_comment(int film_id, int comment_id);
+
+	bool is_forbiden(int id, std::vector<int> forbiden_id);
 
 	int get_price(int film_id);
 	std::string get_name(int film_id);
@@ -28,6 +31,8 @@ public:
 	std::vector<std::vector<std::string>> get_published_movie_data_table();
 	std::map<std::string, std::string> get_movie_base_data(int film_id);
 	std::vector<std::vector<std::string>> get_comment_data(int film_id);
+	std::vector<std::vector<std::string>> get_recommendation();
+	int find_best(std::vector<int>& forbiden_id);
 private:
 	SequenceGenerator id_generator;
 	std::map<int, Movie*> movies;

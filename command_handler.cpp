@@ -99,9 +99,12 @@ void CommandHandler::handle_get(vector<string> tokens) {
 			show_movies(param_map);
 		} else {
 			show_movie_data(param_map);
-		}
+		}	
+	} else if(command == COMMAND_PURCHASED) {
+		check_divider(tokens[2]);
+		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+		show_purchased(param_map);
 	}
-	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 }
 
 void CommandHandler::handle_delete(vector<string> tokens) {
@@ -173,6 +176,14 @@ void CommandHandler::show_movies(std::map<std::string, std::string> param) {
 	check_is_in_list(list_max, param);
 
 	ui->show_movies(param);
+
+}
+
+void CommandHandler::show_purchased(std::map<std::string, std::string> param) {
+	vector<string> list_max = {NAME, MIN_YEAR, PRICE, MAX_YEAR, DIRECTOR};
+	check_is_in_list(list_max, param);
+
+	ui->show_purchased(param);
 
 }
 

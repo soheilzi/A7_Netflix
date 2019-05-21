@@ -6,6 +6,10 @@
 #define DOT "."
 #define FOLLOWERS_HEADER "#. User Id | User Username | Use Email"
 #define MOVIE_DATA_HEADER "#. Film Id | Film Name | Film Length | Film Price | Rate | Production Year | Film Director"
+#define COMMENT_TITLE "Comments"
+#define RECOMMENDATION_TITLE "Rcommendation Film"
+#define RECOMMENDATION_HEADER "#. Film Id | Film Name | Film Length | Film Director"
+
 #define DEFAULT_NET_MONEY 0
 
 #define NAME_CHANGE "name"
@@ -79,6 +83,10 @@
 #define MEDIOM_SALE .9
 #define STRONG_SALE .95
 
+#define R_ID 0
+#define R_NAME 1
+#define R_LENGTH 2
+#define R_DIRECTOR 3
 
 #define B_ID "id"
 #define B_NAME "name"

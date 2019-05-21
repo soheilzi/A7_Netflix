@@ -19,10 +19,13 @@ public:
 	Movie();
 
 	int get_id();
+	int get_rate();
 	int get_price();
+	bool is_avalable();
 	std::string get_name();
 	User* get_publisher();
 	std::vector<std::string> get_data();
+	std::vector<std::string> get_brief_data();
 
 	void set_score(int score);
 	void edit_parts(std::string key, std::string val);
@@ -37,7 +40,7 @@ public:
 private:
 	int id;
 
-	bool is_avalable;
+	bool avalable;
 
 	std::string name;
 	std::string summary;

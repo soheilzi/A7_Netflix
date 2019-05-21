@@ -21,11 +21,13 @@ public:
 
 	void get_money(int _money);
 	void buy(int price);
+	void set_movie(Movie*);
 
 	std::vector<std::string> get_data();
 	int get_credit();
 	void add_following(User* user);
 	void send_notif(Notification*);
+	std::vector<std::vector<std::string>> get_purchased_movie_data_table();
 	
 	virtual void delete_film(int film_id);
 	virtual std::vector<std::vector<std::string>> get_followers_data_table();

@@ -18,7 +18,7 @@ Movie::Movie(int _id, User* _publisher, std::string _name, int _year, int _lengt
 	rate = 0;
 	rater_count = 0;
 	sales_publisher = 0;
-	is_avalable = true;
+	avalable = true;
 }
 
 int Movie::checkout_money() {
@@ -79,6 +79,14 @@ int Movie::get_id() {
 	return id;
 }
 
+int Movie::get_rate() {
+	return rate;
+}
+
+bool Movie::is_avalable() {
+	return avalable;
+}
+
 int Movie::get_price() {
 	return price;
 }
@@ -116,6 +124,16 @@ std::vector<std::string> Movie::get_data() {
 	_rate << fixed << rate;
 	data.push_back(_rate.str());
 	data.push_back(to_string(year));
+	data.push_back(director);
+
+	return data;
+}
+
+std::vector<std::string> Movie::get_brief_data() {
+	vector<string> data;
+	data.push_back(to_string(id));
+	data.push_back(name);
+	data.push_back(to_string(length));
 	data.push_back(director);
 
 	return data;

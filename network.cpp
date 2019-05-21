@@ -78,6 +78,7 @@ void Network::buy_movie(int film_id) {
 	if(user->get_credit() < price)
 		throw BadRequest();
 	user->buy(price);
+	user->set_movie(movies.get_movie(film_id));
 	movies.buy_movie(film_id);
 	movies.get_publisher(film_id)->send_notif(new Notif_movie_sale(user->get_username(), user->get_id(), movies.get_name(film_id), film_id));
 }
@@ -119,6 +120,10 @@ std::vector<std::vector<std::string>> Network::get_published(std::map<std::strin
 		throw PermissionDenied();
 
 	return filter_movies(user->get_published_movie_data_table(), param);
+}
+
+std::vector<std::vector<std::string>> Network::get_purchased(std::map<std::string, std::string> param) {
+	return filter_movies(user->get_purchased_movie_data_table(), param);
 }
 
 std::vector<std::vector<std::string>> Network::get_movies_data(std::map<std::string, std::string> param) {
@@ -171,4 +176,8 @@ std::map<std::string, std::string> Network::get_movie_base_data(int film_id) {
 
 std::vector<std::vector<std::string>> Network::get_comment_data(int film_id) {
 	return movies.get_comment_data(film_id);
+}
+
+std::vector<std::vector<std::string>> Network::get_recommendation() {
+	return movies.get_recommendation();
 }
