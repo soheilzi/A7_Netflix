@@ -8,6 +8,7 @@ class Notification {
 public:
 	Notification();
 	bool is_read();
+	void mark_as_read();
 	virtual std::string get_notif() = 0;
 protected:
 	bool read;

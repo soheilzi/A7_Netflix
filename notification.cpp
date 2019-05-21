@@ -10,6 +10,9 @@ bool Notification::is_read() {
 	return read;
 }
 
+void Notification::mark_as_read(){
+	read = true;
+}
 
 Notif_from_publisher::Notif_from_publisher(std::string _publisher_name, int _publisher_id) : Notification() {
 	publisher_name = _publisher_name;

@@ -181,3 +181,11 @@ std::vector<std::vector<std::string>> Network::get_comment_data(int film_id) {
 std::vector<std::vector<std::string>> Network::get_recommendation() {
 	return movies.get_recommendation();
 }
+
+std::vector<std::string> Network::get_unread_notifs() {
+	return user->get_unread_notifs();
+}
+
+std::vector<std::string> Network::get_notifs(std::map<std::string, std::string> param) {
+	return user->get_notifs(stoi(param[LIMIT]));
+}

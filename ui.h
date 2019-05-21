@@ -22,9 +22,11 @@ public:
 	void show_movie_comments(std::vector<std::vector<std::string>> comment_table);
 	void show_movie_base(std::map<std::string, std::string> base_data);
 	void show_movie_recommendations(std::vector<std::vector<std::string>>& recommendation);
-
+	void show_unread_notifs();
 	void show_table_movie(std::vector<std::vector<std::string>> table, std::map<std::string, std::string> param);
-
+	void show_notifications(std::vector<std::string> notifs);
+	void show_notifs(std::map<std::string, std::string> param);
+	void show_fine_state();
 private:
 	Network* net;
 };

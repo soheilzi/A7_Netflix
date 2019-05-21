@@ -6,16 +6,22 @@ void NotificationRepos::add_notif(Notification* notif) {
 	notifs.push_back(notif);
 }
 
-void NotificationRepos::show_all_notifs(int limit) {
-	for(int i = notifs.size(); i >= notifs.size() - limit && i >= 0; i--) {
-		cout << notifs[i]->get_notif() << endl;
+std::vector<std::string> NotificationRepos::get_all_notifs(int limit) {
+	vector<string> notifications;
+	for(int i = notifs.size() - 1; i >= notifs.size() - limit && i >= 0; i--) {
+		notifications.push_back(notifs[i]->get_notif());
+		notifs[i]->mark_as_read();
 	}
+	return notifications;
 }
 
-void NotificationRepos::show_unread_notifs() {
-	for(int i = notifs.size(); i >= 0; i--) {
-		if(!notifs[i]->is_read()) {
-			cout << notifs[i]->get_notif() << endl;
+std::vector<std::string> NotificationRepos::get_unread_notifs() {
+	vector<string> notifications;
+	for(int i = notifs.size() - 1; i >= 0; i--) {
+		if(!(notifs[i]->is_read())) {
+			notifications.push_back(notifs[i]->get_notif());
+			notifs[i]->mark_as_read();
 		}
 	}
+	return notifications;
 }

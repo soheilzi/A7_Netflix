@@ -28,6 +28,8 @@ public:
 	void add_following(User* user);
 	void send_notif(Notification*);
 	std::vector<std::vector<std::string>> get_purchased_movie_data_table();
+	std::vector<std::string> get_unread_notifs();
+	std::vector<std::string> get_notifs(int limit);
 	
 	virtual void delete_film(int film_id);
 	virtual std::vector<std::vector<std::string>> get_followers_data_table();

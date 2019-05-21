@@ -30,6 +30,8 @@ public:
 	void post_comment(int film_id, std::string content);
 	void delete_film(int film_id);
 	void delete_comment(int film_id, int comment_id);
+	std::vector<std::string> get_unread_notifs();
+	std::vector<std::string> get_notifs(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_followers();
 	std::vector<std::vector<std::string>> get_published(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_purchased(std::map<std::string, std::string> param);

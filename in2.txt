@@ -58,3 +58,9 @@ POST money ? amount 40000
 POST buy ? film_id 1
 
 GET purchased ? 
+
+POST login ? username pub1 password pub1
+
+GET notifications
+
+GET notifications

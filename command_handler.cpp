@@ -51,30 +51,39 @@ void CommandHandler::handle_post(vector<string> tokens) {
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 	if(command == COMMAND_SIGNUP) {
 		signup(param_map);
+		ui->show_fine_state();
 
 	} else if(command == COMMAND_LOGIN) {
 		login(param_map);
+		ui->show_fine_state();
 
 	} else if(command == COMMAND_FILM) {
 		post_film(param_map);
+		ui->show_fine_state();
 
 	} else if(command == COMMAND_MONEY) {
 		user_get_money(param_map);
+		ui->show_fine_state();
 
 	} else if(command == COMMAND_REPLIES) {
 		post_reply(param_map);
+		ui->show_fine_state();
 		
 	} else if(command == COMMAND_FOLLOWERS) {
 		post_followers(param_map);
+		ui->show_fine_state();
 		
 	} else if(command == COMMAND_BUY) {
 		post_buy(param_map);
+		ui->show_fine_state();
 		
 	} else if(command == COMMAND_RATE) {
 		post_rate(param_map);
+		ui->show_fine_state();
 		
 	} else if(command == COMMAND_COMMENTS) {
 		post_comment(param_map);
+		ui->show_fine_state();
 
 	}
 
@@ -104,6 +113,14 @@ void CommandHandler::handle_get(vector<string> tokens) {
 		check_divider(tokens[2]);
 		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 		show_purchased(param_map);
+	} else if(command == COMMAND_NOTIFICATIONS) {
+		if(tokens.size() == 2){
+			show_unread_notifs();
+		} else {
+			check_divider(tokens[3]);
+			map<string, string> param_map = make_param_map(make_param_vect(tokens, 4));
+			show_notifs(param_map);
+		}
 	}
 }
 
@@ -113,8 +130,10 @@ void CommandHandler::handle_delete(vector<string> tokens) {
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 	if(command == COMMAND_COMMENTS) {
 		delete_comment(param_map);
+		ui->show_fine_state();
 	} else if(command == COMMAND_FILM) {
 		delete_film(param_map);
+		ui->show_fine_state();
 	}
 }
 
@@ -124,6 +143,7 @@ void CommandHandler::handle_put(vector<string> tokens) {
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
 	if(command == COMMAND_FILM) {
 		put_films(param_map);
+		ui->show_fine_state();
 	}
 	
 }
@@ -161,6 +181,18 @@ void check_is_in_param(map<string, string> param, vector<string> list) {
 void check_param_with_list(vector<string> list, map<string, string> param) {
 	check_is_in_list(list, param);
 	check_is_in_param(param, list);
+}
+
+void CommandHandler::show_unread_notifs() {
+	ui->show_unread_notifs();
+}
+
+void CommandHandler::show_notifs(std::map<std::string, std::string> param) {
+	vector<string> list = {LIMIT};
+	check_param_with_list(list, param);
+
+	ui->show_notifs(param);
+
 }
 
 void CommandHandler::show_movie_data(std::map<std::string, std::string> param) {

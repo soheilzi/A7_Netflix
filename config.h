@@ -9,6 +9,9 @@
 #define COMMENT_TITLE "Comments"
 #define RECOMMENDATION_TITLE "Rcommendation Film"
 #define RECOMMENDATION_HEADER "#. Film Id | Film Name | Film Length | Film Director"
+#define NOTIFICATIONS_HEADER "#. Notification Message"
+
+#define	FINE_STATE "OK"
 
 #define DEFAULT_NET_MONEY 0
 
@@ -49,6 +52,7 @@
 #define MIN_RATE "min_rate"
 #define MIN_YEAR "min_year"
 #define MAX_YEAR "max_year"
+#define LIMIT "limit"
 
 
 

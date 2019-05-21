@@ -8,8 +8,8 @@
 class NotificationRepos {
 public:
 	void add_notif(Notification* notif);
-	void show_all_notifs(int limit);
-	void show_unread_notifs();
+	std::vector<std::string> get_all_notifs(int limit);
+	std::vector<std::string> get_unread_notifs();
 private:
 	std::vector<Notification*> notifs;
 };

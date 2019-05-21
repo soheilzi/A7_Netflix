@@ -94,6 +94,14 @@ std::vector<std::string> User::get_data() {
 	return data;
 }
 
+std::vector<std::string> User::get_unread_notifs() {
+	return notifications.get_unread_notifs();
+}
+
+std::vector<std::string> User::get_notifs(int limit) {
+	return notifications.get_all_notifs(limit);
+}
+
 void User::add_follower(User* user) {
 	throw BadRequest();
 }

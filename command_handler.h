@@ -39,6 +39,8 @@ public:
 	void show_purchased(std::map<std::string, std::string> param); 
 	void show_movies(std::map<std::string, std::string> param);
 	void show_movie_data(std::map<std::string, std::string> param);
+	void show_notifs(std::map<std::string, std::string> param);
+	void show_unread_notifs();
 private:
 	Network* net;
 	UI* ui;

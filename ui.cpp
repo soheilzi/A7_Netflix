@@ -18,6 +18,10 @@ void UI::show_followers() {
 	}
 } 
 
+void UI::show_fine_state() {
+	cout<<FINE_STATE<<endl;
+}
+
 int UI::find_row_min_id(std::vector<std::vector<std::string>> table) {
 	int min_index = 0;
 	int min = stoi(table[0][0]);
@@ -49,6 +53,23 @@ void UI::show_table_movie(std::vector<std::vector<std::string>> table, std::map<
 		show_published_movie_record(table[row_min_id], i + 1);
 		table.erase(table.begin() + row_min_id);
 	}
+}
+
+void UI::show_notifications(std::vector<std::string> notifs) {
+	cout<<NOTIFICATIONS_HEADER <<endl;
+	for(int i = 0; i < notifs.size(); i++) {
+		cout<< notifs[i]<<endl;
+	}
+}
+
+void UI::show_unread_notifs() {
+	vector<string> notifs = net->get_unread_notifs();
+	show_notifications(notifs);
+}
+
+void UI::show_notifs(std::map<std::string, std::string> param) {
+	vector<string> notifs = net->get_notifs(param);
+	show_notifications(notifs);
 }
 
 void UI::show_published(std::map<std::string, std::string> param) {
