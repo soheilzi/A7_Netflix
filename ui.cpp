@@ -58,7 +58,7 @@ void UI::show_table_movie(std::vector<std::vector<std::string>> table, std::map<
 void UI::show_notifications(std::vector<std::string> notifs) {
 	cout<<NOTIFICATIONS_HEADER <<endl;
 	for(int i = 0; i < notifs.size(); i++) {
-		cout<< notifs[i]<<endl;
+		cout<<i + 1<<". "<< notifs[i]<<endl;
 	}
 }
 
@@ -90,7 +90,7 @@ void UI::show_movies(std::map<std::string, std::string> param) {
 
 void UI::show_movie_base(map<string, string> base_data) {
 	cout<<"Details of Film " << base_data[B_NAME] << endl;
-	cout<<"ID = "<<base_data[B_ID]<<endl;
+	cout<<"Id = "<<base_data[B_ID]<<endl;
 	cout<<"Director = "<<base_data[B_DIRECTOR]<<endl;
 	cout<<"Length = " << base_data[B_LENGTH] << endl;
 	cout<<"Year = " << base_data[B_YEAR] << endl;
@@ -98,11 +98,11 @@ void UI::show_movie_base(map<string, string> base_data) {
 	cout<<"Rate = " << base_data[B_RATE] << endl;
 	cout<<"Price = " << base_data[B_PRICE] << endl;
 
-	cout<<endl<<endl;
+	cout<<endl;
 }
 
 void UI::show_movie_comments(std::vector<std::vector<std::string>> comment_table) {
-	cout<<COMMENT_TITLE<<endl;
+	cout<<COMMENT_TITLE<<endl<<endl;
 	for(int i = 0; i < comment_table.size(); i++) {
 		cout<<comment_table[i][COMMENT_IDD]<<". "<<comment_table[i][COMMENT_MESSAGE]<<endl;
 		if(!(comment_table[i][COMMENT_REPLY] == ""))

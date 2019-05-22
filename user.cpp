@@ -57,12 +57,10 @@ int User::calculate_debt(){}
 
 void User::get_money(int _money) {
 	money += _money;
-	cout<<"money : "<<money<<endl;
 }
 
 void User::add_following(User* user) {
 	following.push_back(user);
-	cout<<"user added\n";
 }
 
 void User::send_notif(Notification* notif) {
@@ -76,7 +74,6 @@ std::vector<std::vector<std::string>> User::get_published_movie_data_table() {th
 
 std::vector<std::vector<std::string>> User::get_purchased_movie_data_table() {
 	vector<vector<string>> movies_data_table;
-	cout<<"Number Movies Bought : "<<movies_bought.size()<<endl;
 	for(const auto& elem : movies_bought) {
 		movies_data_table.push_back(elem.second->get_data());
 	}
@@ -105,3 +102,9 @@ std::vector<std::string> User::get_notifs(int limit) {
 void User::add_follower(User* user) {
 	throw BadRequest();
 }
+
+bool User::owns_movie(int film_id) {
+	return movies_bought.find(film_id) != movies_bought.end();
+}	
+
+void User::send_notif_to_followers(){}

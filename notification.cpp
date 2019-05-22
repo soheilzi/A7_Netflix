@@ -36,13 +36,13 @@ Notif_new_film::Notif_new_film(std::string _publisher_name, int _publisher_id)
 
 
 Notif_movie_sale::Notif_movie_sale(std::string _user_name, int _user_id, string _film_name, int _film_id)
-	: Notif_from_user(_user_name, _user_id, _film_name, film_id) {cout<<"soled\n";}
+	: Notif_from_user(_user_name, _user_id, _film_name, _film_id) {}
 
 Notif_movie_rate::Notif_movie_rate(std::string _user_name, int _user_id, string _film_name, int _film_id)
-	: Notif_from_user(_user_name, _user_id, _film_name, film_id) {}
+	: Notif_from_user(_user_name, _user_id, _film_name, _film_id) {}
 
 Notif_movie_comment::Notif_movie_comment(std::string _user_name, int _user_id, string _film_name, int _film_id)
-	: Notif_from_user(_user_name, _user_id, _film_name, film_id) {}
+	: Notif_from_user(_user_name, _user_id, _film_name, _film_id) {}
 
 Notif_new_follower::Notif_new_follower(std::string _user_name, int _user_id)
 	: Notif_from_user(_user_name, _user_id, "", 0) {}
@@ -50,12 +50,12 @@ Notif_new_follower::Notif_new_follower(std::string _user_name, int _user_id)
 
 string Notif_reply_comment::get_notif() {
 	read = true;
-	return "Publisher " + publisher_name + " with id " + to_string(publisher_id) + "reply to your comment.";
+	return "Publisher " + publisher_name + " with id " + to_string(publisher_id) + " reply to your comment.";
 }
 
 string Notif_new_film::get_notif() {
 	read = true;
-	return "Publisher " + publisher_name + " with id " + to_string(publisher_id) + "register new film.";
+	return "Publisher " + publisher_name + " with id " + to_string(publisher_id) + " register new film.";
 }
 
 string Notif_movie_sale::get_notif() {

@@ -46,6 +46,7 @@ public:
 private:
 	int money;
 	User* user;
+	bool signed_in;
 	MovieRepos movies;
 	UserRepos users;
 	bool login;

@@ -50,3 +50,9 @@ void Publisher::delete_film(int film_id) {
 void Publisher::add_follower(User* user) {
 	followers.push_back(user);
 }
+
+void Publisher::send_notif_to_followers() {
+	for (int i = 0; i < followers.size(); i++) {
+		followers[i]->send_notif(new Notif_new_film(username, id));
+	}
+}

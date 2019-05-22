@@ -45,6 +45,7 @@ void CommandHandler::handle_post(vector<string> tokens) {
 	string command = tokens[1];
 	if(tokens.size() == 2 && command == COMMAND_MONEY){
 		net->get_money_publisher();
+		ui->show_fine_state();
 		return;
 	}
 	check_divider(tokens[2]);
@@ -98,20 +99,29 @@ void CommandHandler::handle_get(vector<string> tokens) {
 		ui->show_followers();
 		return;
 	} else if(command == COMMAND_PUBLISHED) {
-		check_divider(tokens[2]);
-		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+		map<string, string> param_map;
+		if(tokens.size() > 2){
+			check_divider(tokens[2]);
+			param_map = make_param_map(make_param_vect(tokens, 3));
+		}
 		show_published(param_map);
 	} else if(command == COMMAND_FILM) {
-		check_divider(tokens[2]);
-		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+		map<string, string> param_map;
+		if(tokens.size() > 2){
+			check_divider(tokens[2]);
+			param_map = make_param_map(make_param_vect(tokens, 3));
+		}
 		if(param_map.find(FILM_ID) == param_map.end()) {
 			show_movies(param_map);
 		} else {
 			show_movie_data(param_map);
 		}	
 	} else if(command == COMMAND_PURCHASED) {
-		check_divider(tokens[2]);
-		map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
+		map<string, string> param_map;
+		if(tokens.size() > 2){
+			check_divider(tokens[2]);
+			param_map = make_param_map(make_param_vect(tokens, 3));
+		}
 		show_purchased(param_map);
 	} else if(command == COMMAND_NOTIFICATIONS) {
 		if(tokens.size() == 2){
@@ -224,7 +234,6 @@ void CommandHandler::show_published(std::map<std::string, std::string> param) {
 	check_is_in_list(list_max, param);
 
 	ui->show_published(param);
-
 }
 
 void CommandHandler::delete_film(std::map<std::string, std::string> param) {

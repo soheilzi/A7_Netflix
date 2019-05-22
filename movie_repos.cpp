@@ -9,7 +9,6 @@ Movie* MovieRepos::add_movie(User* publisher, std::string name, int length, int 
  int price, std::string summary, std::string director) {
 	int id = id_generator.get_number();
 	movies[id] = new Movie(id, publisher, name, year, length, price, summary, director);
-	cout << "Movie added with ID : " << id << " with publisher : " << publisher->get_username() <<endl;
 	return movies[id];
 }
 
@@ -26,7 +25,9 @@ void MovieRepos::add_reply_comment(int film_id, int comment_id, std::string cont
 std::vector<std::vector<std::string>> MovieRepos::get_published_movie_data_table() {
 	vector<vector<string>> movies_data_table;
 	for(const auto& elem : movies) {
-		movies_data_table.push_back(elem.second->get_data());
+		if(elem.second->is_avalable()){
+			movies_data_table.push_back(elem.second->get_data());
+		}
 	}
 
 	return movies_data_table;
@@ -57,7 +58,9 @@ std::vector<std::vector<std::string>> MovieRepos::get_recommendation() {
 	vector<vector<string>> recommendation;
 	vector<int> forbiden_id;
 	for(int i = 0; i < 4 && i < movies.size(); i++) {
-		recommendation.push_back(movies[find_best(forbiden_id)]->get_brief_data());
+		int best_id = find_best(forbiden_id);
+		if(movies.find(best_id) != movies.end())
+			recommendation.push_back(movies[best_id]->get_brief_data());
 	}
 	return recommendation;
 }
@@ -68,6 +71,7 @@ Movie* MovieRepos::get_movie(int film_id) {
 }
 
 std::map<std::string, std::string> MovieRepos::get_movie_base_data(int film_id) {
+	check_film_id(film_id);
 	return movies[film_id]->get_movie_base_data();
 }
 
@@ -102,7 +106,7 @@ void MovieRepos::rate(int film_id, int score) {
 
 void MovieRepos::check_film_id(int film_id) {
 	if(movies.find(film_id) == movies.end() || movies[film_id]->is_avalable() == false)
-		throw BadRequest();
+		throw NotFound();
 }
 
 void MovieRepos::post_comment(int film_id, std::string content, User* commenter) {
@@ -113,4 +117,9 @@ void MovieRepos::post_comment(int film_id, std::string content, User* commenter)
 void MovieRepos::delete_comment(int film_id, int comment_id) {
 	check_film_id(film_id);
 	movies[film_id]->delete_comment(comment_id);
+}
+
+void MovieRepos::make_unavailable(int film_id) {
+	check_film_id(film_id);
+	movies[film_id]->make_unavailable();
 }

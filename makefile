@@ -47,7 +47,7 @@ command_handler.o : command_handler.cpp command_handler.h
 network.o : network.cpp network.h config.h
 	$(CC) -c network.cpp -o network.o
 
-ui.o : ui.cpp ui.h
+ui.o : ui.cpp ui.h config.h
 	$(CC) -c ui.cpp -o ui.o
 
 

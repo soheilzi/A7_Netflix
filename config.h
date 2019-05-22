@@ -4,10 +4,10 @@
 #define SPLITER " | "
 #define DEFAULT_START_MONEY 0
 #define DOT "."
-#define FOLLOWERS_HEADER "#. User Id | User Username | Use Email"
-#define MOVIE_DATA_HEADER "#. Film Id | Film Name | Film Length | Film Price | Rate | Production Year | Film Director"
+#define FOLLOWERS_HEADER "#. User Id | User Username | User Email"
+#define MOVIE_DATA_HEADER "#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director"
 #define COMMENT_TITLE "Comments"
-#define RECOMMENDATION_TITLE "Rcommendation Film"
+#define RECOMMENDATION_TITLE "Recommendation Film"
 #define RECOMMENDATION_HEADER "#. Film Id | Film Name | Film Length | Film Director"
 #define NOTIFICATIONS_HEADER "#. Notification Message"
 

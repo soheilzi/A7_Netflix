@@ -18,7 +18,6 @@ void check_is_in_list(vector<string> list, map<string, string> param) {
 			}
 		}
 		if(flag == false)
-			cout<<"loo"<<endl;
 		flag = false;
 	}
 }
@@ -33,7 +32,6 @@ void check_is_in_param(map<string, string> param, vector<string> list) {
 			}
 		}
 		if(flag == false) 
-			cout<<"poo"<<endl;
 		flag = false;
 	}
 }

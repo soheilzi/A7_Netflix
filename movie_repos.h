@@ -19,6 +19,7 @@ public:
 	void rate(int film_id, int score);
 	void post_comment(int film_id, std::string content, User* commenter);
 	void delete_comment(int film_id, int comment_id);
+	void make_unavailable(int film_id);
 
 	bool is_forbiden(int id, std::vector<int> forbiden_id);
 

@@ -6,10 +6,10 @@ using namespace std;
 Network::Network() {
 	money = DEFAULT_NET_MONEY;
 	login = false;
+	signed_in = false;
 }
 
 void Network::signup_user(std::string email, std::string username, std::string password, int age, string publisher) {
-	cout<<"user added\n";
 	bool publisher_flag;
 	if(publisher == _FALSE){
 		publisher_flag = false;
@@ -17,25 +17,31 @@ void Network::signup_user(std::string email, std::string username, std::string p
 		publisher_flag = true;
 	}
 	user = users.add_user(username, password, email, age, publisher_flag);
+	signed_in = true;
 }
 
 void Network::login_user(string username, string password) {
 	if(users.correct_user_and_pass(username, password)) {
 		user = users.get_user(username); 
-		cout<<"login was a success\n";
+		signed_in = true;
 	} else {
 		throw BadRequest();
 	}
 }
 
 void Network::add_movie(std::string name, int year, int length, int price, std::string summary, std::string director) {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	Movie* temp = movies.add_movie(user, name, length, year, price, summary, director);
 	user->add_movie(temp);
+	user->send_notif_to_followers();
 }
 
 void Network::edit_movie(int id, std::map<std::string, std::string> parameters) {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	if(!user->published_movie(id))
@@ -44,27 +50,35 @@ void Network::edit_movie(int id, std::map<std::string, std::string> parameters) 
 }
 
 void Network::get_money_publisher() {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	int debt = user->calculate_debt();
-	cout<<"net money : "<<money<<endl<<"debt : "<<debt<<endl;
 	money -= debt;
 	user->get_money(debt);
 }
 
 void Network::get_money_user(int amount) {
+	if(!signed_in)
+		throw PermissionDenied();
 	user->get_money(amount);
 }
 
 void Network::post_reply(int film_id, int comment_id, std::string content) {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	if(!user->published_movie(film_id))
 		throw PermissionDenied();
 	movies.add_reply_comment(film_id, comment_id, content);
+	user->send_notif(new Notif_reply_comment(movies.get_publisher(film_id)->get_username(), movies.get_publisher(film_id)->get_id()));
 }
 
 void Network::post_followers(int id) {
+	if(!signed_in)
+		throw PermissionDenied();
 	User* temp = users.get_user_by_id(id);
 	if(!temp->is_publisher())
 		throw BadRequest();
@@ -74,6 +88,8 @@ void Network::post_followers(int id) {
 }
 
 void Network::buy_movie(int film_id) {
+	if(!signed_in)
+		throw PermissionDenied();
 	int price = movies.get_price(film_id);
 	if(user->get_credit() < price)
 		throw BadRequest();
@@ -84,24 +100,40 @@ void Network::buy_movie(int film_id) {
 }
 
 void Network::rate(int film_id, int score) {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(score > 10 || score < 0)
 		throw BadRequest();
+	if(!user->owns_movie(film_id))
+		throw PermissionDenied();
 	movies.rate(film_id, score);
+	movies.get_publisher(film_id)->send_notif(new Notif_movie_rate(user->get_username(), user->get_id(), movies.get_name(film_id), film_id));
 }
 
 void Network::post_comment(int film_id, std::string content) {
+	if(!signed_in)
+		throw PermissionDenied();
+	if(!user->owns_movie(film_id))
+		throw PermissionDenied();
 	movies.post_comment(film_id, content, user);
+	movies.get_publisher(film_id)->send_notif(new Notif_movie_comment(user->get_username(), user->get_id(), movies.get_name(film_id), film_id));
 }
 
 void Network::delete_film(int film_id) {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	if(!user->published_movie(film_id))
 		throw PermissionDenied();
 	user->delete_film(film_id);
+	movies.make_unavailable(film_id);
 }
 
 void Network::delete_comment(int film_id, int comment_id) {
+	if(!signed_in)
+		throw PermissionDenied();
+	movies.check_film_id(film_id);
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	if(!user->published_movie(film_id))
@@ -110,12 +142,16 @@ void Network::delete_comment(int film_id, int comment_id) {
 }
 
 std::vector<std::vector<std::string>> Network::get_followers() {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 	return user->get_followers_data_table();
 }
 
 std::vector<std::vector<std::string>> Network::get_published(std::map<std::string, std::string> param) {
+	if(!signed_in)
+		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
 
@@ -123,10 +159,14 @@ std::vector<std::vector<std::string>> Network::get_published(std::map<std::strin
 }
 
 std::vector<std::vector<std::string>> Network::get_purchased(std::map<std::string, std::string> param) {
+	if(!signed_in)
+		throw PermissionDenied();
 	return filter_movies(user->get_purchased_movie_data_table(), param);
 }
 
 std::vector<std::vector<std::string>> Network::get_movies_data(std::map<std::string, std::string> param) {
+	if(!signed_in)
+		throw PermissionDenied();
 	return filter_movies(movies.get_published_movie_data_table(), param);
 }
 
@@ -171,21 +211,31 @@ std::vector<std::vector<std::string>> Network::filter_movies(std::vector<std::ve
 }
 
 std::map<std::string, std::string> Network::get_movie_base_data(int film_id) {
+	if(!signed_in)
+		throw PermissionDenied();
 	return movies.get_movie_base_data(film_id);
 }
 
 std::vector<std::vector<std::string>> Network::get_comment_data(int film_id) {
+	if(!signed_in)
+		throw PermissionDenied();
 	return movies.get_comment_data(film_id);
 }
 
 std::vector<std::vector<std::string>> Network::get_recommendation() {
+	if(!signed_in)
+		throw PermissionDenied();
 	return movies.get_recommendation();
 }
 
 std::vector<std::string> Network::get_unread_notifs() {
+	if(!signed_in)
+		throw PermissionDenied();
 	return user->get_unread_notifs();
 }
 
 std::vector<std::string> Network::get_notifs(std::map<std::string, std::string> param) {
+	if(!signed_in)
+		throw PermissionDenied();
 	return user->get_notifs(stoi(param[LIMIT]));
 }

@@ -35,6 +35,7 @@ public:
 	void make_sale();
 	void add_comment(std::string content, User* commenter);
 	void delete_comment(int comment_id);
+	void make_unavailable();
 	std::map<std::string, std::string> get_movie_base_data();
 	std::vector<std::vector<std::string>> get_comment_data();
 private:

@@ -27,6 +27,7 @@ public:
 	int get_credit();
 	void add_following(User* user);
 	void send_notif(Notification*);
+	bool owns_movie(int film_id);
 	std::vector<std::vector<std::string>> get_purchased_movie_data_table();
 	std::vector<std::string> get_unread_notifs();
 	std::vector<std::string> get_notifs(int limit);
@@ -39,6 +40,7 @@ public:
 	virtual bool published_movie(int id);
 	virtual int calculate_debt();
 	virtual void add_follower(User* user);
+	virtual void send_notif_to_followers();
 
 protected:
 	std::string username;

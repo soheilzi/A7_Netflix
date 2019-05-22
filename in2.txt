@@ -47,11 +47,11 @@ POST login ? username pub2 password pub2
 PUT films ? film_id 1 name film3 year 2018
 
 GET followers
-GET published ? name the|game
+GET published ?
 
 GET films ? director pub2
 
-GET films ? film_id 1
+
 
 POST login ? username user1 password user1
 POST money ? amount 40000
@@ -64,3 +64,5 @@ POST login ? username pub1 password pub1
 GET notifications
 
 GET notifications
+
+GET films ? film_id 6

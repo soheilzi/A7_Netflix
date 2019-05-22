@@ -34,7 +34,6 @@ void Movie::add_reply_comment(int comment_id, std::string content) {
 void Movie::edit_parts(string key, string val) {
 	if(key == NAME_CHANGE) {
 		name = val;
-		cout<<"new name : "<<name<<endl;
 
 	} else if(key == LENGTH_CHANGE) {
 		if(!is_number(val))
@@ -45,14 +44,12 @@ void Movie::edit_parts(string key, string val) {
 		if(!is_number(val))
 			throw BadRequest();
 		year = stoi(val);
-		cout<<"new year : "<<year<<endl;
 
 	} else if(key == SUMMARY_CHANGE) {
 		summary = val;
 
 	} else if(key == DIRECTOR_CHANGE) {
 		director = val;
-		cout<<"new director : "<<director<<endl;
 
 	}
 
@@ -102,7 +99,6 @@ User* Movie::get_publisher() {
 void Movie::set_score(int score) {
 	rater_count++;
 	rate += score;
-	cout<<"scored\n";
 }
 
 void Movie::add_comment(std::string content, User* commenter) {
@@ -120,7 +116,7 @@ std::vector<std::string> Movie::get_data() {
 	data.push_back(to_string(length));
 	data.push_back(to_string(price));
 	ostringstream _rate;
-	_rate.precision(2);
+	_rate.precision(0);
 	_rate << fixed << rate;
 	data.push_back(_rate.str());
 	data.push_back(to_string(year));
@@ -159,7 +155,7 @@ map<string, string> Movie::get_movie_base_data() {
 	base_data[B_SUMMARY] = summary;
 	base_data[B_PRICE] = to_string(price);
 	ostringstream _rate;
-	_rate.precision(2);
+	_rate.precision(0);
 	_rate << fixed << rate;
 	base_data[B_RATE] = _rate.str();
 	
@@ -168,4 +164,7 @@ map<string, string> Movie::get_movie_base_data() {
 
 std::vector<std::vector<std::string>> Movie::get_comment_data() {
 	return comments.get_comments_data();
+}
+void Movie::make_unavailable() {
+	avalable = false;
 }
