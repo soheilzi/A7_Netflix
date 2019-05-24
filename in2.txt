@@ -66,3 +66,9 @@ GET notifications
 GET notifications
 
 GET films ? film_id 6
+
+POST login  ? username pub3 password pub3
+
+POST put_films ? film_id 1 name hello
+
+GET films ? film_id 1

@@ -126,7 +126,7 @@ void UI::show_movie_recommendations(std::vector<std::vector<std::string>>& recom
 void UI::show_movie_data(std::map<std::string, std::string> param) {
 	map<string, string> base_data = net->get_movie_base_data(stoi(param[FILM_ID]));
 	vector<vector<string>> comment_data = net->get_comment_data(stoi(param[FILM_ID]));
-	vector<vector<string>> recommendation = net->get_recommendation();
+	vector<vector<string>> recommendation = net->get_recommendation(stoi(param[FILM_ID]));
 	show_movie_base(base_data);
 	show_movie_comments(comment_data);
 	show_movie_recommendations(recommendation);

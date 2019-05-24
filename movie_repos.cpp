@@ -55,14 +55,19 @@ int MovieRepos::find_best(std::vector<int>& forbiden_id) {
 }
 
 std::vector<std::vector<std::string>> MovieRepos::get_recommendation() {
-	vector<vector<string>> recommendation;
-	vector<int> forbiden_id;
-	for(int i = 0; i < 4 && i < movies.size(); i++) {
-		int best_id = find_best(forbiden_id);
-		if(movies.find(best_id) != movies.end())
-			recommendation.push_back(movies[best_id]->get_brief_data());
-	}
-	return recommendation;
+	// std::vector<Movie*> recom_movies = graph.get_top4();
+	// vector<vector<string>> recommendation;
+	// for(int i = 0; i < recom_movies.size(); i++) {
+	// 	recommendation.push_back(recom_movies[i]->get_brief_data());
+	// }
+	// return recommendation;
+	// vector<vector<string>> recommendation;
+	// vector<int> forbiden_id;
+	// for(int i = 0; i < 4 && i < movies.size(); i++) {
+	// 	int best_id = find_best(forbiden_id);
+	// 	if(movies.find(best_id) != movies.end())
+	// 		recommendation.push_back(movies[best_id]->get_brief_data());
+	// }
 }
 
 Movie* MovieRepos::get_movie(int film_id) {

@@ -36,6 +36,7 @@ void Network::add_movie(std::string name, int year, int length, int price, std::
 		throw PermissionDenied();
 	Movie* temp = movies.add_movie(user, name, length, year, price, summary, director);
 	user->add_movie(temp);
+	graph.add_movie(temp);
 	user->send_notif_to_followers();
 }
 
@@ -93,6 +94,10 @@ void Network::buy_movie(int film_id) {
 	int price = movies.get_price(film_id);
 	if(user->get_credit() < price)
 		throw BadRequest();
+	cout<<1<<"--------------------"<<endl;
+	graph.print_matrix();
+	graph.make_relation(user->get_purchased_movie(), movies.get_movie(film_id));
+	graph.print_matrix();
 	user->buy(price);
 	user->set_movie(movies.get_movie(film_id));
 	movies.buy_movie(film_id);
@@ -222,10 +227,10 @@ std::vector<std::vector<std::string>> Network::get_comment_data(int film_id) {
 	return movies.get_comment_data(film_id);
 }
 
-std::vector<std::vector<std::string>> Network::get_recommendation() {
+std::vector<std::vector<std::string>> Network::get_recommendation(int film_id) {
 	if(!signed_in)
 		throw PermissionDenied();
-	return movies.get_recommendation();
+	return graph.get_recommendation(movies.get_movie(film_id), user);
 }
 
 std::vector<std::string> Network::get_unread_notifs() {

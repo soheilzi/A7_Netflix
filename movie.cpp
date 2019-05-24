@@ -127,6 +127,9 @@ std::vector<std::string> Movie::get_data() {
 
 std::vector<std::string> Movie::get_brief_data() {
 	vector<string> data;
+
+	if(avalable == false)
+		return data;
 	data.push_back(to_string(id));
 	data.push_back(name);
 	data.push_back(to_string(length));

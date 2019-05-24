@@ -63,6 +63,8 @@
 #define ACTION_DELETE "DELETE"
 #define ACTION_PUT "PUT"
 
+#define COMMAND_DELETE_FILM "delete_film"
+#define COMMAND_PUT_FILM "put_films"
 #define COMMAND_SIGNUP "signup"
 #define COMMAND_LOGIN "login"
 #define COMMAND_FILM "films"

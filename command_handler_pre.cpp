@@ -86,14 +86,6 @@ void CommandHandler::handle_post(vector<string> tokens) {
 		post_comment(param_map);
 		ui->show_fine_state();
 
-	}else if(command == COMMAND_PUT_FILM) {
-		put_films(param_map);
-		ui->show_fine_state();
-
-	}else if(command == COMMAND_DELETE_FILM) {
-		delete_film(param_map);
-		ui->show_fine_state();
-		
 	}
 
 }
@@ -164,6 +156,41 @@ void CommandHandler::handle_put(vector<string> tokens) {
 		ui->show_fine_state();
 	}
 	
+}
+
+void check_is_in_list(vector<string> list, map<string, string> param) {
+	bool flag = false;
+	for(const auto& elem : param) {
+		for(int i = 0; i < list.size(); i++) {
+			if(list[i] == elem.first){
+				flag = true;
+				break;
+			}
+		}
+		if(flag == false)
+			throw BadRequest();
+		flag = false;
+	}
+}
+
+void check_is_in_param(map<string, string> param, vector<string> list) {
+	bool flag = false;
+	for(int i = 0; i < list.size(); i++) {
+		for(const auto& elem : param) {
+			if(list[i] == elem.first){
+				flag = true;
+				break;
+			}
+		}
+		if(flag == false)
+			throw BadRequest();
+		flag = false;
+	}
+}
+
+void check_param_with_list(vector<string> list, map<string, string> param) {
+	check_is_in_list(list, param);
+	check_is_in_param(param, list);
 }
 
 void CommandHandler::show_unread_notifs() {

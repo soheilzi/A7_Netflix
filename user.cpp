@@ -107,4 +107,19 @@ bool User::owns_movie(int film_id) {
 	return movies_bought.find(film_id) != movies_bought.end();
 }	
 
+bool User::owns_movie(Movie* movie) {
+	for (const auto& elem : movies_bought) {
+		if(movie == elem.second)
+			return true;
+	}
+	return false;
+}
+
 void User::send_notif_to_followers(){}
+
+std::vector<Movie*> User::get_purchased_movie() {
+	vector<Movie*> purchased_movie;
+	for(const auto& elem : movies_bought)
+		purchased_movie.push_back(elem.second);
+	return purchased_movie;
+}

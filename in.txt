@@ -1,30 +1,60 @@
 POST signup ? email soheil@ut username soheil password holo age 10
-POST films ? name the|game year 2020   length 2 price 200 summary just|two|guyes director soheil
-POST money	
-POST signup ? email ava@os username ava password baloot age 20 publisher true
-POST films ? year 2020 name the|game    length 2 price 20 summary just|two|guyes director soheil
-POST login ? username ava password baloot
-POST films ? year 2120 name the|games    length 4 price 220 summary just|two|girls director ava
-POST money
-POST replies ? film_id 2 comment_id 1 content you|are|wrong
-POST login ? username soheil password holo
-POST followers ? user_id 2
-POST followers ? user_id 1
-POST money ? amount 100
-POST money ? amount 20
-POST money ?
-POST login ? username ava password baloot
-POST money ?     amount   90
+POST signup ? email ava@os username u1 password baloot age 20 publisher true
+POST signup ? email ava@os username u2 password baloot age 20 publisher true
+POST signup ? email ava@os username u3 password baloot age 20 publisher true
+POST signup ? email ava@os username u4 password baloot age 20 publisher true
+POST signup ? email ava@os username u5 password baloot age 20 publisher true
+
+
+POST films ? name f1 year 2020   length 2 price 200 summary just|two|guyes director soheil
+POST films ? name f2 year 2020   length 2 price 200 summary just|two|guyes director soheil
+POST films ? name f3 year 2020   length 2 price 200 summary just|two|guyes director soheil
+POST films ? name f4 year 2020   length 2 price 200 summary just|two|guyes director soheil
+POST films ? name f5 year 2020   length 2 price 200 summary just|two|guyes director soheil
+
+
+POST login ? username u1 password baloot
+
+POST money ? amount 10000
+
 POST buy ? film_id 1
-POST money ?     amount   00
-POST rate ? film_id 1 score 10
-POST comments ? film_id 2     content <content>
-DELETE comments ? film_id 2 comment_id 1
-POST comments ? film_id 1     content <content>
-POST login   ? username ava password baloot
-PUT films ? film_id 1 name gameOfThrons year 300 director shiva
-POST login ? username soheil password holo
-PUT films ? film_id 1 name gameOfThrons year 300 director shiva
-POST login ? password baloot username ava
-DELETE films ? film_id 1
-PUT films ? film_id 1 name the|name
+POST buy ? film_id 2
+POST buy ? film_id 3
+POST buy ? film_id 5
+
+
+POST login ? username u2 password baloot
+
+POST money ? amount 10000
+
+POST buy ? film_id 1
+POST buy ? film_id 3
+
+
+
+POST login ? username u3 password baloot
+
+POST money ? amount 10000
+
+POST buy ? film_id 1
+POST buy ? film_id 5
+
+
+
+POST login ? username u4 password baloot
+
+POST money ? amount 10000
+
+POST buy ? film_id 2
+POST buy ? film_id 5
+
+GET films ? film_id 2
+
+GET films ? film_id 3
+
+POST login ? username u5 password baloot
+
+POST put_films ? film_id 2 name new_name
+
+GET films ? film_id 2
+

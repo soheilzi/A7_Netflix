@@ -28,6 +28,8 @@ public:
 	void add_following(User* user);
 	void send_notif(Notification*);
 	bool owns_movie(int film_id);
+	bool owns_movie(Movie* movie);
+	std::vector<Movie*> get_purchased_movie();
 	std::vector<std::vector<std::string>> get_purchased_movie_data_table();
 	std::vector<std::string> get_unread_notifs();
 	std::vector<std::string> get_notifs(int limit);

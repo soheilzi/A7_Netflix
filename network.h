@@ -13,6 +13,7 @@
 #include "user_repos.h"
 #include "movie_repos.h"
 #include "notification.h"
+#include "matrix.h"
 
 class Network {
 public:
@@ -42,7 +43,7 @@ public:
 	std::vector<std::vector<std::string>> filter_movies(std::vector<std::vector<std::string>> movie_table, std::map<std::string, std::string> param);
 	std::map<std::string, std::string> get_movie_base_data(int film_id);
 	std::vector<std::vector<std::string>> get_comment_data(int film_id);
-	std::vector<std::vector<std::string>> get_recommendation();
+	std::vector<std::vector<std::string>> get_recommendation(int film_id);
 private:
 	int money;
 	User* user;
@@ -50,6 +51,7 @@ private:
 	MovieRepos movies;
 	UserRepos users;
 	bool login;
+	MatrixMovie graph;
 };
 
 #endif
