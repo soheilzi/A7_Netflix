@@ -60,3 +60,18 @@ POST put_films ? film_id 2 name new_name
 
 GET films ? film_id 2
 
+POST login ? username u2 password baloot
+
+GET money
+POST login ? username admin password admin
+GET money
+POST login ? username u5 password baloot
+
+
+GET money
+
+POST money
+
+GET money
+POST login ? username admin password admin
+GET money

@@ -27,6 +27,7 @@ public:
 	void show_notifications(std::vector<std::string> notifs);
 	void show_notifs(std::map<std::string, std::string> param);
 	void show_fine_state();
+	void show_credit();
 private:
 	Network* net;
 };

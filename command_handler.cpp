@@ -94,13 +94,21 @@ void CommandHandler::handle_post(vector<string> tokens) {
 		delete_film(param_map);
 		ui->show_fine_state();
 
-	}
+	}else if(command == COMMAND_DELETE_COMMENT) {
+		delete_comment(param_map);
+		ui->show_fine_state();
+	} 
 
 }
 
 
 void CommandHandler::handle_get(vector<string> tokens) {
 	string command = tokens[1];
+	if(tokens.size() == 2 && command == COMMAND_MONEY) {
+		get_credit();
+		return;
+	}
+
 	if(command == COMMAND_FOLLOWERS) {
 		if(tokens.size() > 2)
 			throw BadRequest();
@@ -164,6 +172,10 @@ void CommandHandler::handle_put(vector<string> tokens) {
 		ui->show_fine_state();
 	}
 	
+}
+
+void CommandHandler::get_credit() {
+	ui->show_credit();
 }
 
 void CommandHandler::show_unread_notifs() {

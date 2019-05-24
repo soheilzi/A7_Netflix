@@ -131,3 +131,7 @@ void UI::show_movie_data(std::map<std::string, std::string> param) {
 	show_movie_comments(comment_data);
 	show_movie_recommendations(recommendation);
 }
+
+void UI::show_credit() {
+	cout<<net->get_credit()<<endl;
+}

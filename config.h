@@ -55,6 +55,10 @@
 #define LIMIT "limit"
 
 
+#define ADMIN_USERNAME "admin"
+#define ADMIN_PASSWORD "admin"
+#define ADMIN_EMAIL ""
+#define ADMIN_AGE 0
 
 #define DIVIDER "?"
 
@@ -64,6 +68,7 @@
 #define ACTION_PUT "PUT"
 
 #define COMMAND_DELETE_FILM "delete_films"
+#define COMMAND_DELETE_COMMENT "delete_comments"
 #define COMMAND_PUT_FILM "put_films"
 #define COMMAND_SIGNUP "signup"
 #define COMMAND_LOGIN "login"

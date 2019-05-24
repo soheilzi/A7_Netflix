@@ -54,7 +54,7 @@ private:
 	int year;
 
 	int rater_count;
-	float rate;
+	int rate;
 
 	int sales_publisher;
 

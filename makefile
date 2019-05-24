@@ -23,7 +23,7 @@ sequence_generator.o : sequence_generator.cpp sequence_generator.h
 user.o : user.h user.cpp
 	$(CC) -c user.cpp -o user.o
 
-user_repos.o : user_repos.h user_repos.cpp
+user_repos.o : user_repos.h user_repos.cpp config.h
 	$(CC) -c user_repos.cpp -o user_repos.o
 
 publisher.o : publisher.h publisher.cpp
@@ -38,7 +38,7 @@ movie_repos.o : movie_repos.cpp movie_repos.h user.h
 comment.o : comment.cpp comment.h
 	$(CC) -c comment.cpp -o comment.o
 
-check_error.o : check_error.cpp check_error.h
+check_error.o : check_error.cpp check_error.h config.h
 	$(CC) -c check_error.cpp -o check_error.o
 
 command_handler.o : command_handler.cpp command_handler.h config.h

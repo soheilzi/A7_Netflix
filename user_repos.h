@@ -4,6 +4,7 @@
 #include "user.h"
 #include "publisher.h"
 #include "sequence_generator.h"
+#include "config.h"
 #include <map>
 #include <string>
 

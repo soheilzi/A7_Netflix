@@ -94,10 +94,11 @@ void Network::buy_movie(int film_id) {
 	int price = movies.get_price(film_id);
 	if(user->get_credit() < price)
 		throw BadRequest();
-	cout<<1<<"--------------------"<<endl;
-	graph.print_matrix();
-	graph.make_relation(user->get_purchased_movie(), movies.get_movie(film_id));
-	graph.print_matrix();
+	// cout<<1<<"--------------------"<<endl;
+	// graph.print_matrix();
+	// graph.make_relation(user->get_purchased_movie(), movies.get_movie(film_id));
+	// graph.print_matrix();
+	money += price;
 	user->buy(price);
 	user->set_movie(movies.get_movie(film_id));
 	movies.buy_movie(film_id);
@@ -243,4 +244,14 @@ std::vector<std::string> Network::get_notifs(std::map<std::string, std::string> 
 	if(!signed_in)
 		throw PermissionDenied();
 	return user->get_notifs(stoi(param[LIMIT]));
+}
+
+bool is_admin(User* user) {
+	return user->get_id() == 0;
+}
+
+int Network::get_credit() {
+	if(is_admin(user))
+		return money;
+	return user->get_credit();
 }

@@ -2,7 +2,9 @@
 
 using namespace std;
 
-UserRepos::UserRepos() : id_generator() {}
+UserRepos::UserRepos() : id_generator() {
+	users[ADMIN_USERNAME] = new User(0, ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_EMAIL, ADMIN_AGE);
+}
 
 User* UserRepos::add_user(std::string username, std::string password, std::string email, int age, bool publisher) {
 	if(users.find(username) != users.end())

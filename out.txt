@@ -1,75 +1,76 @@
-Permission Denied
-OK
-OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
-1. 1 | film1 | 120 | 10000 | 0 | 1999 | director_of_film1
-OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
-1. 1 | film1 | 120 | 10000 | 0 | 1999 | director_of_film1
-Permission Denied
-Bad Request
-OK
-Bad Request
 Bad Request
 OK
 OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
-1. 1 | film1 | 120 | 10000 | 0 | 1999 | director_of_film1
-2. 2 | film2 | 120 | 20000 | 0 | 2000 | director_of_film2
-3. 3 | film3 | 120 | 30000 | 0 | 2001 | director_of_film3
-OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
-1. 1 | film1 | 120 | 10000 | 0 | 1999 | director_of_film1
-2. 2 | the_second_film | 120 | 20000 | 0 | 2000 | director_of_film2
-3. 3 | film3 | 120 | 30000 | 0 | 2001 | director_of_film3
-OK
-List of Followers
-#. User Id | User Username | User Email
-OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
 OK
 OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
-1. 2 | the_second_film | 120 | 20000 | 0 | 2000 | director_of_film2
-2. 3 | film3 | 120 | 30000 | 0 | 2001 | director_of_film3
+OK
+OK
+OK
+Bad Request
+OK
+OK
+OK
+OK
+OK
+OK
+Bad Request
+OK
+OK
+OK
+OK
+OK
+OK
+Bad Request
+OK
+OK
+OK
+OK
+OK
+400
+OK
+OK
+OK
+OK
+OK
 Not Found
-Details of Film the_second_film
-Id = 2
-Director = director_of_film2
-Length = 120
-Year = 2000
-Summary = summary|of|film2
+Bad Request
+OK
+700
+OK
+Bad Request
+OK
+Details of Film film1edited
+Id = 1
+Director = davidgilmour
+Length = 18
+Year = 463
+Summary = lightwasbrighter
 Rate = 0
-Price = 20000
+Price = 100
 
 Comments
 
 Recommendation Film
 #. Film Id | Film Name | Film Length | Film Director
-1. 2 | the_second_film | 120 | director_of_film2
-2. 3 | film3 | 120 | director_of_film3
-OK
-Permission Denied
-OK
-OK
-OK
-#. Film Id | Film Name | Film Length | Film price | Rate | Production Year | Film Director
-1. 2 | the_second_film | 120 | 20000 | 10 | 2000 | director_of_film2
-OK
-#. Notification Message
-1. User customer with id 2 comment on your film the_second_film with id 2.
-2. User customer with id 2 comment on your film the_second_film with id 2.
-3. User customer with id 2 rate your film the_second_film with id 2.
-4. User customer with id 2 buy your film the_second_film with id 2.
-5. User customer with id 2 follow you.
-List of Followers
-#. User Id | User Username | User Email
-1. 2 | customer | user@gmail.com
+1. 2 | film2 | 18 | serj
+2. 3 | film3 | 18 | dayerekamel
+3. 4 | film4 | 18 | coreytaylor
+4. 6 | film6 | 18 | mattbellamy
+Details of Film film4
+Id = 4
+Director = coreytaylor
+Length = 18
+Year = 463
+Summary = allhopeisgone
+Rate = 0
+Price = 100
+
+Comments
+
+Recommendation Film
+#. Film Id | Film Name | Film Length | Film Director
+1. 1 | film1edited | 18 | davidgilmour
+2. 2 | film2 | 18 | serj
+3. 3 | film3 | 18 | dayerekamel
+4. 6 | film6 | 18 | mattbellamy
 Not Found
-OK
-OK
-OK
-#. Notification Message
-1. Publisher pub with id 1 reply to your comment.
-OK
-#. Notification Message

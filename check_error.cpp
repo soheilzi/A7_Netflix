@@ -22,7 +22,7 @@ void check_command(std::string s) {
 	if (s != COMMAND_SIGNUP && s != COMMAND_LOGIN && s != COMMAND_FILM && s != COMMAND_FOLLOWERS && 
 		s != COMMAND_MONEY &&  s != COMMAND_REPLIES && s != COMMAND_COMMENTS && s != COMMAND_BUY && 
 		s != COMMAND_RATE && s != COMMAND_PURCHASED && s != COMMAND_NOTIFICATIONS && s != COMMAND_PUBLISHED &&
-		s != COMMAND_PUT_FILM && s != COMMAND_DELETE_FILM) {
+		s != COMMAND_PUT_FILM && s != COMMAND_DELETE_FILM && s != COMMAND_DELETE_COMMENT && s != COMMAND_LOGOUT) {
 		throw BadRequest();
 	}
 }

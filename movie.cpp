@@ -62,7 +62,11 @@ void Movie::edit(std::map<std::string, std::string> parameters) {
 }
 
 void Movie::make_sale() {
-	float _rate = rate / (float)rater_count;
+	float _rate;
+	if(rater_count != 0)
+		_rate = rate / (rater_count*1.);
+	else 
+		_rate = 0;
 	if(_rate < WEAK_RATE){
 		sales_publisher += price * WEAK_SALE;
 	} else if(_rate >= WEAK_RATE && _rate < STRONG_RATE) {
