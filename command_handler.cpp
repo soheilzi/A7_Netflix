@@ -93,7 +93,7 @@ void CommandHandler::handle_post(vector<string> tokens) {
 	}else if(command == COMMAND_DELETE_FILM) {
 		delete_film(param_map);
 		ui->show_fine_state();
-		
+
 	}
 
 }

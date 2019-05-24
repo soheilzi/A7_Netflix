@@ -54,6 +54,8 @@ GET films ? film_id 3
 
 POST login ? username u5 password baloot
 
+POST delete_films ? film_id 1
+
 POST put_films ? film_id 2 name new_name
 
 GET films ? film_id 2
