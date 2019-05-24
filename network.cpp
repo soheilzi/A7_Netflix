@@ -10,6 +10,8 @@ Network::Network() {
 }
 
 void Network::signup_user(std::string email, std::string username, std::string password, int age, string publisher) {
+	if(signed_in == true)
+		throw BadRequest();
 	bool publisher_flag;
 	if(publisher == _FALSE){
 		publisher_flag = false;
@@ -21,12 +23,20 @@ void Network::signup_user(std::string email, std::string username, std::string p
 }
 
 void Network::login_user(string username, string password) {
+	if(signed_in == true)
+		throw BadRequest();
 	if(users.correct_user_and_pass(username, password)) {
 		user = users.get_user(username); 
 		signed_in = true;
 	} else {
 		throw BadRequest();
 	}
+}
+
+void Network::logout() {
+	if(signed_in == false)
+		throw BadRequest();
+	signed_in = false;
 }
 
 void Network::add_movie(std::string name, int year, int length, int price, std::string summary, std::string director) {
@@ -55,9 +65,9 @@ void Network::get_money_publisher() {
 		throw PermissionDenied();
 	if(!user->is_publisher())
 		throw PermissionDenied();
-	int debt = user->calculate_debt();
-	money -= debt;
-	user->get_money(debt);
+	money -= dept[user];
+	user->get_money(dept[user]);
+	dept[user] = 0;
 }
 
 void Network::get_money_user(int amount) {
@@ -96,12 +106,12 @@ void Network::buy_movie(int film_id) {
 		throw BadRequest();
 	// cout<<1<<"--------------------"<<endl;
 	// graph.print_matrix();
-	// graph.make_relation(user->get_purchased_movie(), movies.get_movie(film_id));
+	graph.make_relation(user->get_purchased_movie(), movies.get_movie(film_id));
 	// graph.print_matrix();
 	money += price;
 	user->buy(price);
 	user->set_movie(movies.get_movie(film_id));
-	movies.buy_movie(film_id);
+	dept[movies.get_publisher(film_id)] += movies.get_worth(film_id);
 	movies.get_publisher(film_id)->send_notif(new Notif_movie_sale(user->get_username(), user->get_id(), movies.get_name(film_id), film_id));
 }
 

@@ -99,9 +99,9 @@ User* MovieRepos::get_publisher(int film_id) {
 	return movies[film_id]->get_publisher();
 }
 
-void MovieRepos::buy_movie(int film_id) {
+int MovieRepos::get_worth(int film_id) {
 	check_film_id(film_id);
-	movies[film_id]->make_sale();
+	return movies[film_id]->get_worth();
 }
 
 void MovieRepos::rate(int film_id, int score) {

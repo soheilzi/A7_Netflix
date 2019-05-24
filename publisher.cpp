@@ -35,14 +35,6 @@ bool Publisher::published_movie(int id) {
 	return movies.find(id) != movies.end();
 }
 
-int Publisher::calculate_debt() {
-	int debt = 0;
-	for(const auto& elem : movies) {
-		debt += elem.second->checkout_money();
-	} 
-	return debt;
-}
-
 void Publisher::delete_film(int film_id) {
 	movies.erase(film_id);
 }

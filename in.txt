@@ -1,4 +1,5 @@
 POST signup ? email soheil@ut username soheil password holo age 10
+POST logout
 POST signup ? email ava@os username u1 password baloot age 20 publisher true
 POST signup ? email ava@os username u2 password baloot age 20 publisher true
 POST signup ? email ava@os username u3 password baloot age 20 publisher true

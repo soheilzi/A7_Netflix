@@ -47,6 +47,10 @@ void CommandHandler::handle_post(vector<string> tokens) {
 		net->get_money_publisher();
 		ui->show_fine_state();
 		return;
+	} else if(tokens.size() == 2 && command == COMMAND_LOGOUT){
+		net->logout();
+		ui->show_fine_state();
+		return;
 	}
 	check_divider(tokens[2]);
 	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
@@ -97,7 +101,7 @@ void CommandHandler::handle_post(vector<string> tokens) {
 	}else if(command == COMMAND_DELETE_COMMENT) {
 		delete_comment(param_map);
 		ui->show_fine_state();
-	} 
+	}
 
 }
 

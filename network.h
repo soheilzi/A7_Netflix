@@ -32,6 +32,7 @@ public:
 	void post_comment(int film_id, std::string content);
 	void delete_film(int film_id);
 	void delete_comment(int film_id, int comment_id);
+	void logout();
 	std::vector<std::string> get_unread_notifs();
 	std::vector<std::string> get_notifs(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_followers();
@@ -48,6 +49,7 @@ public:
 private:
 	int money;
 	User* user;
+	std::map<User*, int> dept;
 	bool signed_in;
 	MovieRepos movies;
 	UserRepos users;

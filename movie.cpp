@@ -17,14 +17,7 @@ Movie::Movie(int _id, User* _publisher, std::string _name, int _year, int _lengt
 	director = _director;
 	rate = 0;
 	rater_count = 0;
-	sales_publisher = 0;
 	avalable = true;
-}
-
-int Movie::checkout_money() {
-	int temp = sales_publisher;
-	sales_publisher = 0;
-	return temp;
 }
 
 void Movie::add_reply_comment(int comment_id, std::string content) {
@@ -61,19 +54,21 @@ void Movie::edit(std::map<std::string, std::string> parameters) {
 	}
 }
 
-void Movie::make_sale() {
+int Movie::get_worth() {
 	float _rate;
+	int sales_publisher = 0;
 	if(rater_count != 0)
 		_rate = rate / (rater_count*1.);
 	else 
 		_rate = 0;
 	if(_rate < WEAK_RATE){
-		sales_publisher += price * WEAK_SALE;
+		sales_publisher = price * WEAK_SALE;
 	} else if(_rate >= WEAK_RATE && _rate < STRONG_RATE) {
-		sales_publisher += price * MEDIOM_SALE;
+		sales_publisher = price * MEDIOM_SALE;
 	} else if(_rate >= STRONG_RATE) {
-		sales_publisher += price * STRONG_SALE;
-	}	
+		sales_publisher = price * STRONG_SALE;
+	}
+	return sales_publisher;
 }
 
 int Movie::get_id() {

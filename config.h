@@ -82,6 +82,7 @@
 #define COMMAND_PURCHASED "purchased"
 #define COMMAND_PUBLISHED "published"
 #define COMMAND_NOTIFICATIONS "notifications"
+#define COMMAND_LOGOUT "logout"
 
 #define _FALSE "false"
 #define _TRUE "true"

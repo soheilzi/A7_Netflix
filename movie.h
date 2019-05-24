@@ -30,9 +30,8 @@ public:
 	void set_score(int score);
 	void edit_parts(std::string key, std::string val);
 	void edit(std::map<std::string, std::string> parameters);
-	int checkout_money();
 	void add_reply_comment(int comment_id, std::string content);
-	void make_sale();
+	int get_worth();
 	void add_comment(std::string content, User* commenter);
 	void delete_comment(int comment_id);
 	void make_unavailable();
@@ -56,7 +55,6 @@ private:
 	int rater_count;
 	int rate;
 
-	int sales_publisher;
 
 	CommentRepos comments;
 
