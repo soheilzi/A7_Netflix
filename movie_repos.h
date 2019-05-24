@@ -32,7 +32,6 @@ public:
 	std::vector<std::vector<std::string>> get_published_movie_data_table();
 	std::map<std::string, std::string> get_movie_base_data(int film_id);
 	std::vector<std::vector<std::string>> get_comment_data(int film_id);
-	std::vector<std::vector<std::string>> get_recommendation();
 	int find_best(std::vector<int>& forbiden_id);
 private:
 	SequenceGenerator id_generator;

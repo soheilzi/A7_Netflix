@@ -15,7 +15,7 @@ void check_divider(std::string s) {
 		throw BadRequest();
 }
 void check_action(std::string s) {
-	if(s != ACTION_PUT && s != ACTION_DELETE && s != ACTION_GET && s != ACTION_POST)
+	if(/*s != ACTION_PUT && s != ACTION_DELETE && */ s != ACTION_GET && s != ACTION_POST)
 		throw BadRequest();
 }
 void check_command(std::string s) {

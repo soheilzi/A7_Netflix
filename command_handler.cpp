@@ -154,30 +154,6 @@ void CommandHandler::handle_get(vector<string> tokens) {
 	}
 }
 
-void CommandHandler::handle_delete(vector<string> tokens) {
-	string command = tokens[1];
-	check_divider(tokens[2]);
-	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
-	if(command == COMMAND_COMMENTS) {
-		delete_comment(param_map);
-		ui->show_fine_state();
-	} else if(command == COMMAND_FILM) {
-		delete_film(param_map);
-		ui->show_fine_state();
-	}
-}
-
-void CommandHandler::handle_put(vector<string> tokens) {
-	string command = tokens[1];
-	check_divider(tokens[2]);
-	map<string, string> param_map = make_param_map(make_param_vect(tokens, 3));
-	if(command == COMMAND_FILM) {
-		put_films(param_map);
-		ui->show_fine_state();
-	}
-	
-}
-
 void CommandHandler::get_credit() {
 	ui->show_credit();
 }
@@ -339,9 +315,5 @@ void CommandHandler::process_request(string command) {
 		handle_post(tokens);
 	} else if(method == ACTION_GET) {
 		handle_get(tokens);
-	} else if(method == ACTION_DELETE) {
-		handle_delete(tokens);
-	} else if(method == ACTION_PUT) {
-		handle_put(tokens);
 	}
 }

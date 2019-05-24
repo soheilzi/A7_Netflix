@@ -350,9 +350,5 @@ void CommandHandler::process_request(string command) {
 		handle_post(tokens);
 	} else if(method == ACTION_GET) {
 		handle_get(tokens);
-	} else if(method == ACTION_DELETE) {
-		handle_delete(tokens);
-	} else if(method == ACTION_PUT) {
-		handle_put(tokens);
 	}
 }
