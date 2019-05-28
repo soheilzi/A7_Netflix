@@ -1,58 +1,44 @@
-CC := g++ --std=c++11
+CC=g++
+STD=-std=c++11 -Wall -pedantic
+CF=$(STD)
+BUILD_DIR=build
+TEMPLATE_DIR=.template
 
-all : Netflix test.out
+all: $(BUILD_DIR) myserver.out
 
-test.out : test.cpp
-	$(CC) test.cpp -o test.out
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
-Netflix : main.o notification.o notification_repos.o matrix.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o network.o command_handler.o publisher.o ui.o
-	$(CC) main.o notification.o notification_repos.o matrix.o sequence_generator.o user.o user_repos.o movie.o movie_repos.o comment.o check_error.o network.o command_handler.o publisher.o ui.o -o Netflix
+$(BUILD_DIR)/template_parser.o: utils/template_parser.cpp utils/template_parser.hpp utils/request.cpp utils/request.hpp utils/utilities.hpp utils/utilities.cpp
+	$(CC) $(CF) -c utils/template_parser.cpp -o $(BUILD_DIR)/template_parser.o
 
-main.o : main.cpp config.h command_handler.h network.h exceptions.h ui.h
-	$(CC) -c main.cpp -o main.o
+$(BUILD_DIR)/response.o: utils/response.cpp utils/response.hpp utils/include.hpp
+	$(CC) $(CF) -c utils/response.cpp -o $(BUILD_DIR)/response.o
 
-notification.o : notification.cpp notification.h
-	$(CC) -c notification.cpp -o notification.o
+$(BUILD_DIR)/request.o: utils/request.cpp utils/request.hpp utils/include.hpp utils/utilities.hpp
+	$(CC) $(CF) -c utils/request.cpp -o $(BUILD_DIR)/request.o
 
-notification_repos.o : notification_repos.cpp notification_repos.h notification.h 
-	$(CC) -c notification_repos.cpp -o notification_repos.o
+$(BUILD_DIR)/utilities.o: utils/utilities.cpp utils/utilities.hpp
+	$(CC) $(CF) -c utils/utilities.cpp -o $(BUILD_DIR)/utilities.o
 
-sequence_generator.o : sequence_generator.cpp sequence_generator.h
-	$(CC) -c sequence_generator.cpp -o sequence_generator.o
+$(BUILD_DIR)/server.o: server/server.cpp server/server.hpp server/route.hpp utils/utilities.hpp utils/response.hpp utils/request.hpp utils/include.hpp utils/template_parser.hpp utils/template_parser.cpp
+	$(CC) $(CF) -c server/server.cpp -o $(BUILD_DIR)/server.o
 
-user.o : user.h user.cpp
-	$(CC) -c user.cpp -o user.o
+$(BUILD_DIR)/route.o: server/route.cpp server/route.hpp utils/utilities.hpp utils/response.hpp utils/request.hpp utils/include.hpp
+	$(CC) $(CF) -c server/route.cpp -o $(BUILD_DIR)/route.o
 
-user_repos.o : user_repos.h user_repos.cpp config.h
-	$(CC) -c user_repos.cpp -o user_repos.o
+$(BUILD_DIR)/handlers.o: examples/handlers.cpp server/server.hpp utils/utilities.hpp utils/response.hpp utils/request.hpp utils/include.hpp
+	$(CC) $(CF) -c examples/handlers.cpp -o $(BUILD_DIR)/handlers.o
 
-publisher.o : publisher.h publisher.cpp
-	$(CC) -c publisher.cpp -o publisher.o
+$(BUILD_DIR)/my_server.o: examples/my_server.cpp server/server.hpp utils/utilities.hpp utils/response.hpp utils/request.hpp utils/include.hpp
+	$(CC) $(CF) -c examples/my_server.cpp -o $(BUILD_DIR)/my_server.o
 
-movie.o : movie.cpp movie.h check_error.h
-	$(CC) -c movie.cpp -o movie.o
+$(BUILD_DIR)/main.o: examples/main.cpp server/server.hpp utils/utilities.hpp utils/response.hpp utils/request.hpp utils/include.hpp
+	$(CC) $(CF) -c examples/main.cpp -o $(BUILD_DIR)/main.o
 
-movie_repos.o : movie_repos.cpp movie_repos.h user.h
-	$(CC) -c movie_repos.cpp -o movie_repos.o
+myserver.out: $(BUILD_DIR)/my_server.o $(BUILD_DIR)/main.o $(BUILD_DIR)/handlers.o $(BUILD_DIR)/response.o $(BUILD_DIR)/request.o $(BUILD_DIR)/utilities.o $(BUILD_DIR)/server.o $(BUILD_DIR)/route.o $(BUILD_DIR)/template_parser.o
+	$(CC) $(CF) $(BUILD_DIR)/my_server.o $(BUILD_DIR)/main.o $(BUILD_DIR)/handlers.o $(BUILD_DIR)/response.o $(BUILD_DIR)/request.o $(BUILD_DIR)/utilities.o $(BUILD_DIR)/server.o $(BUILD_DIR)/route.o $(BUILD_DIR)/template_parser.o  -o myserver.out
 
-comment.o : comment.cpp comment.h
-	$(CC) -c comment.cpp -o comment.o
-
-check_error.o : check_error.cpp check_error.h config.h
-	$(CC) -c check_error.cpp -o check_error.o
-
-command_handler.o : command_handler.cpp command_handler.h config.h
-	$(CC) -c command_handler.cpp -o command_handler.o
-
-network.o : network.cpp network.h config.h
-	$(CC) -c network.cpp -o network.o
-
-ui.o : ui.cpp ui.h config.h
-	$(CC) -c ui.cpp -o ui.o
-
-matrix.o : matrix.h matrix.cpp movie.h
-	$(CC) -c matrix.cpp -o matrix.o
-
-
-clean : 
-	rm -r *.o
+.PHONY: clean
+clean:
+	rm -rf $(BUILD_DIR) $(TEMPLATE_DIR) *.o *.out &> /dev/null
