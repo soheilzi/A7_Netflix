@@ -8,7 +8,7 @@ UserRepos::UserRepos() : id_generator() {
 
 User* UserRepos::add_user(std::string username, std::string password, std::string email, int age, bool publisher) {
 	if(users.find(username) != users.end())
-		throw BadRequest();
+		throw DuplicateUser();
 	int id = id_generator.get_number();
 	if(publisher)
 		users[username] = new Publisher(id, username, password, email, age);

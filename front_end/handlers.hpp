@@ -22,4 +22,13 @@ private:
     Network* net;
 };
 
+class LogoutHandler : public RequestHandler {
+public:
+    LogoutHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
+
+
 #endif

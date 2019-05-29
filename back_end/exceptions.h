@@ -8,4 +8,7 @@ class BadRequest {};
 class NotFound {};
 
 class Logedin {};
+
+class DuplicateUser {};
+
 #endif

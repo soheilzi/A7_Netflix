@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <body style="text-align: center;">
-    <h1>AP HTTP</h1>
-    <img src="/home.png" style="width:5%;">
-    <br />
-    <a href="/login">Go to login page</a>
-    <br />
-    <a href="/up">Go to upload page</a>
-    <br />
-    <a href="/colors">Go to colors page</a>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" media="all">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/signup">Sign up</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+
+                <li class="nav-item">
+                  <form method="POST" action="/logout">
+                    <button class="btn btn-danger">Logout</button>
+                  </form>
+                </li>
+                <span class="navbar-text"></span>
+            </ul>
+        </nav>
   </body>
 </html>

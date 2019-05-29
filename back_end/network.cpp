@@ -25,7 +25,7 @@ void Network::signup_user(std::string email, std::string username, std::string p
 
 void Network::login_user(string username, string password) {
 	if(signed_in == true)
-		throw BadRequest();
+		throw Logedin();
 	if(users.correct_user_and_pass(username, password)) {
 		user = users.get_user(username); 
 		signed_in = true;
@@ -271,4 +271,12 @@ int Network::make_sessionId() {
 	int sessionId = session_gen.get_number();
 	sessions[sessionId] = user;
 	return sessionId;
+}
+
+int Network::get_sessionId() {
+	for(const auto& elem : sessions) {
+		if(elem.second == user)
+			return elem.first;
+	}
+	return 0;
 }

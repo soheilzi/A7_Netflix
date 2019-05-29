@@ -16,6 +16,9 @@ int main(int argc, char **argv) {
         server.get("/login", new ShowPage("static/login.html"));
         server.post("/login", new LoginHandler(&net));
 
+        server.post("/logout", new LogoutHandler(&net));
+
+        server.get("/", new ShowPage("static/home.html"));
 
         server.run();
     } catch (Server::Exception e) {
