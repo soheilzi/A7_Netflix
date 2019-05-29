@@ -31,7 +31,7 @@ Response *LoginHandler::callback(Request *req) {
     throw Server::Exception("Remote root access has been disabled.");
   cout << "username: " << username << ",\tpassword: " << password << endl;
   Response *res = Response::redirect("/rand");
-  res->setSessionId("SID");
+  res->setSessionId("blabla");
   return res;
 }
 

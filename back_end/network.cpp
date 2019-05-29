@@ -10,8 +10,9 @@ Network::Network() {
 }
 
 void Network::signup_user(std::string email, std::string username, std::string password, int age, string publisher) {
-	if(signed_in == true)
-		throw BadRequest();
+	if(signed_in == true){
+		throw Logedin();
+	}
 	bool publisher_flag;
 	if(publisher == _FALSE){
 		publisher_flag = false;
@@ -264,4 +265,10 @@ int Network::get_credit() {
 	if(is_admin(user))
 		return money;
 	return user->get_credit();
+}
+
+int Network::make_sessionId() {
+	int sessionId = session_gen.get_number();
+	sessions[sessionId] = user;
+	return sessionId;
 }

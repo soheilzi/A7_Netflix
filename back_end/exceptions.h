@@ -7,4 +7,5 @@ class BadRequest {};
 
 class NotFound {};
 
+class Logedin {};
 #endif

@@ -14,7 +14,7 @@ class TemplateParser;
 class RequestHandler {
 public:
   virtual ~RequestHandler();
-  virtual Response *callback(Request *req) = 0;
+  virtual Response* callback(Request *req) = 0;
 };
 
 class ShowFile : public RequestHandler {

@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <h1>AP HTTP</h1>
-    <h2>Login</h2>
-    <div>
-      <form action="/login" method="post">
-        <input name="username" type="text" placeholder="Username" />
-        <input name="password" type="password" placeholder="Password" />
-        <button type="submit" >Login</button>
-      </form>
-    </div>
-  </body>
+    <head>
+        <title>login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" media="all">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <span class="navbar-text"></span>
+            </ul>
+        </nav>
+
+
+
+
+
+        <div class="container">
+            <h2><br><br><br>login form</h2>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="text">Username:</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+
+    </body>
 </html>
