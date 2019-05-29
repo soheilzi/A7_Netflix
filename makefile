@@ -1,10 +1,13 @@
 CC=g++
 STD=-std=c++11 -Wall -pedantic
 CF=$(STD)
-BUILD_DIR=build
+BUILD_DIR=build_front
 TEMPLATE_DIR=.template
 
-all: $(BUILD_DIR) myserver.out
+all: $(BUILD_DIR) myserver.out back.out
+
+back.out:
+	cd ./back_end;make;cd ..
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
