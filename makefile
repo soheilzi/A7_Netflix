@@ -1,5 +1,5 @@
 CC=g++
-STD=-std=c++11 -Wall -pedantic
+STD=-std=c++11 
 CF=$(STD)
 BUILD_DIR=build_front
 BUILD_BACK_DIR=build_back

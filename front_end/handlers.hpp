@@ -47,4 +47,12 @@ public:
 private:
     Network* net;
 };
+
+class AddFilmHandler : public RequestHandler {
+public:
+    AddFilmHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
 #endif

@@ -181,3 +181,5 @@ Response* HomeHandler::callback(Request* req) {
     res->setBody(body.str());
     return res;
 }
+
+//AddFilmHandler::AddFilmHandler(Network* _net) : RequestHandler(), net(_net) {}

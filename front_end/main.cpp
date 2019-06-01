@@ -18,8 +18,10 @@ int main(int argc, char **argv) {
 
         server.post("/logout", new LogoutHandler(&net));
 
-        // server.get("/", new ShowPage("static/home.html"));
         server.get("/", new HomeHandler(&net));
+
+        server.get("/addFilm", new ShowPage("static/add_film.html"));
+        // server.post("/addFilm", new AddFilmHandler(&net));
 
         server.get("/error", new ErrorHandler("static/error.html"));
 
