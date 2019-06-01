@@ -139,14 +139,17 @@ Response* HomeHandler::callback(Request* req) {
         body<<"<th>"<<table[i][TABLE_RATE]<<"</th>";
         body<<"<th>"<<table[i][TABLE_PRICE]<<"</th>";
         body<<"<th>"<<table[i][TABLE_YEAR]<<"</th>";
-        body<<"<th>"
-        <<"     <form method='post' action='/editMovie?filmId="<<table[i][TABLE_ID]<<"'>"
-        <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
-        <<"     </form></th>";
-        body<<"<th>"
-        <<"     <form method='post' action='/deleteMovie?filmId="<<table[i][TABLE_ID]<<"'>"
-        <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
-        <<"     </form></th>";
+
+        if(net->publisher_is_logged()){
+            body<<"<th>"
+            <<"     <form method='post' action='/editMovie?filmId="<<table[i][TABLE_ID]<<"'>"
+            <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
+            <<"     </form></th>";
+            body<<"<th>"
+            <<"     <form method='post' action='/deleteMovie?filmId="<<table[i][TABLE_ID]<<"'>"
+            <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
+            <<"     </form></th>";
+        }
         body<<"</tr>";
     }
         body<<"<tr>";
@@ -164,8 +167,14 @@ Response* HomeHandler::callback(Request* req) {
         <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
         <<"     </form>"<<"</th>";
         body<<"</tr>";
+    if(net->publisher_is_logged()){
+        body
+        <<"</tbody></table>"
+        <<"<form method='get' action='/addFilm'>"
+        <<"    <button type='submit' class='btn btn-success btn-lg' align='middle'>ADD FILM</button>"
+        <<"</form>";
+    }
     body
-<<"         </tbody>"
 <<"     </div>"
 <<"   </body>"
 <<" </html>";
