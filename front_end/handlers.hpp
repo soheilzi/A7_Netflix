@@ -3,8 +3,12 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
+#include <vector>
+#include <map>
 #include "../server/server.hpp"
 #include "../back_end/network.h"
+#include "../back_end/config.h"
 
 class SignupHandler : public RequestHandler {
 public:
@@ -36,5 +40,11 @@ public:
   std::map<std::string, std::string> handle(Request *req);
 };
 
-
+class HomeHandler : public RequestHandler {
+public:
+    HomeHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
 #endif

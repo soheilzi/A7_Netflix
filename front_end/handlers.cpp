@@ -28,7 +28,7 @@ Response* SignupHandler::callback(Request *req) {
         Response *res = Response::redirect("/error?error=You_are_already_loggedin");
         return res;
     } catch (DuplicateUser ex) {
-        Response *res = Response::redirect("/error?error=This_user_already_exists");
+        Response *res = Response::redirect("/error?error=This_username_already_exists");
         return res;
     }
 }
@@ -73,4 +73,94 @@ map<string, string> ErrorHandler::handle(Request *req) {
   string error = req->getQueryParam("error");
   context["error"] = error;
   return context;
+}
+
+HomeHandler::HomeHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* HomeHandler::callback(Request* req) {
+    Response* res = new Response;
+
+    vector<vector<string>> table;
+    map<string, string> param;
+    if(net->publisher_is_logged())
+        table = net->get_published(param);
+    else if(net->user_is_logged());
+    else;
+        
+
+    res->setHeader("Content-Type", "text/html");
+    stringstream body;
+    body 
+<<"<!DOCTYPE html>"
+<<" <html>"
+<<"     <head>"
+<<"         <title>Home</title>"
+<<"         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' media='all'>"
+<<"     </head>"
+<<"     <body>"
+<<"         <nav class='navbar navbar-expand-sm bg-dark navbar-dark fixed-top'>"
+<<"             <ul class='navbar-nav'>"
+<<"                 <li class='nav-item active'>"
+<<"                     <a class='nav-link' href='/signup'>Sign up</a>"
+<<"                 </li>"
+<<" "
+<<"                 <li class='nav-item'>"
+<<"                     <a class='nav-link' href='/login'>Login</a>"
+<<"                 </li>"
+<<" "
+<<"                 <li class='nav-item'>"
+<<"                     <form method='POST' action='/logout'>"
+<<"                         <button class='btn btn-danger'>Logout</button>"
+<<"                     </form>"
+<<"                 </li>"
+<<"                 <span class='navbar-text'></span>"
+<<"             </ul>"
+<<"         </nav><br><br><br>"
+<<"         <div class='container'>"
+<<"         <table class='table'>"
+<<"         <thead class='thead-dark'>"
+<<"             <tr>"
+<<"                 <th>FirstnameName</th>"
+<<"                 <th>Director</th>"
+<<"                 <th>Length</th>"
+<<"                 <th>Rate</th>"
+<<"                 <th>Price</th>"
+<<"                 <th>Year</th>"
+<<"                 <th>EDIT</th>"
+<<"                 <th>DELETE</th>"
+<<"             </tr>"
+<<"         </thead>"
+<<"         <tbody>";
+    for(int i = 0; i < table.size(); i++) {
+        body<<"<tr>";
+        body<<"<th>"<<table[i][TABLE_NAME]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_DIRECTOR]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_LENGTH]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_RATE]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_PRICE]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_YEAR]<<"</th>";
+        body<<"<th>"
+        <<"     <form method='post' action='/editMovie?filmId="<<table[i][TABLE_ID]<<"'>"
+        <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
+        <<"     </form>";
+        body<<"</tr>";
+    }
+        body<<"<tr>";
+        body<<"<th>"<<"lala land"<<"</th>";
+        body<<"<th>"<<"fuck knows"<<"</th>";
+        body<<"<th>"<<"2"<<"</th>";
+        body<<"<th>"<<"10"<<"</th>";
+        body<<"<th>"<<"10"<<"</th>";
+        body<<"<th>"<<"2018"<<"</th>"<<"<th>"
+        <<"     <form method='post' action='/editMovie?filmId="<<"60"<<"'>"
+        <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
+        <<"     </form>"<<"</th>";
+        body<<"</tr>";
+    body
+<<"         </tbody>"
+<<"     </div>"
+<<"   </body>"
+<<" </html>";
+    res->setBody(body.str());
+    return res;
 }

@@ -112,4 +112,13 @@
 #define COMMENT_IDD 0
 #define COMMENT_MESSAGE 1
 #define COMMENT_REPLY 2
+
+#define TABLE_ID 0
+#define TABLE_NAME 1
+#define TABLE_LENGTH 2
+#define TABLE_PRICE 3
+#define TABLE_RATE 4
+#define TABLE_YEAR 5
+#define TABLE_DIRECTOR 6
+
 #endif

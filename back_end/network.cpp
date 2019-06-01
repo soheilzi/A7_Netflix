@@ -280,3 +280,19 @@ int Network::get_sessionId() {
 	}
 	return 0;
 }
+
+bool Network::publisher_is_logged() {
+	if(signed_in == false)
+		return false;
+	if(user->is_publisher())
+		return true;
+	return false;
+}
+
+bool Network::user_is_logged() {
+	if(signed_in == false)
+		return false;
+	if(!user->is_publisher())
+		return true;
+	return false;
+}

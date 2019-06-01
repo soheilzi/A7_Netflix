@@ -20,7 +20,7 @@ Response *RandomNumberHandler::callback(Request *req) {
   body += "</p>";
   body += "</body>";
   body += "</html>";
-  res->setBody(body);
+  res->setBody(body.str());
   return res;
 }
 

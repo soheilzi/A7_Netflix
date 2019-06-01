@@ -35,6 +35,8 @@ public:
 	void delete_film(int film_id);
 	void delete_comment(int film_id, int comment_id);
 	void logout();
+	bool publisher_is_logged();
+	bool user_is_logged();
 	std::vector<std::string> get_unread_notifs();
 	std::vector<std::string> get_notifs(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_followers();
