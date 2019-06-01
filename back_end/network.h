@@ -34,13 +34,16 @@ public:
 	void post_comment(int film_id, std::string content);
 	void delete_film(int film_id);
 	void delete_comment(int film_id, int comment_id);
+	void set_dir_filter(std::string director);
 	void logout();
 	bool publisher_is_logged();
 	bool user_is_logged();
+	std::string get_dir_to_filter_by();
 	std::vector<std::string> get_unread_notifs();
 	std::vector<std::string> get_notifs(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_followers();
 	std::vector<std::vector<std::string>> get_published(std::map<std::string, std::string> param);
+	std::vector<std::vector<std::string>> get_movies(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_purchased(std::map<std::string, std::string> param);
 	std::vector<std::vector<std::string>> get_movies_data(std::map<std::string, std::string> param);
 
@@ -53,6 +56,7 @@ public:
 private:
 	int money;
 	User* user;
+	std::string dir_to_filter_by;
 	std::map<int, User*> sessions;
 	SequenceGenerator session_gen;
 	std::map<User*, int> dept;

@@ -79,13 +79,16 @@ HomeHandler::HomeHandler(Network* _net) : RequestHandler(), net(_net) {}
 
 Response* HomeHandler::callback(Request* req) {
     Response* res = new Response;
-
     vector<vector<string>> table;
     map<string, string> param;
+    
+    if(!(net->get_dir_to_filter_by() == ""))
+        param["director"] = net->get_dir_to_filter_by();
+    net->set_dir_filter("");
     if(net->publisher_is_logged())
         table = net->get_published(param);
-    else if(net->user_is_logged());
-    else;
+    else
+        table = net->get_movies(param);
         
 
     res->setHeader("Content-Type", "text/html");
@@ -99,7 +102,7 @@ Response* HomeHandler::callback(Request* req) {
 <<"     </head>"
 <<"     <body>"
 <<"         <nav class='navbar navbar-expand-sm bg-dark navbar-dark fixed-top'>"
-<<"             <ul class='navbar-nav'>"
+<<"             <ul class='navbar-nav mr-auto'>"
 <<"                 <li class='nav-item active'>"
 <<"                     <a class='nav-link' href='/signup'>Sign up</a>"
 <<"                 </li>"
@@ -115,6 +118,10 @@ Response* HomeHandler::callback(Request* req) {
 <<"                 </li>"
 <<"                 <span class='navbar-text'></span>"
 <<"             </ul>"
+<<"             <form class='form-inline my-2 my-lg-0' action='/' method='POST'>"
+<<"                  <input class='form-control mr-sm-2' type='text' placeholder='filter director' required='required' name='director'>"
+<<"                  <button class='btn btn-success' type='submit'>Filter</button>"
+<<"             </form>"
 <<"         </nav><br><br><br>"
 <<"         <div class='container'>"
 <<"         <table class='table'>"
@@ -152,21 +159,6 @@ Response* HomeHandler::callback(Request* req) {
         }
         body<<"</tr>";
     }
-        body<<"<tr>";
-        body<<"<th>"<<"lala land"<<"</th>";
-        body<<"<th>"<<"fuck knows"<<"</th>";
-        body<<"<th>"<<"2"<<"</th>";
-        body<<"<th>"<<"10"<<"</th>";
-        body<<"<th>"<<"10"<<"</th>";
-        body<<"<th>"<<"2018"<<"</th>"<<"<th>"
-        <<"     <form method='post' action='/editMovie?filmId="<<"60"<<"'>"
-        <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
-        <<"     </form>"<<"</th>"
-        <<"<th>"
-        <<"     <form method='post' action='/editMovie?filmId="<<"60"<<"'>"
-        <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
-        <<"     </form>"<<"</th>";
-        body<<"</tr>";
     if(net->publisher_is_logged()){
         body
         <<"</tbody></table>"
@@ -187,6 +179,15 @@ AddFilmHandler::AddFilmHandler(Network* _net) : RequestHandler(), net(_net) {}
 
 Response* AddFilmHandler::callback(Request *req) {
     net->add_movie(req->getBodyParam("name"), stoi(req->getBodyParam("year")), stoi(req->getBodyParam("length")), stoi(req->getBodyParam("price")), req->getBodyParam("summary"), req->getBodyParam("director"));
+    Response* res = Response::redirect("/");
+    return res;
+}
+
+
+FilterHandler::FilterHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* FilterHandler::callback(Request *req) {
+    net->set_dir_filter(req->getBodyParam("director"));
     Response* res = Response::redirect("/");
     return res;
 }

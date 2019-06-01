@@ -7,6 +7,7 @@ Network::Network() {
 	money = DEFAULT_NET_MONEY;
 	login = false;
 	signed_in = false;
+	dir_to_filter_by = "";
 }
 
 void Network::signup_user(std::string email, std::string username, std::string password, int age, string publisher) {
@@ -175,6 +176,10 @@ std::vector<std::vector<std::string>> Network::get_published(std::map<std::strin
 	return filter_movies(user->get_published_movie_data_table(), param);
 }
 
+std::vector<std::vector<std::string>> Network::get_movies(std::map<std::string, std::string> param) {
+	return filter_movies(movies.get_published_movie_data_table(), param);
+}
+
 std::vector<std::vector<std::string>> Network::get_purchased(std::map<std::string, std::string> param) {
 	if(!signed_in)
 		throw PermissionDenied();
@@ -295,4 +300,12 @@ bool Network::user_is_logged() {
 	if(!user->is_publisher())
 		return true;
 	return false;
+}
+
+std::string Network::get_dir_to_filter_by() {
+	return dir_to_filter_by;
+}
+
+void Network::set_dir_filter(std::string director) {
+	dir_to_filter_by = director;
 }

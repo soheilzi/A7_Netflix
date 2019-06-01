@@ -55,4 +55,12 @@ public:
 private:
     Network* net;
 };
+
+class FilterHandler : public RequestHandler {
+public:
+    FilterHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
 #endif

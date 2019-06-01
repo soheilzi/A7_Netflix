@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
         server.post("/logout", new LogoutHandler(&net));
 
         server.get("/", new HomeHandler(&net));
+        server.post("/", new FilterHandler(&net));
 
         server.get("/addFilm", new ShowPage("static/add_film.html"));
         server.post("/addFilm", new AddFilmHandler(&net));
