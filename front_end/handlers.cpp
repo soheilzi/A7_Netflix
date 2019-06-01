@@ -133,7 +133,6 @@ Response* HomeHandler::callback(Request* req) {
 <<"                 <th>Rate</th>"
 <<"                 <th>Price</th>"
 <<"                 <th>Year</th>"
-<<"                 <th>EDIT</th>"
 <<"                 <th>DELETE</th>"
 <<"             </tr>"
 <<"         </thead>"
@@ -148,10 +147,6 @@ Response* HomeHandler::callback(Request* req) {
         body<<"<th>"<<table[i][TABLE_YEAR]<<"</th>";
 
         if(net->publisher_is_logged()){
-            body<<"<th>"
-            <<"     <form method='post' action='/editMovie?filmId="<<table[i][TABLE_ID]<<"'>"
-            <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
-            <<"     </form></th>";
             body<<"<th>"
             <<"     <form method='post' action='/deleteMovie?filmId="<<table[i][TABLE_ID]<<"'>"
             <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
