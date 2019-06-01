@@ -142,7 +142,11 @@ Response* HomeHandler::callback(Request* req) {
         body<<"<th>"
         <<"     <form method='post' action='/editMovie?filmId="<<table[i][TABLE_ID]<<"'>"
         <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
-        <<"     </form>";
+        <<"     </form></th>";
+        body<<"<th>"
+        <<"     <form method='post' action='/deleteMovie?filmId="<<table[i][TABLE_ID]<<"'>"
+        <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
+        <<"     </form></th>";
         body<<"</tr>";
     }
         body<<"<tr>";
@@ -154,6 +158,10 @@ Response* HomeHandler::callback(Request* req) {
         body<<"<th>"<<"2018"<<"</th>"<<"<th>"
         <<"     <form method='post' action='/editMovie?filmId="<<"60"<<"'>"
         <<"         <button type='submit' class='btn btn-outline-success btn-sm'>Edit</button>"
+        <<"     </form>"<<"</th>"
+        <<"<th>"
+        <<"     <form method='post' action='/editMovie?filmId="<<"60"<<"'>"
+        <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
         <<"     </form>"<<"</th>";
         body<<"</tr>";
     body
