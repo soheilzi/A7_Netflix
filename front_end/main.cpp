@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
         server.get("/", new HomeHandler(&net));
 
         server.get("/addFilm", new ShowPage("static/add_film.html"));
-        // server.post("/addFilm", new AddFilmHandler(&net));
+        server.post("/addFilm", new AddFilmHandler(&net));
 
         server.get("/error", new ErrorHandler("static/error.html"));
 

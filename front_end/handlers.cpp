@@ -182,4 +182,11 @@ Response* HomeHandler::callback(Request* req) {
     return res;
 }
 
-//AddFilmHandler::AddFilmHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+AddFilmHandler::AddFilmHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* AddFilmHandler::callback(Request *req) {
+    net->add_movie(req->getBodyParam("name"), stoi(req->getBodyParam("year")), stoi(req->getBodyParam("length")), stoi(req->getBodyParam("price")), req->getBodyParam("summary"), req->getBodyParam("director"));
+    Response* res = Response::redirect("/");
+    return res;
+}
