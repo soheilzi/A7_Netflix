@@ -15,7 +15,7 @@ Response* SignupHandler::callback(Request *req) {
         publisher = "true";
 
     if(!(password1 == password2)) {
-        Response *res = Response::redirect("/login");
+        Response *res = Response::redirect("/signup");
         return res;
     }
     try {
@@ -25,10 +25,10 @@ Response* SignupHandler::callback(Request *req) {
         res->setSessionId(to_string(cookie));
         return res;
     } catch (Logedin ex){
-        Response *res = Response::redirect("/logedin_error");
+        Response *res = Response::redirect("/error?error=You_are_already_loggedin");
         return res;
     } catch (DuplicateUser ex) {
-        Response *res = Response::redirect("/duplicateUser");
+        Response *res = Response::redirect("/error?error=This_user_already_exists");
         return res;
     }
 }
@@ -43,10 +43,10 @@ Response* LoginHandler::callback(Request *req) {
         res->setSessionId(to_string(net->get_sessionId()));
         return res;
     } catch(BadRequest ex){
-        Response* res = Response::redirect("/wrong_pass");
+        Response* res = Response::redirect("/error?error=Wrong_username_or_password");
         return res;
     } catch (Logedin ex){
-        Response *res = Response::redirect("/error?error=\"loggedin\"");
+        Response *res = Response::redirect("/error?error=loggedin");
         return res;
     }
 
@@ -58,9 +58,19 @@ Response* LogoutHandler::callback(Request *req) {
     try {
         net->logout();
         Response *res = Response::redirect("/");
+        res->setSessionId("");
         return res;
     } catch(BadRequest ex) {
-        Response *res = Response::redirect("/error?error=\"loggedin\"");
+        Response *res = Response::redirect("/");
         return res;
     }
+}
+
+ErrorHandler::ErrorHandler(string filePath) : TemplateHandler(filePath){}
+
+map<string, string> ErrorHandler::handle(Request *req) {
+  map<string, string> context;
+  string error = req->getQueryParam("error");
+  context["error"] = error;
+  return context;
 }

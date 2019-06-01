@@ -30,5 +30,11 @@ private:
     Network* net;
 };
 
+class ErrorHandler : public TemplateHandler {
+public:
+  ErrorHandler(std::string filePath);
+  std::map<std::string, std::string> handle(Request *req);
+};
+
 
 #endif

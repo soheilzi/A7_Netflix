@@ -20,6 +20,8 @@ int main(int argc, char **argv) {
 
         server.get("/", new ShowPage("static/home.html"));
 
+        server.get("/error", new ErrorHandler("static/error.html"));
+
         server.run();
     } catch (Server::Exception e) {
         cerr << e.getMessage() << endl;
