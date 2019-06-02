@@ -26,6 +26,11 @@ int main(int argc, char **argv) {
 
         server.get("/error", new ErrorHandler("static/error.html"));
 
+        server.post("/deleteMovie", new DeleteHandler(&net));
+
+        server.get("/profile", new ProfileHandler(&net));
+        server.post("/profile", new MoneyHandler(&net));
+
         server.run();
     } catch (Server::Exception e) {
         cerr << e.getMessage() << endl;

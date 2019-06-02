@@ -1,1 +1,1 @@
-error=fuck_you
+error=You_need_to_be_loggedin

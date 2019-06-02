@@ -63,4 +63,29 @@ public:
 private:
     Network* net;
 };
+
+class DeleteHandler : public RequestHandler {
+public:
+    DeleteHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
+
+class ProfileHandler : public RequestHandler {
+public:
+    ProfileHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
+
+class MoneyHandler : public RequestHandler {
+public:
+    MoneyHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
+
 #endif

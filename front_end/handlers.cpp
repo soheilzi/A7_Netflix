@@ -62,6 +62,7 @@ Response* LogoutHandler::callback(Request *req) {
         return res;
     } catch(BadRequest ex) {
         Response *res = Response::redirect("/");
+        res->setSessionId("");
         return res;
     }
 }
@@ -108,6 +109,10 @@ Response* HomeHandler::callback(Request* req) {
 <<"                 </li>"
 <<" "
 <<"                 <li class='nav-item'>"
+<<"                     <a class='nav-link' href='/profile'>Profile</a>"
+<<"                 </li>"
+<<" "
+<<"                 <li class='nav-item'>"
 <<"                     <a class='nav-link' href='/login'>Login</a>"
 <<"                 </li>"
 <<" "
@@ -123,7 +128,7 @@ Response* HomeHandler::callback(Request* req) {
 <<"                  <button class='btn btn-success' type='submit'>Filter</button>"
 <<"             </form>"
 <<"         </nav><br><br><br>"
-<<"         <div class='container'>"
+<<"         <div class='container'>"    
 <<"         <table class='table'>"
 <<"         <thead class='thead-dark'>"
 <<"             <tr>"
@@ -134,6 +139,7 @@ Response* HomeHandler::callback(Request* req) {
 <<"                 <th>Price</th>"
 <<"                 <th>Year</th>"
 <<"                 <th>DELETE</th>"
+<<"                 <th>Detail</th>"
 <<"             </tr>"
 <<"         </thead>"
 <<"         <tbody>";
@@ -145,14 +151,20 @@ Response* HomeHandler::callback(Request* req) {
         body<<"<th>"<<table[i][TABLE_RATE]<<"</th>";
         body<<"<th>"<<table[i][TABLE_PRICE]<<"</th>";
         body<<"<th>"<<table[i][TABLE_YEAR]<<"</th>";
-
+        body<<"<th>"
+        <<"     <form method='post' action='/deleteMovie?filmId="<<table[i][TABLE_ID]<<"'>";
         if(net->publisher_is_logged()){
-            body<<"<th>"
-            <<"     <form method='post' action='/deleteMovie?filmId="<<table[i][TABLE_ID]<<"'>"
-            <<"         <button type='submit' class='btn btn-outline-danger btn-sm'>Delete</button>"
-            <<"     </form></th>";
+            body<<" <button type='submit' class='btn btn-outline-danger btn-sm' >Delete</button>";
+        } else {
+            body<<" <button type='submit' class='btn btn-outline-danger btn-sm' disabled>Delete</button>";           
         }
-        body<<"</tr>";
+        body
+        <<"     </form></th>"
+        <<"     <th>"
+        <<"     <form method='post' action='/viewMovie?filmId="<<table[i][TABLE_ID]<<"'>"
+        <<"         <button type='submit' class='btn btn-outline-info btn-sm' >Detail</button>"
+        <<"     </form></th>"
+        <<"</tr>";
     }
     if(net->publisher_is_logged()){
         body
@@ -184,5 +196,101 @@ FilterHandler::FilterHandler(Network* _net) : RequestHandler(), net(_net) {}
 Response* FilterHandler::callback(Request *req) {
     net->set_dir_filter(req->getBodyParam("director"));
     Response* res = Response::redirect("/");
+    return res;
+}
+
+DeleteHandler::DeleteHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* DeleteHandler::callback(Request *req) {
+    net->delete_film(stoi(req->getQueryParam("filmId")));
+    Response* res = Response::redirect("/");
+    return res;
+}
+
+ProfileHandler::ProfileHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* ProfileHandler::callback(Request *req) {
+    Response* res = new Response;
+    vector<vector<string>> table;
+    map<string, string> param;
+    try{
+        table = net->get_purchased(param);
+    } catch (PermissionDenied ex){
+        res = Response::redirect("/error?error=You_need_to_be_loggedin");
+        return res;
+    }
+    stringstream body;
+    res->setHeader("Content-Type", "text/html");
+    body 
+<<"<!DOCTYPE html>"
+<<" <html>"
+<<"     <head>"
+<<"         <title>Profile</title>"
+<<"         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' media='all'>"
+<<"     </head>"
+<<"     <body>"
+<<"         <nav class='navbar navbar-expand-sm bg-dark navbar-dark fixed-top'>"
+<<"             <ul class='navbar-nav mr-auto'>"
+<<"                 <li class='nav-item active'>"
+<<"                     <a class='nav-link' href='/'>Home</a>"
+<<"                 </li>"
+
+<<"                 <li class='nav-item'>"
+<<"                     <form method='POST' action='/logout'>"
+<<"                         <button class='btn btn-danger'>Logout</button>"
+<<"                     </form>"
+<<"                 </li>"
+<<"                 <span class='navbar-text'></span>"
+<<"             </ul>"
+<<"             <form class='form-inline my-2 my-lg-0' action='/profile' method='POST'>"
+<<"                  <input class='form-control mr-sm-2' type='number' placeholder='money' name='money'>"
+<<"                  <button class='btn btn-success' type='submit'>Get</button>"
+<<"             </form>"
+<<"         </nav><br><br><br>"
+<<"         <div class='container'>"    
+<<"         <table class='table'>"
+<<"         <thead class='thead-dark'>"
+<<"             <tr>"
+<<"                 <th>FirstnameName</th>"
+<<"                 <th>Director</th>"
+<<"                 <th>Length</th>"
+<<"                 <th>Rate</th>"
+<<"                 <th>Price</th>"
+<<"                 <th>Year</th>"
+<<"                 <th>Detail</th>"
+<<"             </tr>"
+<<"         </thead>"
+<<"         <tbody>";
+    cout<<table.size()<<endl;
+    for(int i = 0; i < table.size(); i++) {
+
+        body<<"<tr>";
+        body<<"<th>"<<table[i][TABLE_NAME]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_DIRECTOR]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_LENGTH]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_RATE]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_PRICE]<<"</th>";
+        body<<"<th>"<<table[i][TABLE_YEAR]<<"</th>";
+
+            body<<"<th>"
+            <<"     <form method='post' action='/viewMovie?filmId="<<table[i][TABLE_ID]<<"'>"
+            <<"         <button type='submit' class='btn btn-outline-info btn-sm'>Detail</button>"
+            <<"     </form></th>";
+        body<<"</tr>";
+    }
+    body
+<<"     </div>"
+<<"   </body>"
+<<" </html>";
+    res->setBody(body.str());
+    return res;
+}
+
+MoneyHandler::MoneyHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* MoneyHandler::callback(Request *req) {
+    if(!(req->getBodyParam("money") == ""))
+        net->get_money_user(stoi(req->getBodyParam("money")));
+    Response* res = Response::redirect("/profile");
     return res;
 }
