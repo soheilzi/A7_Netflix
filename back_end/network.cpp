@@ -233,8 +233,6 @@ std::vector<std::vector<std::string>> Network::filter_movies(std::vector<std::ve
 }
 
 std::map<std::string, std::string> Network::get_movie_base_data(int film_id) {
-	if(!signed_in)
-		throw PermissionDenied();
 	return movies.get_movie_base_data(film_id);
 }
 

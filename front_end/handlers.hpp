@@ -88,4 +88,19 @@ private:
     Network* net;
 };
 
+class DetailHandler : public RequestHandler {
+public:
+    DetailHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
+
+class BuyHandler : public RequestHandler {
+public:
+    BuyHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
 #endif

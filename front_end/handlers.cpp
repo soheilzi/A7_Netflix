@@ -294,3 +294,109 @@ Response* MoneyHandler::callback(Request *req) {
     Response* res = Response::redirect("/profile");
     return res;
 }
+
+
+DetailHandler::DetailHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* DetailHandler::callback(Request *req) {
+    cout<<"laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"<<endl;
+    Response* res = new Response();
+    stringstream body;
+    map<string, string> data = net->get_movie_base_data(stoi(req->getQueryParam("filmId"))); 
+
+
+    res->setHeader("Content-Type", "text/html");
+
+    body
+<<"    <!DOCTYPE html>"
+<<"<html lang='en'>"
+<<"    <head>"
+<<"        <title>Movie Detail</title>"
+<<"        <meta charset='utf-8'>"
+<<"        <meta name='viewport' content='width=device-width, initial-scale=1'>"
+<<"        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>"
+<<"    </head>"
+<<"    <body>"
+<<"        <nav class='navbar navbar-expand-sm bg-dark navbar-dark fixed-top'>"
+<<"            <ul class='navbar-nav'>"
+<<"                <li class='nav-item active'>"
+<<"                    <a class='nav-link' href='/'>Home</a>"
+<<"                </li>"
+<<""
+<<"                <li class='nav-item'>"
+<<"                    <a class='nav-link' href='/profile'>Profile</a>"
+<<"                </li>"
+<<""
+<<"                <li class='nav-item mr-auto'>"
+<<"                    <form method='POST' action='/logout'>"
+<<"                        <button class='btn btn-danger' type='submit'>logout</button>"
+<<"                    </form>"
+<<"                </li>"
+<<"    "
+<<""
+<<"                <span class='navbar-text'></span>"
+<<"            </ul>"
+<<"        </nav>"
+<<"        <br><br><br><br>"
+<<"    <div class='container' align='middle'>"
+<<"    <ul class='list-group list-group-flush'>"
+<<"        <li class=\"list-group-item\"><h1>"
+<<              data[B_NAME]
+<<"        </h1></li>"
+<<""
+<<"        <li class=\"list-group-item\"><h3>Directed By:<br>"
+<<              data[B_DIRECTOR]
+<<"        </h3></li>"
+<<"    "
+<<"        <li class=\"list-group-item\"><h5>Summary:"
+<<              data[B_SUMMARY]
+<<"        </h5><br></li>"
+<<""
+<<"        <li class=\"list-group-item\">"
+<<"            <div class=\"row\">"
+<<"                <div class=\"col\" >Price : "
+<<                      data[B_PRICE]
+<<"                </div>"
+<<"                <div class=\"col\" >Year :"
+<<                      data[B_YEAR]
+<<"                </div>"
+<<"                <div class=\"col\" >Length : "
+<<                      data[B_LENGTH]
+<<"                </div>"
+<<"            </div>"
+<<"        </li>"
+<<""
+<<"        <li class=\"list-group-item\"><h6>Rate:"
+<<              data[B_RATE]
+<<"        </h6></li>"
+<<"            "
+<<"    </ul>"
+<<"    <form action='/buyFilm?filmId='>"
+<<"        <br><button class='btn btn-success'>Buy Movie</button>    "
+<<"    </form>"
+<<"    </div><br><br>"
+<<"    <div class='container' align='middle'>"
+<<"    <h4>Recommended</h4>"
+<<"    </div><br>"
+<<"    <div class='container'>"
+<<"        <table class='table'>"
+<<"            <thead class='thead-dark'>"
+<<"                <tr>"
+<<"                    <th>Name</th>"
+<<"                    <th>Length</th>"
+<<"                    <th>Director</th>"
+<<"                </tr>   "
+<<"            </thead>"
+<<"            <tbody>"
+<<"            <tr>"
+<<"                <td>John</td>"
+<<"                <td>Doe</td>"
+<<"                <td>john@example.com</td>"
+<<"            </tbody>"
+<<"            </table>"
+<<"        </div>"
+<<"    </body>"
+<<"</html>";
+    res->setBody(body.str());
+    return res;
+}

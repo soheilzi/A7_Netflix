@@ -31,6 +31,10 @@ int main(int argc, char **argv) {
         server.get("/profile", new ProfileHandler(&net));
         server.post("/profile", new MoneyHandler(&net));
 
+        server.post("/viewMovie", new DetailHandler(&net));
+
+        server.post("/buyMovie", new BuyHandler(&net));
+
         server.run();
     } catch (Server::Exception e) {
         cerr << e.getMessage() << endl;
