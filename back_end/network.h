@@ -38,6 +38,7 @@ public:
 	void logout();
 	bool publisher_is_logged();
 	bool user_is_logged();
+	bool user_owns_movie(int film_id);
 	std::string get_dir_to_filter_by();
 	std::vector<std::string> get_unread_notifs();
 	std::vector<std::string> get_notifs(std::map<std::string, std::string> param);

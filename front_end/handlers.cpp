@@ -124,7 +124,7 @@ Response* HomeHandler::callback(Request* req) {
 <<"                 <span class='navbar-text'></span>"
 <<"             </ul>"
 <<"             <form class='form-inline my-2 my-lg-0' action='/' method='POST'>"
-<<"                  <input class='form-control mr-sm-2' type='text' placeholder='filter director' required='required' name='director'>"
+<<"                  <input class='form-control mr-sm-2' type='text' placeholder='filter director' name='director'>"
 <<"                  <button class='btn btn-success' type='submit'>Filter</button>"
 <<"             </form>"
 <<"         </nav><br><br><br>"
@@ -161,8 +161,13 @@ Response* HomeHandler::callback(Request* req) {
         body
         <<"     </form></th>"
         <<"     <th>"
-        <<"     <form method='post' action='/viewMovie?filmId="<<table[i][TABLE_ID]<<"'>"
-        <<"         <button type='submit' class='btn btn-outline-info btn-sm' >Detail</button>"
+        <<"     <form method='post' action='/viewMovie?filmId="<<table[i][TABLE_ID]<<"'>";
+        if(net->publisher_is_logged() || net->user_is_logged()){
+        body<<"     <button type='submit' class='btn btn-outline-info btn-sm' >Detail</button>";
+        } else {
+        body<<"     <button type='submit' class='btn btn-outline-info btn-sm' disabled >Detail</button>";
+        }
+        body
         <<"     </form></th>"
         <<"</tr>";
     }
@@ -194,7 +199,10 @@ Response* AddFilmHandler::callback(Request *req) {
 FilterHandler::FilterHandler(Network* _net) : RequestHandler(), net(_net) {}
 
 Response* FilterHandler::callback(Request *req) {
-    net->set_dir_filter(req->getBodyParam("director"));
+    if(req->getBodyParam("director") == "")
+        net->set_dir_filter("");
+    else
+        net->set_dir_filter(req->getBodyParam("director"));
     Response* res = Response::redirect("/");
     return res;
 }
@@ -369,10 +377,14 @@ Response* DetailHandler::callback(Request *req) {
 <<              data[B_RATE]
 <<"        </h6></li>"
 <<"            "
-<<"    </ul>"
+<<"    </ul>";
+    if(net->user_owns_movie(stoi(data[B_ID]))){
+        body
 <<"    <form method='post' action='/buyFilm?filmId="<< data[B_ID] <<"'>"
 <<"        <br><button class='btn btn-success'>Buy Movie</button>    "
-<<"    </form>"
+<<"    </form>";
+    }
+    body
 <<"    </div><br><br>"
 <<"    <div class='container' align='middle'>"
 <<"    <h4>Recommended</h4>"

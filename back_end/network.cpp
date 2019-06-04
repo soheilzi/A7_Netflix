@@ -307,3 +307,7 @@ std::string Network::get_dir_to_filter_by() {
 void Network::set_dir_filter(std::string director) {
 	dir_to_filter_by = director;
 }
+
+bool Network::user_owns_movie(int film_id) {
+	return user->owns_movie(film_id);
+}

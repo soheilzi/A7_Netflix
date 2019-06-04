@@ -1,1 +1,1 @@
-error=Not_enough_creadit
+error=loggedin
