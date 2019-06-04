@@ -299,11 +299,10 @@ Response* MoneyHandler::callback(Request *req) {
 DetailHandler::DetailHandler(Network* _net) : RequestHandler(), net(_net) {}
 
 Response* DetailHandler::callback(Request *req) {
-    cout<<"laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"<<endl;
     Response* res = new Response();
     stringstream body;
     map<string, string> data = net->get_movie_base_data(stoi(req->getQueryParam("filmId"))); 
-
+    vector<vector<string>> recomms = net->get_recommendation(stoi(req->getQueryParam("filmId")));
 
     res->setHeader("Content-Type", "text/html");
 
@@ -371,7 +370,7 @@ Response* DetailHandler::callback(Request *req) {
 <<"        </h6></li>"
 <<"            "
 <<"    </ul>"
-<<"    <form action='/buyFilm?filmId='>"
+<<"    <form method='post' action='/buyFilm?filmId="<< data[B_ID] <<"'>"
 <<"        <br><button class='btn btn-success'>Buy Movie</button>    "
 <<"    </form>"
 <<"    </div><br><br>"
@@ -386,17 +385,35 @@ Response* DetailHandler::callback(Request *req) {
 <<"                    <th>Length</th>"
 <<"                    <th>Director</th>"
 <<"                </tr>   "
-<<"            </thead>"
-<<"            <tbody>"
+<<"            </thead>" 
+<<"            <tbody>";
+    for(int i = 0; i < recomms.size(); i++) {
+        body
 <<"            <tr>"
-<<"                <td>John</td>"
-<<"                <td>Doe</td>"
-<<"                <td>john@example.com</td>"
+<<"                <td>"<< recomms[i][R_NAME] <<"</td>"
+<<"                <td>"<< recomms[i][R_LENGTH] <<"</td>"
+<<"                <td>"<< recomms[i][R_DIRECTOR] <<"</td>"
+<<"             </tr>";
+    }
+    body
 <<"            </tbody>"
 <<"            </table>"
 <<"        </div>"
 <<"    </body>"
 <<"</html>";
     res->setBody(body.str());
+    return res;
+}
+
+BuyHandler::BuyHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* BuyHandler::callback(Request *req) {
+    Response* res = new Response();
+    try{
+        net->buy_movie(stoi(req->getQueryParam("filmId")));
+        res = Response::redirect("/profile");
+    } catch (BadRequest ex) {
+        res = Response::redirect("/error?error=Not_enough_creadit");
+    }
     return res;
 }

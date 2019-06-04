@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
         server.post("/viewMovie", new DetailHandler(&net));
 
-        server.post("/buyMovie", new BuyHandler(&net));
+        server.post("/buyFilm", new BuyHandler(&net));
 
         server.run();
     } catch (Server::Exception e) {

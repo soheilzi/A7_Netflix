@@ -1,1 +1,1 @@
-error=You_need_to_be_loggedin
+error=Not_enough_creadit
