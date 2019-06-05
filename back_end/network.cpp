@@ -311,3 +311,7 @@ void Network::set_dir_filter(std::string director) {
 bool Network::user_owns_movie(int film_id) {
 	return user->owns_movie(film_id);
 }
+
+string Network::get_username() {
+	return user->get_username();
+}

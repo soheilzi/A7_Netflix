@@ -378,11 +378,23 @@ Response* DetailHandler::callback(Request *req) {
 <<"        </h6></li>"
 <<"            "
 <<"    </ul>";
-    if(net->user_owns_movie(stoi(data[B_ID]))){
+    if(!net->user_owns_movie(stoi(data[B_ID]))){
         body
 <<"    <form method='post' action='/buyFilm?filmId="<< data[B_ID] <<"'>"
 <<"        <br><button class='btn btn-success'>Buy Movie</button>    "
 <<"    </form>";
+
+    } else {
+        body
+<<"    <br>"        
+<<"    <form method='post' action='/comment?username="<< net->get_username() <<"'>"
+<<"    <div class='form-group'>"
+<<"         <label for='text'>Comment :</label>"
+<<"         <input type='text' class='form-control' id='comment' placeholder='comment' name='comment' >"
+<<"         <br><button class='btn btn-primary' type='submit'>submit comment</button>"
+<<"    </div>"
+<<"    </form>";
+
     }
     body
 <<"    </div><br><br>"
