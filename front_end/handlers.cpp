@@ -406,8 +406,10 @@ Response* DetailHandler::callback(Request *req) {
 <<"    </div>"
 <<"    </form>"
 <<"    <form class='form-inline my-2 my-lg-0' action='/rate?filmId="<< data[B_ID] <<"' method='POST'>"
+<<"    <div class='form-group'>"
 <<"         <input class='form-control mr-sm-2' type='number' placeholder='rate' name='rate'>"
 <<"         <button class='btn btn-primary' type='submit'>Rate</button>"
+<<"    </div>"
 <<"    </form>";
     }
     body
