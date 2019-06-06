@@ -1,1 +1,1 @@
-error=Not_enough_creadit
+error=Something_went_wrong

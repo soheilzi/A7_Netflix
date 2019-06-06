@@ -379,6 +379,16 @@ Response* DetailHandler::callback(Request *req) {
 <<"        </h6></li>"
 <<"            "
 <<"    </ul>";
+    body
+<<"     <div class='container'>"
+<<"         <ul class='list-group list-group-flush'>";
+    for(int i = 0; i < comments.size(); i++) {
+        body
+<<"             <li class=\"list-group-item\">"
+<<"                 <p>"<< "user : "<< net->get_username(stoi(comments[i][COMMENT_IDD])) << " said " << comments[i][COMMENT_MESSAGE] <<"</p>"
+<<"             </li>";
+    }
+
     if(!net->user_owns_movie(stoi(data[B_ID]))){
         body
 <<"    <form method='post' action='/buyFilm?filmId="<< data[B_ID] <<"'>"
@@ -394,17 +404,11 @@ Response* DetailHandler::callback(Request *req) {
 <<"         <input type='text' class='form-control' id='comment' placeholder='comment' name='comment' >"
 <<"         <br><button class='btn btn-primary' type='submit'>submit comment</button>"
 <<"    </div>"
+<<"    </form>"
+<<"    <form class='form-inline my-2 my-lg-0' action='/rate?filmId="<< data[B_ID] <<"' method='POST'>"
+<<"         <input class='form-control mr-sm-2' type='number' placeholder='rate' name='rate'>"
+<<"         <button class='btn btn-primary' type='submit'>Rate</button>"
 <<"    </form>";
-
-    }
-    body
-<<"     <div class='container'>"
-<<"         <ul class='list-group list-group-flush'>";
-    for(int i = 0; i < comments.size(); i++) {
-        body
-<<"             <li class=\"list-group-item\">"
-<<"                 <p>"<< "user : "<< net->get_username(stoi(comments[i][COMMENT_IDD])) << " said " << comments[i][COMMENT_MESSAGE] <<"</p>"
-<<"             </li>";
     }
     body
 <<"         </ul>"
@@ -460,6 +464,19 @@ Response* CommentHandler::callback(Request *req) {
     Response* res = new Response();
     try{
         net->post_comment(stoi(req->getQueryParam("filmId")), req->getBodyParam("comment"));
+        res = Response::redirect("/profile");
+    } catch (...) {
+        res = Response::redirect("/error?error=Something_went_wrong");
+    }
+    return res;
+}
+
+RateHandler::RateHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* RateHandler::callback(Request *req) {
+    Response* res = new Response();
+    try{
+        net->rate(stoi(req->getQueryParam("filmId")), stoi(req->getBodyParam("rate")));
         res = Response::redirect("/profile");
     } catch (...) {
         res = Response::redirect("/error?error=Something_went_wrong");

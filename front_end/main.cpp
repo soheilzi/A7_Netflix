@@ -37,6 +37,8 @@ int main(int argc, char **argv) {
 
         server.post("/comment", new CommentHandler(&net));
 
+        server.post("/rate", new RateHandler(&net));
+
         server.run();
     } catch (Server::Exception e) {
         cerr << e.getMessage() << endl;

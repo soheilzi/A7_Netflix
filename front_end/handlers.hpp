@@ -111,4 +111,12 @@ public:
 private:
     Network* net;
 };
+
+class RateHandler : public RequestHandler {
+public:
+    RateHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
 #endif
