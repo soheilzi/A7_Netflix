@@ -237,8 +237,6 @@ std::map<std::string, std::string> Network::get_movie_base_data(int film_id) {
 }
 
 std::vector<std::vector<std::string>> Network::get_comment_data(int film_id) {
-	if(!signed_in)
-		throw PermissionDenied();
 	return movies.get_comment_data(film_id);
 }
 
@@ -312,6 +310,6 @@ bool Network::user_owns_movie(int film_id) {
 	return user->owns_movie(film_id);
 }
 
-string Network::get_username() {
-	return user->get_username();
+string Network::get_username(int userId) {
+	return users.get_username(userId);
 }

@@ -35,6 +35,8 @@ int main(int argc, char **argv) {
 
         server.post("/buyFilm", new BuyHandler(&net));
 
+        server.post("/comment", new CommentHandler(&net));
+
         server.run();
     } catch (Server::Exception e) {
         cerr << e.getMessage() << endl;

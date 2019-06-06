@@ -24,7 +24,7 @@ public:
 	int get_credit();
 	int get_sessionId();
 	int make_sessionId();
-	std::string get_username();
+	std::string get_username(int userId);
 	void edit_movie(int id, std::map<std::string, std::string> parameters);
 	void get_money_publisher();
 	void buy_movie(int film_id);

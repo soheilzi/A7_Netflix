@@ -103,4 +103,12 @@ public:
 private:
     Network* net;
 };
+
+class CommentHandler : public RequestHandler {
+public:
+    CommentHandler(Network*);
+    Response *callback(Request *);
+private:
+    Network* net;
+};
 #endif

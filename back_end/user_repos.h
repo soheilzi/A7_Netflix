@@ -16,6 +16,7 @@ public:
 	User* add_user(std::string _username, std::string _password, std::string _email, int _age, bool publisher);
 	User* get_user_by_id(int id);
 	bool correct_user_and_pass(std::string _username, std::string _password);
+	std::string get_username(int user_id);
 private:
 	SequenceGenerator id_generator;
 	std::map<std::string, User*> users;

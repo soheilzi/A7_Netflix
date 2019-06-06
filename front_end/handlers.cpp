@@ -311,6 +311,7 @@ Response* DetailHandler::callback(Request *req) {
     stringstream body;
     map<string, string> data = net->get_movie_base_data(stoi(req->getQueryParam("filmId"))); 
     vector<vector<string>> recomms = net->get_recommendation(stoi(req->getQueryParam("filmId")));
+    vector<vector<string>> comments = net->get_comment_data(stoi(req->getQueryParam("filmId")));
 
     res->setHeader("Content-Type", "text/html");
 
@@ -387,7 +388,7 @@ Response* DetailHandler::callback(Request *req) {
     } else {
         body
 <<"    <br>"        
-<<"    <form method='post' action='/comment?username="<< net->get_username() <<"'>"
+<<"    <form method='post' action='/comment?filmId="<< data[B_ID] <<"'>"
 <<"    <div class='form-group'>"
 <<"         <label for='text'>Comment :</label>"
 <<"         <input type='text' class='form-control' id='comment' placeholder='comment' name='comment' >"
@@ -397,6 +398,17 @@ Response* DetailHandler::callback(Request *req) {
 
     }
     body
+<<"     <div class='container'>"
+<<"         <ul class='list-group list-group-flush'>";
+    for(int i = 0; i < comments.size(); i++) {
+        body
+<<"             <li class=\"list-group-item\">"
+<<"                 <p>"<< "user : "<< net->get_username(stoi(comments[i][COMMENT_IDD])) << " said " << comments[i][COMMENT_MESSAGE] <<"</p>"
+<<"             </li>";
+    }
+    body
+<<"         </ul>"
+<<"     </div>"
 <<"    </div><br><br>"
 <<"    <div class='container' align='middle'>"
 <<"    <h4>Recommended</h4>"
@@ -438,6 +450,19 @@ Response* BuyHandler::callback(Request *req) {
         res = Response::redirect("/profile");
     } catch (BadRequest ex) {
         res = Response::redirect("/error?error=Not_enough_creadit");
+    }
+    return res;
+}
+
+CommentHandler::CommentHandler(Network* _net) : RequestHandler(), net(_net) {}
+
+Response* CommentHandler::callback(Request *req) {
+    Response* res = new Response();
+    try{
+        net->post_comment(stoi(req->getQueryParam("filmId")), req->getBodyParam("comment"));
+        res = Response::redirect("/profile");
+    } catch (...) {
+        res = Response::redirect("/error?error=Something_went_wrong");
     }
     return res;
 }

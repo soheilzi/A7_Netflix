@@ -36,3 +36,11 @@ User* UserRepos::get_user_by_id(int id) {
 	}
 	throw BadRequest();
 }
+
+std::string UserRepos::get_username(int user_id) {
+	for(const auto& elem : users) {
+		if(elem.second->get_id() == user_id)
+			return elem.second->get_username(); 
+	}
+	return "";
+}
